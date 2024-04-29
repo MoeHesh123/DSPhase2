@@ -13,8 +13,15 @@ class Unit
 
 protected:
 
-	int id;
 	int jointime;
+	int Ta;
+	int Td;
+	int Df;
+	int Dd;
+	int Db;
+	double UAP;
+
+	int id;
 	double health;
 	int power;
 	int attackCapacity;
@@ -32,5 +39,15 @@ public:
 	virtual void SetHealth(double H);
 	virtual void SetJT(int Timestep);
 	void print();
+
+	virtual int GetTa();
+	virtual int GetTd();
+	virtual int GetDf();
+	virtual int GetDd();
+	virtual int GetDb();
+	//virtual double GetUAP();
+    // virtual void SetTa(int ta);
+	//virtual void SetTd(int td);
+	//virtual void SetUAP(double damage);
 
 };

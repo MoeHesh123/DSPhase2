@@ -53,3 +53,45 @@ void Unit::print()
 	cout << "Unit AttackCapacity" << GetAttackCapacity() << endl;
 	cout << "Unit Type" << GetType() << endl;
 }
+
+int Unit::GetTa()
+{
+	return Ta;
+}
+
+int Unit::GetTd()
+{
+	return Td;
+}
+
+int Unit::GetDf()
+{
+	return (Ta-jointime);
+}
+
+int Unit::GetDd()
+{
+	return (Td-Ta);
+}
+
+int Unit::GetDb()
+{
+	return (Td-jointime);
+}
+
+//double Unit::GetUAP()
+//{
+//	return 0.0;
+//}
+//
+//void Unit::SetTa(int ta)
+//{
+//}
+//
+//void Unit::SetTd(int td)
+//{
+//}
+//
+//void Unit::SetUAP(double damage)
+//{
+//}

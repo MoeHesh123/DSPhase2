@@ -36,7 +36,7 @@ int main()
 		else if (X > 20 && X <= 30)
 		{
 			EarthGunnery* egptr = nullptr;
-			int Priority = 0.0;
+			int Priority = 0;
 			earthArmy.removeEG(egptr, Priority);
 			if (egptr != nullptr)
 			{
