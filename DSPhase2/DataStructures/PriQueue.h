@@ -23,6 +23,14 @@ public:
         return (head == nullptr);
     }
 
+    bool peek(T& topEntry, int& pri)
+    {
+        if (isEmpty()) return false;
+        topEntry = head->getItem();
+        pri = head->getPri();
+        return true;
+    }
+
     void enqueue(const T& data, int priority)
     {
         priNode<T>* newNode = new priNode<T>(data, priority);
@@ -47,14 +55,6 @@ public:
         head = head->getNext();
         delete temp;
         itemCount--;
-        return true;
-    }
-
-    bool peek(T& topEntry, int& pri)
-    {
-        if (isEmpty()) return false;
-        topEntry = head->getItem();
-        pri = head->getPri();
         return true;
     }
 

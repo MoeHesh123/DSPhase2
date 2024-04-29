@@ -26,6 +26,20 @@ public:
 		return (frontPtr == nullptr);
 	}
 
+	bool peek(T& FrontEntry) const
+	{
+		if (isEmpty()) return false;
+		FrontEntry = frontPtr->getItem();
+		return true;
+	}
+
+	bool peekBack(T& BackEntry) const
+	{
+		if (isEmpty()) return false;
+		BackEntry = backPtr->getItem();
+		return true;
+	}
+
 	bool enqueue(const T& newEntry)
 	{
 		Node<T>* newNodePtr = new Node<T>(newEntry);
@@ -84,27 +98,7 @@ public:
 		}
 	}
 
-	bool peek(T& FrontEntry) const
-	{
-		if (isEmpty()) return false;
-		FrontEntry = frontPtr->getItem();
-		return true;
-	}
-
-	bool peekBack(T& BackEntry) const
-	{
-		if (isEmpty()) return false;
-		BackEntry = backPtr->getItem();
-		return true;
-	}
-
-	~DoubleEndedQueueList()
-	{
-		T temp;
-		while (dequeue(temp));
-	}
-
-	int getCount() 
+	int getCount()
 	{
 		return itemCount;
 	}
@@ -112,6 +106,12 @@ public:
 	Node<T>* getfrontPtr()
 	{
 		return frontPtr;
+	}
+
+	~DoubleEndedQueueList()
+	{
+		T temp;
+		while (dequeue(temp));
 	}
 
 };

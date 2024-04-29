@@ -23,17 +23,6 @@ public:
         return (count == MAX_SIZE);
     }
 
-    bool insert(T& newEntry)
-    {
-        if (count != MAX_SIZE)
-        {
-            arr[count] = new T(newEntry);
-            count++;
-            return true;
-        }
-        return false;
-    }
-
     bool isEmpty()
     {
         return count == 0;
@@ -44,6 +33,17 @@ public:
         for (int i = 0; i < count; i++)
         {
             if (*arr[x] == *arr[i]) return true;
+        }
+        return false;
+    }
+
+    bool insert(T& newEntry)
+    {
+        if (count != MAX_SIZE)
+        {
+            arr[count] = new T(newEntry);
+            count++;
+            return true;
         }
         return false;
     }

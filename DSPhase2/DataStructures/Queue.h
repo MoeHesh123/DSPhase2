@@ -25,6 +25,13 @@ public:
 		return (frontPtr == nullptr);
 	}
 
+	bool peek(T& FrontEntry)  const
+	{
+		if (isEmpty()) return false;
+		FrontEntry = frontPtr->getItem();
+		return true;
+	}
+
 	bool enqueue(const T& newEntry)
 	{
 		Node<T>* newNodePtr = new Node<T>(newEntry);
@@ -47,13 +54,6 @@ public:
 		if (nodeToDeletePtr == backPtr) backPtr = nullptr;
 		delete nodeToDeletePtr;
 		itemCount--;
-		return true;
-	}
-
-	bool peek(T& FrontEntry)  const
-	{
-		if (isEmpty()) return false;
-		FrontEntry = frontPtr->getItem();
 		return true;
 	}
 
