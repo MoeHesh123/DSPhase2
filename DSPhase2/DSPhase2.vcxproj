@@ -26,6 +26,11 @@
     <ClInclude Include="ADT\PriNode.h" />
     <ClInclude Include="ADT\QueueADT.h" />
     <ClInclude Include="ADT\StackADT.h" />
+    <ClInclude Include="DataStructures\ArrayOfPointers.h" />
+    <ClInclude Include="DataStructures\DoubleEndedQueue.h" />
+    <ClInclude Include="DataStructures\PriQueue.h" />
+    <ClInclude Include="DataStructures\Queue.h" />
+    <ClInclude Include="DataStructures\StackList.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
