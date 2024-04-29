@@ -57,9 +57,12 @@ public:
         pri = head->getPri();
         return true;
     }
-    int getcount() {
+
+    int getCount() 
+    {
         return itemCount;
     }
+
     priNode<T>* gethead()
     {
         return head;

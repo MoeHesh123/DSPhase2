@@ -55,7 +55,9 @@ public:
 			return true;
 		}
 	}
-	int getcount() {
+
+	int getCount() 
+	{
 		return itemCount;
 	}
 

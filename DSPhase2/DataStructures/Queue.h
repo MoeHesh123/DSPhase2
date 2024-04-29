@@ -34,6 +34,7 @@ public:
 			backPtr->setNext(newNodePtr);
 
 		backPtr = newNodePtr;
+		itemCount++;
 		return true;
 	}
 
@@ -55,8 +56,10 @@ public:
 		FrontEntry = frontPtr->getItem();
 		return true;
 	}
-	int getCount() {
-		return getCount;
+
+	int getCount() 
+	{
+		return itemCount;
 	}
 
 	Node<T>* getfrontPtr()

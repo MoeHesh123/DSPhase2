@@ -103,7 +103,9 @@ public:
 		T temp;
 		while (dequeue(temp));
 	}
-	int getcount() {
+
+	int getCount() 
+	{
 		return itemCount;
 	}
 
