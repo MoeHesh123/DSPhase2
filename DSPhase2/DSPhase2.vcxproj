@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Armies\AlienArmy.cpp" />
+    <ClCompile Include="Armies\EarthArmy.cpp" />
     <ClCompile Include="Unit\HealUnit.cpp" />
     <ClCompile Include="Unit\AlienMonster.cpp" />
     <ClCompile Include="Unit\AlienDrone.cpp" />
@@ -34,6 +36,8 @@
     <ClInclude Include="ADT\PriNode.h" />
     <ClInclude Include="ADT\QueueADT.h" />
     <ClInclude Include="ADT\StackADT.h" />
+    <ClInclude Include="Armies\AlienArmy.h" />
+    <ClInclude Include="Armies\EarthArmy.h" />
     <ClInclude Include="Unit\HealUnit.h" />
     <ClInclude Include="Unit\AlienMonster.h" />
     <ClInclude Include="Unit\AlienDrone.h" />
