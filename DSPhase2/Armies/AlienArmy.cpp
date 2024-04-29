@@ -19,21 +19,6 @@ bool AlienArmy::addAS(double h, int p, int AttC)
 	}
 	return false;
 }
-
-bool AlienArmy::addASFromTemp(AlienSoldier* asptr)
-{
-	if (asptr != nullptr)
-	{
-		AS.enqueue(asptr);
-		AScount++;
-		return true;
-	}
-	return false;
-	//if (unit->GetType() == "AS");
-    //if (unit->GetType() == "AD");
-    //if (unit->GetType() == "AM");
-}
-
 bool AlienArmy::removeAS(AlienSoldier*& as)
 {
 	if (isEmpty_AS())
@@ -91,19 +76,6 @@ bool AlienArmy::addAD(double h, int p, int AttC)
 	}
 	return false;
 }
-
-bool AlienArmy::addADFromTemp(AlienDrone* adptr1, AlienDrone* adptr2)
-{
-	if (adptr1 != nullptr && adptr2 != nullptr)
-	{
-		AD.enqueue(adptr1);
-		AD.enqueueFront(adptr2);
-		ADcount = ADcount + 2;
-		return true;
-	}
-	return false;
-}
-
 bool AlienArmy::removeAD(AlienDrone*& ad1, AlienDrone*& ad2)
 {
 	if (isEmpty_AD())
@@ -115,12 +87,15 @@ bool AlienArmy::removeAD(AlienDrone*& ad1, AlienDrone*& ad2)
 	{
 		AD.dequeue(ad1);
 		ad2 = nullptr;
+		ADcount--;
+		return true;
 	}
 	else if (ADcount == 2)
 	{
 		AD.dequeue(ad1);
 		AD.dequeue(ad2);
 		ADcount = ADcount - 2;
+		return true;
 	}
 	else
 	{
@@ -129,7 +104,6 @@ bool AlienArmy::removeAD(AlienDrone*& ad1, AlienDrone*& ad2)
 		ADcount = ADcount - 2;
 		return true;
 	}
-	return false;
 }
 
 void AlienArmy::printAD()
@@ -174,18 +148,6 @@ bool AlienArmy::addAM(double h, int p, int AttC)
 	}
 	return false;
 }
-
-bool AlienArmy::addAMFromTemp(AlienMonster* amptr)
-{
-	if (amptr != nullptr)
-	{
-		AM.insert(amptr);
-		AMcount++;
-		return true;
-	}
-	return false;
-}
-
 bool AlienArmy::removeAM(AlienMonster*& am)
 {
 	if (isEmpty_AM()) return false;
@@ -217,4 +179,35 @@ void AlienArmy::printAM()
 bag <AlienMonster*> AlienArmy::getAM()
 {
 	return AM;
+}
+void AlienArmy::ReAddAlienUnit(Unit* unit)
+{
+	if (unit == nullptr) return;
+	if (unit->GetType() == "AS")
+	{
+		AlienSoldier* as = dynamic_cast<AlienSoldier*>(unit);
+		AS.enqueue(as);
+		AScount++;
+	}
+	if (unit->GetType() == "AM")
+	{
+		AlienMonster* am = dynamic_cast<AlienMonster*>(unit);
+		AM.insert(am);
+		AMcount++;
+	}
+	if (unit->GetType() == "AD")
+	{
+		AlienDrone* ad = dynamic_cast<AlienDrone*>(unit);
+		if (alternating % 2 == 0) 
+		{
+			AD.enqueue(ad);
+			alternating++;
+		}
+		else 
+		{
+			AD.enqueueFront(ad);
+			alternating++;
+		}
+
+	}
 }

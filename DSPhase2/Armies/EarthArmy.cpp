@@ -172,35 +172,26 @@ priQueue <EarthGunnery*> EarthArmy::getEG()
 	return EG;
 }
 
-void EarthArmy::ReAddUnit(Unit* unit)
+void EarthArmy::ReAddEarthUnit(Unit* unit)
 {
 	if (unit == nullptr) return;
 	if (unit->GetType() == "ES")
 	{
 		EarthSoldier* es = dynamic_cast<EarthSoldier*>(unit);
-		if (es != nullptr)
-		{
-			ES.enqueue(es);
-			EScount++;
-		}
+		ES.enqueue(es);
+		EScount++;
 	}
 	if (unit->GetType() == "ET")
 	{
 		EarthTank* et = dynamic_cast<EarthTank*>(unit);
-		if (et != nullptr)
-		{
-			ET.push(et);
-			EScount++;
-		}
+		ET.push(et);
+		EScount++;
 	}
 	if (unit->GetType() == "EG")
 	{
 		EarthGunnery* eg = dynamic_cast<EarthGunnery*>(unit);
-		if (eg != nullptr)
-		{
-			int Pri = eg->GetHealth() + eg->GetPower();
-			EG.enqueue(eg, Pri);
-			EGcount++;
-		}
+		int Pri = eg->GetHealth() + eg->GetPower();
+		EG.enqueue(eg, Pri);
+		EGcount++;
 	}
 }

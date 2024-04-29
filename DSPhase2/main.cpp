@@ -19,14 +19,15 @@ int main()
 	for (int TimeStep = 1; TimeStep <= 50; TimeStep++)
 	{
 		cout << endl << "Current TimeStep " << TimeStep << endl;
-		X = 1 + (rand() % 100);
+		/*X = 1 + (rand() % 100);*/
+		X = 25;
 		cout << X <<endl;
 		generator.Generate(&gameManager, &earthArmy, &alienArmy);
 		if (X > 0 && X <= 10)
 		{
 			EarthSoldier* esptr = nullptr;
 			earthArmy.removeES(esptr);
-			earthArmy.ReAddUnit(esptr);
+			earthArmy.ReAddEarthUnit(esptr);
 		}
 		else if (X > 10 && X <= 20)
 		{
@@ -43,7 +44,7 @@ int main()
 			{
 				egptr->SetHealth(0.5 * egptr->GetHealth());
 				if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
-				else earthArmy.ReAddUnit(egptr);
+				else earthArmy.ReAddEarthUnit(egptr);
 			}
 		}
 		else if (X > 30 && X <= 40)
@@ -58,7 +59,7 @@ int main()
 					gameManager.AddToTempList(asptr);
 					gameManager.RemoveFromTempList(asptr);
 					if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
-					else alienArmy.addASFromTemp(asptr);
+					else alienArmy.ReAddAlienUnit(asptr);
 				}
 			}
 		}
@@ -69,7 +70,7 @@ int main()
 				AlienMonster* amptr = nullptr;
 				alienArmy.removeAM(amptr);
 				if (amptr)
-					alienArmy.addAMFromTemp(amptr);
+					alienArmy.ReAddAlienUnit(amptr);
 			}
 		}
 		else if (X > 50 && X <= 60)
@@ -78,7 +79,7 @@ int main()
 			{
 				AlienDrone* adptr1, * adptr2;
 				alienArmy.removeAD(adptr1, adptr2);
-				if (adptr1 && adptr2)
+				if (adptr1 || adptr2)
 				{
 					gameManager.AddToKilled(adptr1);
 					gameManager.AddToKilled(adptr2);

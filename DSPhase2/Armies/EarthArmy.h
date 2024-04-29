@@ -37,6 +37,6 @@ public:
 	void printEG();
 	priQueue <EarthGunnery*> getEG();
 
-	void ReAddUnit(Unit* Unit);
+	void ReAddEarthUnit(Unit* Unit);
 
 };

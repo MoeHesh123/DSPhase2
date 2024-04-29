@@ -19,28 +19,26 @@ class AlienArmy
 
 	bag<AlienMonster*>AM;
 	int AMcount = 0;
-
+	int alternating = 0;
 public:
 
 	bool isEmpty_AS();
 	bool addAS(double H, int P, int AttC);
-	bool addASFromTemp(AlienSoldier* asptr);
 	bool removeAS(AlienSoldier*& as);
 	void printAS();
 	LinkedQueue <AlienSoldier*> getAS();
 
 	bool isEmpty_AD();
 	bool addAD(double H, int P, int AttC);
-	bool addADFromTemp(AlienDrone* adptr1, AlienDrone* adptr2);
 	bool removeAD(AlienDrone*& ad1, AlienDrone*& ad2);
 	void printAD();
 	DoubleEndedQueueList <AlienDrone*> getAD();
 
 	bool isEmpty_AM();
 	bool addAM(double H, int P, int AttC);
-	bool addAMFromTemp(AlienMonster* amptr);
 	bool removeAM(AlienMonster*& am);
 	void printAM();
 	bag <AlienMonster*> getAM();
 
+	void ReAddAlienUnit(Unit* Unit);
 };
