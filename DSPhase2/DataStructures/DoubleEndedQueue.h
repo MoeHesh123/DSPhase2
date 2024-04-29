@@ -103,6 +103,9 @@ public:
 		T temp;
 		while (dequeue(temp));
 	}
+	int getcount() {
+		return itemCount;
+	}
 
 	Node<T>* getfrontPtr()
 	{

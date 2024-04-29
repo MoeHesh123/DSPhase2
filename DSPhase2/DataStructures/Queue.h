@@ -55,6 +55,9 @@ public:
 		FrontEntry = frontPtr->getItem();
 		return true;
 	}
+	int getCount() {
+		return getCount;
+	}
 
 	Node<T>* getfrontPtr()
 	{

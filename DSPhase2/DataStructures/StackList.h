@@ -55,6 +55,9 @@ public:
 			return true;
 		}
 	}
+	int getcount() {
+		return itemCount;
+	}
 
 	Node<T>* gettop()
 	{
