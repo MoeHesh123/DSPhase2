@@ -23,19 +23,19 @@ class AlienArmy
 public:
 
 	bool isEmpty_AS();
-	bool addAS(double H, int P, int AttC);
+	bool addAS(int jt, double H, int P, int AttC);
 	bool removeAS(AlienSoldier*& as);
 	void printAS();
 	LinkedQueue <AlienSoldier*> getAS();
 
 	bool isEmpty_AD();
-	bool addAD(double H, int P, int AttC);
+	bool addAD(int jt, double H, int P, int AttC);
 	bool removeAD(AlienDrone*& ad1, AlienDrone*& ad2);
 	void printAD();
 	DoubleEndedQueueList <AlienDrone*> getAD();
 
 	bool isEmpty_AM();
-	bool addAM(double H, int P, int AttC);
+	bool addAM(int jt, double H, int P, int AttC);
 	bool removeAM(AlienMonster*& am);
 	void printAM();
 	bag <AlienMonster*> getAM();

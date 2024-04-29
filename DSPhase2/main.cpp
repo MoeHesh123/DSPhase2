@@ -20,7 +20,7 @@ int main()
 	{
 		cout << endl << "Current TimeStep " << TimeStep << endl;
 		X = 1 + (rand() % 100);
-		generator.Generate(&gameManager, &earthArmy, &alienArmy);
+		generator.Generate(&gameManager, &earthArmy, &alienArmy, TimeStep);
 		if (X > 0 && X <= 10)
 		{
 			EarthSoldier* esptr = nullptr;
@@ -67,8 +67,7 @@ int main()
 			{
 				AlienMonster* amptr = nullptr;
 				alienArmy.removeAM(amptr);
-				if (amptr)
-					alienArmy.ReAddAlienUnit(amptr);
+				if (amptr) alienArmy.ReAddAlienUnit(amptr);
 			}
 		}
 		else if (X > 50 && X <= 60)

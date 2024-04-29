@@ -30,6 +30,7 @@ public:
 	void RemoveFromTempList(Unit* Unit);
 
 	void PrintKilledList();
+
 	void Readinput();
 
 };

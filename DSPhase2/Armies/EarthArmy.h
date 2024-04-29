@@ -20,19 +20,19 @@ class EarthArmy
 public:
 
 	bool isEmpty_ES();
-	bool addES(double H, int P, int AttC);
+	bool addES(int jt, double H, int P, int AttC);
 	bool removeES(EarthSoldier*& es);
 	void printES();
 	LinkedQueue <EarthSoldier*> getES();
 
 	bool isEmpty_ET();
-	bool addET(double H, int P, int AttC);
+	bool addET(int jt, double H, int P, int AttC);
 	bool removeET(EarthTank*& et);
 	void printET();
 	StackList <EarthTank*> getET();
 
 	bool isEmpty_EG();
-	bool addEG(double H, int P, int AttC);
+	bool addEG(int jt, double H, int P, int AttC);
 	bool removeEG(EarthGunnery*& eg, int& pri);
 	void printEG();
 	priQueue <EarthGunnery*> getEG();

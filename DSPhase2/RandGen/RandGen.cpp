@@ -1,6 +1,6 @@
 #include "RandGen.h"
 
-void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA)
+void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA,int tj)
 {
 	game->in;
 	game->Readinput();
@@ -15,15 +15,15 @@ void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA)
 			int C = game->in.minCapacityEarth + (rand() % game->in.maxCapacityEarth - game->in.minCapacityEarth);
 			if (B <= game->in.ES)
 			{
-				EA->addES(H, P, C);
+				EA->addES(tj, H, P, C);
 			}
 			else if (B <= game->in.ES + game->in.ET)
 			{
-				EA->addET(H, P, C);
+				EA->addET(tj, H, P, C);
 			}
 			else
 			{
-				EA->addEG(H, P, C);
+				EA->addEG(tj, H, P, C);
 			}
 		}
 		for (int i = 0; i < game->in.numOfUnits; i++)
@@ -34,15 +34,15 @@ void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA)
 			int C = game->in.minCapacityAlien + (rand() % game->in.maxCapacityAlien - game->in.minCapacityAlien);
 			if (Z <= game->in.AS)
 			{
-				ALA->addAS(H, P, C);
+				ALA->addAS(tj, H, P, C);
 			}
 			else if (Z <= game->in.AS + game->in.AM)
 			{
-				ALA->addAM(H, P, C);
+				ALA->addAM(tj, H, P, C);
 			}
 			else
 			{
-				ALA->addAD(H, P, C);
+				ALA->addAD(tj, H, P, C);
 			}
 		}
 	}

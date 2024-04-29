@@ -6,13 +6,11 @@ bool EarthArmy::isEmpty_ES()
 	return false;
 }
 
-bool EarthArmy::addES(double h, int p, int AttC)
+bool EarthArmy::addES(int jt, double h, int p, int AttC)
 {
-	//Replace the 69 with get join time function in game manager
-
 	if (EarthID < 999)
 	{
-		EarthSoldier* es = new EarthSoldier(++EarthID, 69, h, p, AttC);
+		EarthSoldier* es = new EarthSoldier(++EarthID, jt, h, p, AttC);
 		ES.enqueue(es);
 		EScount++;
 		return true;
@@ -60,13 +58,11 @@ bool EarthArmy::isEmpty_ET()
 	return false;
 }
 
-bool EarthArmy::addET(double h, int p, int AttC)
+bool EarthArmy::addET(int jt, double h, int p, int AttC)
 {
-	//Replace the 69 with get join time function in game manager
-
 	if (EarthID < 999)
 	{
-		EarthTank* et = new EarthTank(++EarthID, 69, h, p, AttC);
+		EarthTank* et = new EarthTank(++EarthID, jt, h, p, AttC);
 		ET.push(et);
 		ETcount++;
 		return true;
@@ -121,13 +117,11 @@ bool EarthArmy::isEmpty_EG()
 	return false;
 }
 
-bool EarthArmy::addEG(double h, int p, int AttC)
+bool EarthArmy::addEG(int jt, double h, int p, int AttC)
 {
-	//Replace the 69 with get join time function in game manager
-
 	if (EarthID < 999)
 	{
-		EarthGunnery* eg = new EarthGunnery(++EarthID, 69, h, p, AttC);
+		EarthGunnery* eg = new EarthGunnery(++EarthID, jt, h, p, AttC);
 		int Priority = h + p;
 		EG.enqueue(eg, Priority);
 		EGcount++;

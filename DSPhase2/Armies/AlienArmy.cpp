@@ -6,19 +6,18 @@ bool AlienArmy::isEmpty_AS()
 	return false;
 }
 
-bool AlienArmy::addAS(double h, int p, int AttC)
+bool AlienArmy::addAS(int jt, double h, int p, int AttC)
 {
-	//Replace the 69 with get join time function in game manager
-
 	if (AlienID < 2999)
 	{
-		AlienSoldier* as = new AlienSoldier(++AlienID, 69, h, p, AttC);
+		AlienSoldier* as = new AlienSoldier(++AlienID, jt, h, p, AttC);
 		AS.enqueue(as);
 		AScount++;
 		return true;
 	}
 	return false;
 }
+
 bool AlienArmy::removeAS(AlienSoldier*& as)
 {
 	if (isEmpty_AS())
@@ -63,19 +62,18 @@ bool AlienArmy::isEmpty_AD()
 	return false;
 }
 
-bool AlienArmy::addAD(double h, int p, int AttC)
+bool AlienArmy::addAD(int jt, double h, int p, int AttC)
 {
-	//Replace the 69 with get join time function in game manager
-
 	if (AlienID < 2999)
 	{
-		AlienDrone* ad = new AlienDrone(++AlienID, 69, h, p, AttC);
+		AlienDrone* ad = new AlienDrone(++AlienID, jt, h, p, AttC);
 		AD.enqueue(ad);
 		ADcount++;
 		return true;
 	}
 	return false;
 }
+
 bool AlienArmy::removeAD(AlienDrone*& ad1, AlienDrone*& ad2)
 {
 	if (isEmpty_AD())
@@ -135,13 +133,11 @@ bool AlienArmy::isEmpty_AM()
 	return false;
 }
 
-bool AlienArmy::addAM(double h, int p, int AttC)
+bool AlienArmy::addAM(int jt, double h, int p, int AttC)
 {
-	//Replace the 69 with get join time function in game manager
-
 	if (AlienID < 2999)
 	{
-		AlienMonster* am = new AlienMonster(++AlienID, 69, h, p, AttC);
+		AlienMonster* am = new AlienMonster(++AlienID, jt, h, p, AttC);
 		AM.insert(am);
 		AMcount++;
 		return true;
