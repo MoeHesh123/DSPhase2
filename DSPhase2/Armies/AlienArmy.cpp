@@ -103,10 +103,15 @@ bool AlienArmy::addADFromTemp(AlienDrone* adptr1, AlienDrone* adptr2)
 
 bool AlienArmy::removeAD(AlienDrone*& ad1, AlienDrone*& ad2)
 {
-	if (isEmpty_AD() || ADcount == 1)
+	if (isEmpty_AD())
 	{
 		ad1 = ad2 = nullptr;
 		return false;
+	}
+	else if(ADcount == 1)
+	{
+		AD.dequeue(ad1);
+		ad2 = nullptr;
 	}
 	else if (ADcount == 2)
 	{
