@@ -19,18 +19,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Unit\HealUnit.cpp" />
+    <ClCompile Include="Unit\AlienMonster.cpp" />
+    <ClCompile Include="Unit\AlienDrone.cpp" />
+    <ClCompile Include="Unit\AlienSoldier.cpp" />
+    <ClCompile Include="Unit\EarthGunnery.cpp" />
+    <ClCompile Include="Unit\EarthTank.cpp" />
+    <ClCompile Include="Unit\EarthSoldier.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Unit\Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ADT\Node.h" />
     <ClInclude Include="ADT\PriNode.h" />
     <ClInclude Include="ADT\QueueADT.h" />
     <ClInclude Include="ADT\StackADT.h" />
+    <ClInclude Include="Unit\HealUnit.h" />
+    <ClInclude Include="Unit\AlienMonster.h" />
+    <ClInclude Include="Unit\AlienDrone.h" />
+    <ClInclude Include="Unit\AlienSoldier.h" />
     <ClInclude Include="DataStructures\ArrayOfPointers.h" />
     <ClInclude Include="DataStructures\DoubleEndedQueue.h" />
     <ClInclude Include="DataStructures\PriQueue.h" />
     <ClInclude Include="DataStructures\Queue.h" />
     <ClInclude Include="DataStructures\StackList.h" />
+    <ClInclude Include="Unit\EarthGunnery.h" />
+    <ClInclude Include="Unit\EarthTank.h" />
+    <ClInclude Include="Unit\EarthSoldier.h" />
+    <ClInclude Include="Unit\Unit.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
