@@ -20,17 +20,6 @@ bool EarthArmy::addES(double h, int p, int AttC)
 	return false;
 }
 
-bool EarthArmy::addESFromTemp(EarthSoldier* esptr)
-{
-	if (esptr != nullptr)
-	{
-		ES.enqueue(esptr);
-		EScount++;
-		return true;
-	}
-	return false;
-}
-
 bool EarthArmy::removeES(EarthSoldier*& es)
 {
 	if (isEmpty_ES()) return false;
@@ -79,17 +68,6 @@ bool EarthArmy::addET(double h, int p, int AttC)
 	{
 		EarthTank* et = new EarthTank(++EarthID, 69, h, p, AttC);
 		ET.push(et);
-		ETcount++;
-		return true;
-	}
-	return false;
-}
-
-bool EarthArmy::addETFromTemp(EarthTank* etptr)
-{
-	if (etptr != nullptr)
-	{
-		ET.push(etptr);
 		ETcount++;
 		return true;
 	}
@@ -158,18 +136,6 @@ bool EarthArmy::addEG(double h, int p, int AttC)
 	return false;
 }
 
-bool EarthArmy::addEGFromTemp(EarthGunnery* egptr)
-{
-	if (egptr != nullptr)
-	{
-		int Pri = egptr->GetHealth() + egptr->GetPower();
-		EG.enqueue(egptr, Pri);
-		EGcount++;
-		return true;
-	}
-	return false;
-}
-
 bool EarthArmy::removeEG(EarthGunnery*& eg, int& pri)
 {
 	if (isEmpty_EG()) return false;
@@ -204,4 +170,37 @@ void EarthArmy::printEG()
 priQueue <EarthGunnery*> EarthArmy::getEG()
 {
 	return EG;
+}
+
+void EarthArmy::ReAddUnit(Unit* unit)
+{
+	if (unit == nullptr) return;
+	if (unit->GetType() == "ES")
+	{
+		EarthSoldier* es = dynamic_cast<EarthSoldier*>(unit);
+		if (es != nullptr)
+		{
+			ES.enqueue(es);
+			EScount++;
+		}
+	}
+	if (unit->GetType() == "ET")
+	{
+		EarthTank* et = dynamic_cast<EarthTank*>(unit);
+		if (et != nullptr)
+		{
+			ET.push(et);
+			EScount++;
+		}
+	}
+	if (unit->GetType() == "EG")
+	{
+		EarthGunnery* eg = dynamic_cast<EarthGunnery*>(unit);
+		if (eg != nullptr)
+		{
+			int Pri = eg->GetHealth() + eg->GetPower();
+			EG.enqueue(eg, Pri);
+			EGcount++;
+		}
+	}
 }

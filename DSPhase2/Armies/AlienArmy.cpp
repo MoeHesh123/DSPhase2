@@ -29,6 +29,9 @@ bool AlienArmy::addASFromTemp(AlienSoldier* asptr)
 		return true;
 	}
 	return false;
+	//if (unit->GetType() == "AS");
+    //if (unit->GetType() == "AD");
+    //if (unit->GetType() == "AM");
 }
 
 bool AlienArmy::removeAS(AlienSoldier*& as)

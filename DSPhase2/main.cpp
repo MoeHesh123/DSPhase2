@@ -20,18 +20,19 @@ int main()
 	{
 		cout << endl << "Current TimeStep " << TimeStep << endl;
 		X = 1 + (rand() % 100);
+		cout << X <<endl;
 		generator.Generate(&gameManager, &earthArmy, &alienArmy);
 		if (X > 0 && X <= 10)
 		{
 			EarthSoldier* esptr = nullptr;
 			earthArmy.removeES(esptr);
-			earthArmy.addESFromTemp(esptr);
+			earthArmy.ReAddUnit(esptr);
 		}
 		else if (X > 10 && X <= 20)
 		{
 			EarthTank* etptr = nullptr;
 			earthArmy.removeET(etptr);
-			gameManager.AddETToKilled(etptr);
+			gameManager.AddToKilled(etptr);
 		}
 		else if (X > 20 && X <= 30)
 		{
@@ -41,8 +42,8 @@ int main()
 			if (egptr != nullptr)
 			{
 				egptr->SetHealth(0.5 * egptr->GetHealth());
-				if (egptr->GetHealth() <= 0) gameManager.AddEGToKilled(egptr);
-				else earthArmy.addEGFromTemp(egptr);
+				if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
+				else earthArmy.ReAddUnit(egptr);
 			}
 		}
 		else if (X > 30 && X <= 40)
@@ -54,9 +55,9 @@ int main()
 				if (asptr != nullptr)
 				{
 					asptr->SetHealth(asptr->GetHealth() - 1.5);
-					gameManager.AddASToTempList(asptr);
-					gameManager.RemoveASFromTempList(asptr);
-					if (asptr->GetHealth() <= 0) gameManager.AddASToKilled(asptr);
+					gameManager.AddToTempList(asptr);
+					gameManager.RemoveFromTempList(asptr);
+					if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
 					else alienArmy.addASFromTemp(asptr);
 				}
 			}
@@ -79,8 +80,8 @@ int main()
 				alienArmy.removeAD(adptr1, adptr2);
 				if (adptr1 && adptr2)
 				{
-					gameManager.AddADToKilled(adptr1);
-					gameManager.AddADToKilled(adptr2);
+					gameManager.AddToKilled(adptr1);
+					gameManager.AddToKilled(adptr2);
 				}
 			}
 		}

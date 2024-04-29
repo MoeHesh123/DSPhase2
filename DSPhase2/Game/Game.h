@@ -14,12 +14,7 @@ class Game
 {
 
 	LinkedQueue <Unit*> KL;
-	LinkedQueue <EarthSoldier*> TLES;
-	LinkedQueue <EarthTank*> TLET;
-	LinkedQueue <EarthGunnery*> TLEG;
-	LinkedQueue <AlienSoldier*> TLAS;
-	LinkedQueue <AlienDrone*> TLAD;
-	LinkedQueue <AlienMonster*> TLAM;
+	LinkedQueue <Unit*> TL;
 
 	int KilledCount = 0;
 	int TimeStep = 1;
@@ -28,26 +23,11 @@ public:
 
 	input in;
 
-	void AddESToKilled(EarthSoldier* es);
-	void AddETToKilled(EarthTank* et);
-	void AddEGToKilled(EarthGunnery* eg);
-	void AddASToKilled(AlienSoldier* as);
-	void AddADToKilled(AlienDrone* ad);
-	void AddAMToKilled(AlienMonster* am);
+	void AddToKilled(Unit* Unit);
 
-	void AddESToTempList(EarthSoldier* es);
-	void AddETToTempList(EarthTank* et);
-	void AddEGToTempList(EarthGunnery* eg);
-	void AddASToTempList(AlienSoldier* as);
-	void AddADToTempList(AlienDrone* ad);
-	void AddAMToTempList(AlienMonster* am);
+	void AddToTempList(Unit* Unit);
 
-	void RemoveESFromTempList(EarthSoldier* es);
-	void RemoveETFromTempList(EarthTank* et);
-	void RemoveEGFromTempList(EarthGunnery* eg);
-	void RemoveASFromTempList(AlienSoldier* as);
-	void RemoveADFromTempList(AlienDrone* ad);
-	void RemoveAMFromTempList(AlienMonster* am);
+	void RemoveFromTempList(Unit* Unit);
 
 	void PrintKilledList();
 	void Readinput();

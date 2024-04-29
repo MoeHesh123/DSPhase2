@@ -19,56 +19,11 @@ void Game::Readinput()
 	}
 }
 
-void Game::AddESToKilled(EarthSoldier* es)
+void Game::AddToKilled(Unit* unit)
 {
-	if (es != nullptr)
+	if (unit != nullptr)
 	{
-		KL.enqueue(es);
-		KilledCount++;
-	}
-}
-
-void Game::AddETToKilled(EarthTank* et)
-{
-	if (et != nullptr)
-	{
-		KL.enqueue(et);
-		KilledCount++;
-	}
-}
-
-void Game::AddEGToKilled(EarthGunnery* eg)
-{
-	if (eg != nullptr)
-	{
-		KL.enqueue(eg);
-		KilledCount++;
-	}
-}
-
-void Game::AddASToKilled(AlienSoldier* as)
-{
-	if (as != nullptr)
-	{
-		KL.enqueue(as);
-		KilledCount++;
-	}
-}
-
-void Game::AddADToKilled(AlienDrone* ad)
-{
-	if (ad != nullptr)
-	{
-		KL.enqueue(ad);
-		KilledCount++;
-	}
-}
-
-void Game::AddAMToKilled(AlienMonster* am)
-{
-	if (am != nullptr)
-	{
-		KL.enqueue(am);
+		KL.enqueue(unit);
 		KilledCount++;
 	}
 }
@@ -91,62 +46,12 @@ void Game::PrintKilledList()
 	cout << "]" << endl;
 }
 
-void Game::AddESToTempList(EarthSoldier* es)
+void Game::AddToTempList(Unit* unit)
 {
-	TLES.enqueue(es);
+	if (unit != nullptr) TL.enqueue(unit);
 }
 
-void Game::AddETToTempList(EarthTank* et)
+void Game::RemoveFromTempList(Unit* unit)
 {
-	TLET.enqueue(et);
-}
-
-void Game::AddEGToTempList(EarthGunnery* eg)
-{
-	TLEG.enqueue(eg);
-}
-
-void Game::AddASToTempList(AlienSoldier* as)
-{
-	TLAS.enqueue(as);
-}
-
-void Game::AddADToTempList(AlienDrone* ad)
-{
-	TLAD.enqueue(ad);
-}
-
-void Game::AddAMToTempList(AlienMonster* am)
-{
-	TLAM.enqueue(am);
-}
-
-void Game::RemoveESFromTempList(EarthSoldier* es)
-{
-	TLES.dequeue(es);
-}
-
-void Game::RemoveETFromTempList(EarthTank* et)
-{
-	TLET.dequeue(et);
-}
-
-void Game::RemoveEGFromTempList(EarthGunnery* eg)
-{
-	TLEG.dequeue(eg);
-}
-
-void Game::RemoveASFromTempList(AlienSoldier* as)
-{
-	TLAS.dequeue(as);
-}
-
-void Game::RemoveADFromTempList(AlienDrone* ad)
-{
-	TLAD.dequeue(ad);
-}
-
-void Game::RemoveAMFromTempList(AlienMonster* am)
-{
-	TLAM.dequeue(am);
+	TL.dequeue(unit);
 }
