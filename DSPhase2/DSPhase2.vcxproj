@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="Armies\AlienArmy.cpp" />
     <ClCompile Include="Armies\EarthArmy.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="RandGen\RandGen.cpp" />
     <ClCompile Include="Unit\HealUnit.cpp" />
     <ClCompile Include="Unit\AlienMonster.cpp" />
     <ClCompile Include="Unit\AlienDrone.cpp" />
@@ -38,6 +40,8 @@
     <ClInclude Include="ADT\StackADT.h" />
     <ClInclude Include="Armies\AlienArmy.h" />
     <ClInclude Include="Armies\EarthArmy.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="RandGen\RandGen.h" />
     <ClInclude Include="Unit\HealUnit.h" />
     <ClInclude Include="Unit\AlienMonster.h" />
     <ClInclude Include="Unit\AlienDrone.h" />
@@ -51,6 +55,9 @@
     <ClInclude Include="Unit\EarthTank.h" />
     <ClInclude Include="Unit\EarthSoldier.h" />
     <ClInclude Include="Unit\Unit.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Game\InputFile.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
