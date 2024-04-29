@@ -1,4 +1,4 @@
-
+#pragma once
 #define MAX_SIZE 1000
 
 #ifndef _BAG
