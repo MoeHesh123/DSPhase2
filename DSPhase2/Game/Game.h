@@ -27,6 +27,13 @@ class Game
 	int HUcount = 0;
 
 	int KilledCount = 0;
+	int ESKilledcount = 0;
+	int ETKilledcount = 0;
+	int EGKilledcount = 0;
+	int ASKilledcount = 0;
+	int AMKilledcount = 0;
+	int ADKilledcount = 0;
+
 	int TimeStep = 1;
 
 public:

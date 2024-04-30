@@ -21,14 +21,32 @@ void Game::Readinput()
 
 void Game::ProduceOutput()
 {
-	ofstream OutputFile("OutputFilE.txt");
+	ofstream OutputFile("OutputFile.txt");
+
 	Node<Unit*>* Current = KL.getfrontPtr();
-	OutputFile << "Td    ID    Tj    Df    Dd    Db" << endl;
+	OutputFile << "Td   ID   Tj   Df   Dd   Db" << endl;
 	while (Current) 
 	{
-		OutputFile /*<< Current->getItem()->GetTd()*/ <<"      " << Current->getItem()->GetId() << "      " << Current->getItem()->GetJoinTime() << "      " /*<< Current->getItem()->GetDf()<<"      " << Current->getItem()->GetDd()<<"      " << Current->getItem()->GetDb()*/ << endl;
+		OutputFile /*<< Current->getItem()->GetTd()*/ << "  " << Current->getItem()->GetId() << "  " << Current->getItem()->GetJoinTime() << "  " /*<< Current->getItem()->GetDf()<<"" << Current->getItem()->GetDd()<<"" << Current->getItem()->GetDb()*/ << endl;
 	    Current = Current->getNext();
 	}
+
+	//Output File win/loss/draw
+	
+	OutputFile << "Earth Army: " << endl;
+	OutputFile << "ES ET EG" << endl;
+	EarthArmy Earmy;
+	OutputFile << Earmy.getEScount() << " " << Earmy.getETcount() << " " << Earmy.getEGcount() << endl;
+	//OutputFile << (ESKilledcount / (Earmy.getEScount())) * 100 << " " << (ETKilledcount / (Earmy.getETcount())) * 100 << " " << (EGKilledcount / (Earmy.getEGcount())) * 100 << endl;
+	//OutputFile << ((ESKilledcount + ETKilledcount + EGKilledcount) / (Earmy.getEScount() + Earmy.getETcount() + Earmy.getEGcount())) * 100;
+
+	OutputFile << "Alien Army: " << endl;
+	OutputFile << "AS AM AD" << endl;
+	AlienArmy Aarmy;
+	OutputFile << Aarmy.getAScount() << " " << Aarmy.getAMcount() << " " << Aarmy.getADcount() << endl;
+	//OutputFile << (ASKilledcount / (Aarmy.getAMcount())) * 100 << " " << (AMKilledcount / (Aarmy.getAMcount())) * 100 << " " << (ADKilledcount / (Aarmy.getADcount())) * 100 << endl;
+	//OutputFile << ((ASKilledcount + AMKilledcount + ADKilledcount) / (Aarmy.getAScount() + Aarmy.getAMcount() + Aarmy.getADcount())) * 100;
+
 	OutputFile.close();
 }
 
@@ -189,6 +207,12 @@ void Game::AddToKilled(Unit* unit)
 	{
 		KL.enqueue(unit);
 		KilledCount++;
+		if (unit->GetType() == "ES") ESKilledcount++;
+		else if (unit->GetType() == "ET") ETKilledcount++;
+		else if (unit->GetType() == "EG") EGKilledcount++;
+		else if (unit->GetType() == "AS") ASKilledcount++;
+		else if (unit->GetType() == "AM") AMKilledcount++;
+		else ADKilledcount++;
 	}
 }
 
