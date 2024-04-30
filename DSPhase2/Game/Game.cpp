@@ -24,36 +24,56 @@ void Game::ProduceOutput()
 	ofstream OutputFile("Outputfile.txt");
 
 	Node<Unit*>* Current = KL.getfrontPtr();
-	OutputFile << setw(6) << left << "Td";
-	OutputFile << setw(6) << left << "ID";
-	OutputFile << setw(6) << left << "Tj";
-	OutputFile << setw(6) << left << "Df";
-	OutputFile << setw(6) << left << "Dd";
-	OutputFile << setw(6) << left << "Db"<<endl;
+	OutputFile 
+	<< setw(6) << left << "Td"
+	<< setw(6) << left << "ID"
+	<< setw(6) << left << "Tj"
+	<< setw(6) << left << "Df"
+	<< setw(6) << left << "Dd"
+	<< setw(6) << left << "Db" << endl;
 	while (Current) 
 	{
-		OutputFile << setw(6) <<left<< "696";
-		OutputFile << setw(6) <<left<< Current->getItem()->GetId();
-		OutputFile << setw(6) <<left<< Current->getItem()->GetJoinTime();
-		OutputFile << setw(6) <<left<< "333";
-		OutputFile << setw(6) <<left<< "32";
-		OutputFile << setw(6) <<left<< "1" << endl;
-	    Current = Current->getNext();
+		OutputFile 
+		<< setw(6) << left << ""
+		<< setw(6) << left << Current->getItem()->GetId()
+		<< setw(6) << left << Current->getItem()->GetJoinTime()
+		<< setw(6) << left << ""
+		<< setw(6) << left << ""
+		<< setw(6) << left << "" << endl;
+		Current = Current->getNext();
 	}
 
 	//Output File win/loss/draw
 	
-	OutputFile << "Earth Army: " << endl;
-	OutputFile << "ES ET EG" << endl;
+	OutputFile 
+	<< "Earth Army: " << endl
+	<< setw(6) << left << "ES"
+	<< setw(6) << left << "ET"
+	<< setw(6) << left << "EG" << endl;
+
 	EarthArmy Earmy;
-	OutputFile << Earmy.getEScount() << " " << Earmy.getETcount() << " " << Earmy.getEGcount() << endl;
+
+	OutputFile 
+	<< setw(6) << left << Earmy.getEScount()
+	<< setw(6) << left << Earmy.getETcount()
+	<< setw(6) << left << Earmy.getEGcount() << endl;
+
 	//OutputFile << (ESKilledcount / (Earmy.getEScount())) * 100 << " " << (ETKilledcount / (Earmy.getETcount())) * 100 << " " << (EGKilledcount / (Earmy.getEGcount())) * 100 << endl;
 	//OutputFile << ((ESKilledcount + ETKilledcount + EGKilledcount) / (Earmy.getEScount() + Earmy.getETcount() + Earmy.getEGcount())) * 100;
 
-	OutputFile << "Alien Army: " << endl;
-	OutputFile << "AS AM AD" << endl;
+	OutputFile
+	<< "Alien Army: " << endl
+	<< setw(6) << left << "ES"
+	<< setw(6) << left << "ET"
+	<< setw(6) << left << "EG" << endl;
+
 	AlienArmy Aarmy;
-	OutputFile << Aarmy.getAScount() << " " << Aarmy.getAMcount() << " " << Aarmy.getADcount() << endl;
+
+	OutputFile
+	<< setw(6) << left << Aarmy.getAScount()
+	<< setw(6) << left << Aarmy.getAMcount()
+	<< setw(6) << left << Aarmy.getADcount() << endl;
+
 	//OutputFile << (ASKilledcount / (Aarmy.getAMcount())) * 100 << " " << (AMKilledcount / (Aarmy.getAMcount())) * 100 << " " << (ADKilledcount / (Aarmy.getADcount())) * 100 << endl;
 	//OutputFile << ((ASKilledcount + AMKilledcount + ADKilledcount) / (Aarmy.getAScount() + Aarmy.getAMcount() + Aarmy.getADcount())) * 100;
 
