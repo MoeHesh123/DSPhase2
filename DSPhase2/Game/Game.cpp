@@ -21,7 +21,7 @@ void Game::Readinput()
 
 void Game::ProduceOutput()
 {
-	ofstream OutputFile("OutputFile.txt");
+	ofstream OutputFile("Outputfile.txt");
 
 	Node<Unit*>* Current = KL.getfrontPtr();
 	OutputFile << "Td   ID   Tj   Df   Dd   Db" << endl;
