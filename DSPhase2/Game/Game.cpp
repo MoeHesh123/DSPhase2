@@ -22,7 +22,10 @@ void Game::Readinput()
 
 void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 {
-	ofstream OutputFile("OutputFILE.txt");
+	cout << "Please Enter The Output File Name: ";
+	string file;
+	cin >> file;
+	ofstream OutputFile(file + ".txt");
 
 	Node<Unit*>* Current = KL.getfrontPtr();
 	OutputFile 
