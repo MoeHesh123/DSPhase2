@@ -56,15 +56,10 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << earmy->getETcount()
 	<< setw(6) << left << earmy->getEGcount() << endl;
 	OutputFile
-	<< setw(6) << left << (ESKilledcount)
-	<< setw(6) << left << (ETKilledcount)
-	<< setw(6) << left << (EGKilledcount)<< endl;
-	OutputFile
 	<< setw(6) << left << int((ESKilledcount / (earmy->getEScount()+ ESKilledcount)) * 100)
 	<< setw(6) << left << int((ETKilledcount / (earmy->getETcount()+ ETKilledcount)) * 100)
 	<< setw(6) << left << int((EGKilledcount / (earmy->getEGcount()+ EGKilledcount)) * 100) << endl;
 
-	/*OutputFile << (ESKilledcount / (Earmy.getEScount())) * 100 << " " << (ETKilledcount / (Earmy.getETcount())) * 100 << " " << (EGKilledcount / (Earmy.getEGcount())) * 100 << endl;*/
 	//OutputFile << ((ESKilledcount + ETKilledcount + EGKilledcount) / (Earmy.getEScount() + Earmy.getETcount() + Earmy.getEGcount())) * 100;
 
 	OutputFile
@@ -77,15 +72,10 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << aarmy->getAMcount()
 	<< setw(6) << left << aarmy->getADcount() << endl;
 	OutputFile
-	<< setw(6) << left << (ASKilledcount)
-    << setw(6) << left << (AMKilledcount)
-    << setw(6) << left << (ADKilledcount) << endl;
-	OutputFile
 	<< setw(6) << left << int((ASKilledcount / (aarmy->getAScount()+ ASKilledcount)) * 100)
 	<< setw(6) << left << int((AMKilledcount / (aarmy->getAMcount()+ AMKilledcount)) * 100)
 	<< setw(6) << left << int((ADKilledcount / (aarmy->getADcount()+ ADKilledcount)) * 100) << endl;
 
-	//OutputFile << (ASKilledcount / (Aarmy.getAMcount())) * 100 << " " << (AMKilledcount / (Aarmy.getAMcount())) * 100 << " " << (ADKilledcount / (Aarmy.getADcount())) * 100 << endl;
 	//OutputFile << ((ASKilledcount + AMKilledcount + ADKilledcount) / (Aarmy.getAScount() + Aarmy.getAMcount() + Aarmy.getADcount())) * 100;
 
 	OutputFile.close();
@@ -188,6 +178,7 @@ bool Game::isEmpty_HL()
 	return false;
 }
 
+
 bool Game::addHU(int jt, double h, int p, int AttC, EarthArmy*& earmy)
 {
 	if (earmy->getEarthID() < 999)
@@ -199,7 +190,6 @@ bool Game::addHU(int jt, double h, int p, int AttC, EarthArmy*& earmy)
 	}
 	return false;
 }
-
 bool Game::removeHU(HealUnit*& hu)
 {
 	if (isEmpty_HL()) return false;
@@ -210,7 +200,6 @@ bool Game::removeHU(HealUnit*& hu)
 		return true;
 	}
 }
-
 void Game::printHL()
 {
 	if (HL.isEmpty())
