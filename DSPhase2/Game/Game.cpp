@@ -63,9 +63,9 @@ void Game::ProduceOutput()
 
 	OutputFile
 	<< "Alien Army: " << endl
-	<< setw(6) << left << "ES"
-	<< setw(6) << left << "ET"
-	<< setw(6) << left << "EG" << endl;
+	<< setw(6) << left << "AS"
+	<< setw(6) << left << "AM"
+	<< setw(6) << left << "AD" << endl;
 
 	AlienArmy Aarmy;
 
