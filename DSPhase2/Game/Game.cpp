@@ -19,6 +19,18 @@ void Game::Readinput()
 	}
 }
 
+void Game::ProduceOutput()
+{
+	ofstream OutputFile("OutputFilE.txt");
+	Node<Unit*>* Current = KL.getfrontPtr();
+	OutputFile << "Td    ID    Tj    Df    Dd    Db" << endl;
+	while (Current) 
+	{
+		OutputFile /*<< Current->getItem()->GetTd()*/ <<"      " << Current->getItem()->GetId() << "      " << Current->getItem()->GetJoinTime() << "      " /*<< Current->getItem()->GetDf()<<"      " << Current->getItem()->GetDd()<<"      " << Current->getItem()->GetDb()*/ << endl;
+	    Current = Current->getNext();
+	}
+}
+
 bool Game::isEmpty_ESUML()
 {
 	if (ESUMLcount == 0) return true;

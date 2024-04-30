@@ -42,6 +42,7 @@ public:
 	void PrintKilledList();
 
 	void Readinput();
+	void ProduceOutput();
 
 	bool isEmpty_ESUML();
 	bool addESToUML(EarthSoldier* esptr);

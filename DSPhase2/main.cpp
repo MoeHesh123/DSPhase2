@@ -25,15 +25,15 @@ int main()
 		{
 			EarthSoldier* esptr = nullptr;
 			earthArmy.removeES(esptr);
-			gameManager.addESToUML(esptr);
-			/*earthArmy.ReAddEarthUnit(esptr);*/
+			/*gameManager.addESToUML(esptr);*/
+			earthArmy.ReAddEarthUnit(esptr);
 		}
 		else if (X > 10 && X <= 20)
 		{
 			EarthTank* etptr = nullptr;
 			earthArmy.removeET(etptr);
-			gameManager.addETToUML(etptr);
-			/*gameManager.AddToKilled(etptr);*/
+			/*gameManager.addETToUML(etptr);*/
+			gameManager.AddToKilled(etptr);
 		}
 		else if (X > 20 && X <= 30)
 		{
@@ -106,4 +106,5 @@ int main()
 
 		gameManager.PrintKilledList();
 	}
+	gameManager.ProduceOutput();
 }
