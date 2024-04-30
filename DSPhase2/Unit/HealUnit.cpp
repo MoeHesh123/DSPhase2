@@ -6,3 +6,7 @@ string HealUnit::GetType()
 {
 	return type;
 }
+
+void HealUnit::Attack()
+{
+}

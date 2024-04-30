@@ -6,3 +6,7 @@ string EarthSoldier::GetType()
 {
     return type;
 }
+
+void EarthSoldier::Attack()
+{
+}

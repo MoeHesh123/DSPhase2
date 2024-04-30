@@ -6,3 +6,7 @@ string EarthTank::GetType()
 {
 	return type;
 }
+
+void EarthTank::Attack()
+{
+}

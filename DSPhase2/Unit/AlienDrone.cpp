@@ -6,3 +6,7 @@ string AlienDrone::GetType()
 {
     return type;
 }
+
+void AlienDrone::Attack()
+{
+}

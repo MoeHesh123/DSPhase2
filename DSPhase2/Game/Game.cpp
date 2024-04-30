@@ -22,7 +22,7 @@ void Game::Readinput()
 
 void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 {
-	ofstream OutputFile("OutputfilE.txt");
+	ofstream OutputFile("OutputFILE.txt");
 
 	Node<Unit*>* Current = KL.getfrontPtr();
 	OutputFile 
@@ -264,7 +264,7 @@ void Game::AddToKilled(Unit* unit)
 			KilledCount++;
 			AMKilledcount++;
 		}
-		else if (unit->GetType() == "AD")
+		else
 		{
 			KL.enqueue(unit);
 			KilledCount++;

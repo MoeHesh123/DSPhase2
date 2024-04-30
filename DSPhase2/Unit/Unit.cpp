@@ -29,11 +29,6 @@ int Unit::GetPower()
 	return power;
 }
 
-int Unit::GetAttackCapacity()
-{
-	return attackCapacity;
-}
-
 void Unit::SetHealth(double H)
 {
 	health = H;
@@ -42,6 +37,11 @@ void Unit::SetHealth(double H)
 void Unit::SetJT(int Timestep)
 {
 	jointime = Timestep;
+}
+
+int Unit::GetAttackCapacity()
+{
+	return attackCapacity;
 }
 
 int Unit::GetTa()
@@ -69,19 +69,22 @@ int Unit::GetDb()
 	return (Td-jointime);
 }
 
-//double Unit::GetUAP()
-//{
-//	return 0.0;
-//}
-//
-//void Unit::SetTa(int ta)
-//{
-//}
-//
-//void Unit::SetTd(int td)
-//{
-//}
-//
-//void Unit::SetUAP(double damage)
-//{
-//}
+double Unit::GetUAP()
+{
+	return UAP;
+}
+
+void Unit::SetTa(int ta)
+{
+	Ta = ta;
+}
+
+void Unit::SetTd(int td)
+{
+	Td = td;
+}
+
+void Unit::SetUAP(double damage)
+{
+	UAP = damage;
+}

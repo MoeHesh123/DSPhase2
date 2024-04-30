@@ -38,16 +38,16 @@ public:
 	virtual string GetType() = 0;
 	virtual void SetHealth(double H);
 	virtual void SetJT(int Timestep);
-	void print();
 
 	virtual int GetTa();
 	virtual int GetTd();
 	virtual int GetDf();
 	virtual int GetDd();
 	virtual int GetDb();
-	//virtual double GetUAP();
-    // virtual void SetTa(int ta);
-	//virtual void SetTd(int td);
-	//virtual void SetUAP(double damage);
+	virtual double GetUAP();
+    virtual void SetTa(int ta);
+	virtual void SetTd(int td);
+	virtual void SetUAP(double damage);
+	virtual void Attack() = 0;
 
 };

@@ -6,3 +6,7 @@ string AlienMonster::GetType()
 {
     return type;
 }
+
+void AlienMonster::Attack()
+{
+}

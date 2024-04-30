@@ -6,3 +6,7 @@ string AlienSoldier::GetType()
 {
     return type;
 }
+
+void AlienSoldier::Attack()
+{
+}
