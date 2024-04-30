@@ -44,16 +44,6 @@ void Unit::SetJT(int Timestep)
 	jointime = Timestep;
 }
 
-void Unit::print()
-{
-	cout << "Unit Health" << GetHealth() << endl;
-	cout << "Unit ID" << GetId() << endl;
-	cout << "Unit JoinTime" << GetJoinTime() << endl;
-	cout << "Unit Power" << GetJoinTime() << endl;
-	cout << "Unit AttackCapacity" << GetAttackCapacity() << endl;
-	cout << "Unit Type" << GetType() << endl;
-}
-
 int Unit::GetTa()
 {
 	return Ta;
