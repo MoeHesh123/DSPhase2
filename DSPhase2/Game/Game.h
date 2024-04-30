@@ -1,5 +1,6 @@
 #pragma once
 #include "fstream"
+#include <iomanip>
 #include"../Armies/AlienArmy.h"
 #include"../Armies/EarthArmy.h"
 
