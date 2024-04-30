@@ -19,6 +19,84 @@ void Game::Readinput()
 	}
 }
 
+bool Game::isEmpty_ESUML()
+{
+	if (ESUMLcount == 0) return true;
+	return false;
+}
+
+bool Game::addESToUML(EarthSoldier* esptr)
+{
+	if (esptr)
+	{
+		int Priority = 1000 - (esptr->GetHealth());
+		ESUML.enqueue(esptr, Priority);
+		ESUMLcount++;
+		return true;
+	}
+	return false;
+}
+
+bool Game::removeESFromUML(EarthSoldier*& esptr, int& pri)
+{
+	if(isEmpty_ESUML()) return false;
+	else
+	{
+		ESUML.dequeue(esptr, pri);
+		ESUMLcount--;
+		return true;
+	}
+}
+
+bool Game::isEmpty_ETUML()
+{
+	return false;
+}
+
+bool Game::addETToUML(EarthTank* etptr)
+{
+	return false;
+}
+
+bool Game::removeETFromUML(EarthTank*& etptr)
+{
+	return false;
+}
+
+void Game::printUML()
+{
+	if (ESUML.isEmpty() && ETUML.isEmpty())
+	{
+		cout << "No Units In Maintenance List" << endl;
+		return;
+	}
+	cout << (ESUMLcount + ETUMLcount) << " units [";
+	priNode<EarthSoldier*>* Traversal1 = ESUML.gethead();
+	if (!ESUML.isEmpty())
+	{
+		while (Traversal1->getNext())
+		{
+			int Priority = Traversal1->getPri();
+			cout << Traversal1->getItem(Priority)->GetId() << ", ";
+			Traversal1 = Traversal1->getNext();
+		}
+		int Priority = Traversal1->getPri();
+		cout << Traversal1->getItem(Priority)->GetId();
+	}
+	Node<EarthTank*>* Traversal2 = ETUML.getfrontPtr();
+	if (!ETUML.isEmpty())
+	{
+		if (!ESUML.isEmpty()) cout << ", ";
+		while (Traversal2->getNext())
+		{
+			cout << Traversal2->getItem()->GetId() << ", ";
+			Traversal2 = Traversal2->getNext();
+		}
+		cout << Traversal2->getItem()->GetId();
+	}
+	cout << "]" << endl;
+}
+
 bool Game::isEmpty_HL()
 {
 	if (HUcount == 0) return true;

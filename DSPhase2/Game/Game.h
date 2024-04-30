@@ -14,7 +14,14 @@ class Game
 {
 
 	LinkedQueue <Unit*> KL;
+
 	LinkedQueue <Unit*> TL;
+
+	priQueue <EarthSoldier*> ESUML;
+	int ESUMLcount = 0;
+
+	LinkedQueue <EarthTank*> ETUML;
+	int ETUMLcount = 0;
 
 	StackList <HealUnit*> HL;
 	int HUcount = 0;
@@ -35,6 +42,16 @@ public:
 	void PrintKilledList();
 
 	void Readinput();
+
+	bool isEmpty_ESUML();
+	bool addESToUML(EarthSoldier* esptr);
+	bool removeESFromUML(EarthSoldier*& esptr, int& pri);
+
+	bool isEmpty_ETUML();
+	bool addETToUML(EarthTank* etptr);
+	bool removeETFromUML(EarthTank*& etptr);
+
+	void printUML();
 
 	bool isEmpty_HL();
 	bool addHU(int jt, double H, int P, int AttC);

@@ -88,10 +88,11 @@ int main()
 		earthArmy.printES();
 		earthArmy.printET();
 		earthArmy.printEG();
-
-		cout << "==================  Heal Units ================" << endl;
-
 		gameManager.printHL();
+
+		cout << endl << "============= Unit Maintenance List ===========" << endl;
+
+		gameManager.printUML();
 
 		cout << endl << "==============  Alien Army Alive Units ========" << endl;
 
