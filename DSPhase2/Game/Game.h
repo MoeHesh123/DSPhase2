@@ -5,7 +5,7 @@
 
 struct input
 {
-	int numOfUnits, ES, ET, EG, AS, AM, AD, Prob;
+	int numOfUnits, ES, ET, EG, HU, AS, AM, AD, Prob;
 	int maxPowerEarth, minPowerEarth, maxHealthEarth, minHealthEarth, maxCapacityEarth, minCapacityEarth;
 	int maxPowerAlien, minPowerAlien, maxHealthAlien, minHealthAlien, maxCapacityAlien, minCapacityAlien;
 };

@@ -13,17 +13,21 @@ void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA,int tj)
 			int H = game->in.minHealthEarth + (rand() % (game->in.maxHealthEarth - game->in.minHealthEarth));
 			int P = game->in.minPowerEarth + (rand() % (game->in.maxPowerEarth - game->in.minPowerEarth));
 			int C = game->in.minCapacityEarth + (rand() % (game->in.maxCapacityEarth - game->in.minCapacityEarth));
-			if (B <= game->in.ES)
+			if (B <= (game->in.ES))
 			{
 				EA->addES(tj, H, P, C);
 			}
-			else if (B <= game->in.ES + game->in.ET)
+			else if (B <= (game->in.ES + game->in.ET))
 			{
 				EA->addET(tj, H, P, C);
 			}
-			else
+			else if (B <= (game->in.ES + game->in.ET + game->in.EG))
 			{
 				EA->addEG(tj, H, P, C);
+			}
+			else
+			{
+				EA->addHU(tj, H, P, C);
 			}
 		}
 		for (int i = 0; i < game->in.numOfUnits; i++)

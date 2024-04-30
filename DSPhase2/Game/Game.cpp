@@ -10,7 +10,7 @@ void Game::Readinput()
 	else
 	{
 		myfile >> in.numOfUnits;
-		myfile >> in.ES >> in.ET >> in.EG;
+		myfile >> in.ES >> in.ET >> in.EG >> in.HU;
 		myfile >> in.AS >> in.AM >> in.AD;
 		myfile >> in.Prob;
 		myfile >> in.minPowerEarth >> in.maxPowerEarth >> in.minHealthEarth >> in.maxHealthEarth >> in.minCapacityEarth >> in.maxCapacityEarth;

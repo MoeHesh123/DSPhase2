@@ -89,6 +89,10 @@ int main()
 		earthArmy.printET();
 		earthArmy.printEG();
 
+		cout << "==================  Heal Units ================" << endl;
+
+		earthArmy.printHL();
+
 		cout << endl << "==============  Alien Army Alive Units ========" << endl;
 
 		alienArmy.printAS();
