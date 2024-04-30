@@ -460,14 +460,15 @@ void Game::StartGame()
 			{
 				EarthSoldier* esptr = nullptr;
 				earthArmy.removeES(esptr);
-				gameManager.addESToUML(esptr);
-				earthArmy.ReAddEarthUnit(esptr);
+				//gameManager.addESToUML(esptr);
+				//earthArmy.ReAddEarthUnit(esptr);
+				gameManager.AddToKilled(esptr);
 			}
 			else if (X > 10 && X <= 20)
 			{
 				EarthTank* etptr = nullptr;
 				earthArmy.removeET(etptr);
-				gameManager.addETToUML(etptr);
+				//gameManager.addETToUML(etptr);
 				gameManager.AddToKilled(etptr);
 			}
 			else if (X > 20 && X <= 30)
@@ -477,9 +478,10 @@ void Game::StartGame()
 				earthArmy.removeEG(egptr, Priority);
 				if (egptr != nullptr)
 				{
-					egptr->SetHealth(0.5 * egptr->GetHealth());
-					if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
-					else earthArmy.ReAddEarthUnit(egptr);
+					//egptr->SetHealth(0.5 * egptr->GetHealth());
+					//if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
+					//else earthArmy.ReAddEarthUnit(egptr);
+					gameManager.AddToKilled(egptr);
 				}
 			}
 			else if (X > 30 && X <= 40)
@@ -490,11 +492,12 @@ void Game::StartGame()
 					alienArmy.removeAS(asptr);
 					if (asptr != nullptr)
 					{
-						asptr->SetHealth(asptr->GetHealth() - 1.5);
-						gameManager.AddToTempList(asptr);
-						gameManager.RemoveFromTempList(asptr);
-						if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
-						else alienArmy.ReAddAlienUnit(asptr);
+						//asptr->SetHealth(asptr->GetHealth() - 1.5);
+						//gameManager.AddToTempList(asptr);
+						//gameManager.RemoveFromTempList(asptr);
+						//if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
+						//else alienArmy.ReAddAlienUnit(asptr);
+						gameManager.AddToKilled(asptr);
 					}
 				}
 			}
@@ -504,7 +507,9 @@ void Game::StartGame()
 				{
 					AlienMonster* amptr = nullptr;
 					alienArmy.removeAM(amptr);
-					if (amptr) alienArmy.ReAddAlienUnit(amptr);
+
+					//if (amptr) alienArmy.ReAddAlienUnit(amptr);
+					gameManager.AddToKilled(amptr);
 				}
 			}
 			else if (X > 50 && X <= 60)
