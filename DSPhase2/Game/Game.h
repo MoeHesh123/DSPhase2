@@ -4,6 +4,8 @@
 #include"../Armies/AlienArmy.h"
 #include"../Armies/EarthArmy.h"
 
+class RandGen;
+
 struct input
 {
 	int numOfUnits, ES, ET, EG, HU, AS, AM, AD, Prob;
@@ -63,9 +65,11 @@ public:
 	void printUML();
 
 	bool isEmpty_HL();
-	bool addHU(int jt, double H, int P, int AttC);
+	bool addHU(int jt, double H, int P, int AttC,EarthArmy*& earmy);
 	bool removeHU(HealUnit*& hu);
 	void printHL();
 	StackList <HealUnit*> getHL();
+
+	void StartGame();
 
 };
