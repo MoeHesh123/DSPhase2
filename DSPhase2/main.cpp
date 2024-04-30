@@ -19,19 +19,22 @@ int main()
 	for (int TimeStep = 1; TimeStep <= 50; TimeStep++)
 	{
 		cout << endl << "Current TimeStep " << TimeStep << endl;
-		X = 1 + (rand() % 100);
+		X = 1 + (rand() % 20);
+		cout << X<< endl;
 		generator.Generate(&gameManager, &earthArmy, &alienArmy, TimeStep);
 		if (X > 0 && X <= 10)
 		{
 			EarthSoldier* esptr = nullptr;
 			earthArmy.removeES(esptr);
-			earthArmy.ReAddEarthUnit(esptr);
+			gameManager.addESToUML(esptr);
+			/*earthArmy.ReAddEarthUnit(esptr);*/
 		}
 		else if (X > 10 && X <= 20)
 		{
 			EarthTank* etptr = nullptr;
 			earthArmy.removeET(etptr);
-			gameManager.AddToKilled(etptr);
+			gameManager.addETToUML(etptr);
+			/*gameManager.AddToKilled(etptr);*/
 		}
 		else if (X > 20 && X <= 30)
 		{

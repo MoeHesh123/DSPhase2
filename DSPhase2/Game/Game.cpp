@@ -50,17 +50,30 @@ bool Game::removeESFromUML(EarthSoldier*& esptr, int& pri)
 
 bool Game::isEmpty_ETUML()
 {
+	if (ETUMLcount == 0) return true;
 	return false;
 }
 
 bool Game::addETToUML(EarthTank* etptr)
 {
+	if (etptr)
+	{
+		ETUML.enqueue(etptr);
+		ETUMLcount++;
+		return true;
+	}
 	return false;
 }
 
 bool Game::removeETFromUML(EarthTank*& etptr)
 {
-	return false;
+	if (isEmpty_ETUML()) return false;
+	else
+	{
+		ETUML.dequeue(etptr);
+		ETUMLcount--;
+		return true;
+	}
 }
 
 void Game::printUML()
