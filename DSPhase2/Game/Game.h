@@ -29,13 +29,13 @@ class Game
 	StackList <HealUnit*> HL;
 	int HUcount = 0;
 
-	int KilledCount = 0;
-	int ESKilledcount = 0;
-	int ETKilledcount = 0;
-	int EGKilledcount = 0;
-	int ASKilledcount = 0;
-	int AMKilledcount = 0;
-	int ADKilledcount = 0;
+	float KilledCount = 0;
+	float ESKilledcount = 0;
+	float ETKilledcount = 0;
+	float EGKilledcount = 0;
+	float ASKilledcount = 0;
+	float AMKilledcount = 0;
+	float ADKilledcount = 0;
 
 	int TimeStep = 1;
 
