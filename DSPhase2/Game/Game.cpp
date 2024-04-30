@@ -24,10 +24,20 @@ void Game::ProduceOutput()
 	ofstream OutputFile("Outputfile.txt");
 
 	Node<Unit*>* Current = KL.getfrontPtr();
-	OutputFile << " Td   ID  Tj  Df  Dd  Db" << endl;
+	OutputFile << setw(6) << left << "Td";
+	OutputFile << setw(6) << left << "ID";
+	OutputFile << setw(6) << left << "Tj";
+	OutputFile << setw(6) << left << "Df";
+	OutputFile << setw(6) << left << "Dd";
+	OutputFile << setw(6) << left << "Db"<<endl;
 	while (Current) 
 	{
-		OutputFile <<"696" << setfill(' ') << setw(5) << Current->getItem()->GetId() << setfill(' ') << setw(4) << Current->getItem()->GetJoinTime() << setfill(' ') << setw(4) << "107" << setfill(' ') << setw(4) <<"333" << setfill(' ') << setw(4) << "333" << endl;
+		OutputFile << setw(6) <<left<< "696";
+		OutputFile << setw(6) <<left<< Current->getItem()->GetId();
+		OutputFile << setw(6) <<left<< Current->getItem()->GetJoinTime();
+		OutputFile << setw(6) <<left<< "333";
+		OutputFile << setw(6) <<left<< "32";
+		OutputFile << setw(6) <<left<< "1" << endl;
 	    Current = Current->getNext();
 	}
 
