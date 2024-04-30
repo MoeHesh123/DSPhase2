@@ -19,8 +19,7 @@ int main()
 	for (int TimeStep = 1; TimeStep <= 50; TimeStep++)
 	{
 		cout << endl << "Current TimeStep " << TimeStep << endl;
-		X = 1 + (rand() % 20);
-		cout << X<< endl;
+		X = 1 + (rand() % 100);
 		generator.Generate(&gameManager, &earthArmy, &alienArmy, TimeStep);
 		if (X > 0 && X <= 10)
 		{
