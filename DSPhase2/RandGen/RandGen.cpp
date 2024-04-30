@@ -27,7 +27,7 @@ void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA,int tj)
 			}
 			else
 			{
-				EA->addHU(tj, H, P, C);
+				game->addHU(tj, H, P, C);
 			}
 		}
 		for (int i = 0; i < game->in.numOfUnits; i++)

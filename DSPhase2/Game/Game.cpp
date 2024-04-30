@@ -19,6 +19,66 @@ void Game::Readinput()
 	}
 }
 
+bool Game::isEmpty_HL()
+{
+	if (HUcount == 0) return true;
+	return false;
+}
+
+bool Game::addHU(int jt, double h, int p, int AttC)
+{
+	EarthArmy ea;
+	if (ea.getEarthID() < 999)
+	{
+		HealUnit* hu = new HealUnit(ea.IncrementEarthID(), jt, h, p, AttC);
+		HL.push(hu);
+		HUcount++;
+		return true;
+	}
+	return false;
+}
+
+bool Game::removeHU(HealUnit*& hu)
+{
+	if (isEmpty_HL()) return false;
+	else
+	{
+		HL.pop(hu);
+		HUcount--;
+		return true;
+	}
+}
+
+void Game::printHL()
+{
+	if (HL.isEmpty())
+	{
+		cout << "No Heal Units" << endl;
+		return;
+	}
+	cout << HUcount << " HU [";
+	Node<HealUnit*>* Traversal = HL.gettop();
+	StackList<int> S;
+	while (Traversal)
+	{
+		S.push(Traversal->getItem()->GetId());
+		Traversal = Traversal->getNext();
+	}
+	Node<int>* Current = S.gettop();
+	while (Current->getNext())
+	{
+		cout << Current->getItem() << ", ";
+		Current = Current->getNext();
+	}
+	cout << Current->getItem();
+	cout << "]" << endl;
+}
+
+StackList<HealUnit*> Game::getHL()
+{
+	return HL;
+}
+
 void Game::AddToKilled(Unit* unit)
 {
 	if (unit != nullptr)

@@ -91,7 +91,7 @@ int main()
 
 		cout << "==================  Heal Units ================" << endl;
 
-		earthArmy.printHL();
+		gameManager.printHL();
 
 		cout << endl << "==============  Alien Army Alive Units ========" << endl;
 

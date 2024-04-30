@@ -166,63 +166,14 @@ priQueue <EarthGunnery*> EarthArmy::getEG()
 	return EG;
 }
 
-bool EarthArmy::isEmpty_HL()
+int EarthArmy::getEarthID()
 {
-	if (HUcount == 0) return true;
-	return false;
+	return EarthID;
 }
 
-bool EarthArmy::addHU(int jt, double h, int p, int AttC)
+int EarthArmy::IncrementEarthID()
 {
-	if (EarthID < 999)
-	{
-		HealUnit* hu = new HealUnit(++EarthID, jt, h, p, AttC);
-		HL.push(hu);
-		HUcount++;
-		return true;
-	}
-	return false;
-}
-
-bool EarthArmy::removeHU(HealUnit*& hu)
-{
-	if (isEmpty_HL()) return false;
-	else
-	{
-		HL.pop(hu);
-		HUcount--;
-		return true;
-	}
-}
-
-void EarthArmy::printHL()
-{
-	if (HL.isEmpty())
-	{
-		cout << "No Heal Units" << endl;
-		return;
-	}
-	cout << HUcount << " HU [";
-	Node<HealUnit*>* Traversal = HL.gettop();
-	StackList<int> S;
-	while (Traversal)
-	{
-		S.push(Traversal->getItem()->GetId());
-		Traversal = Traversal->getNext();
-	}
-	Node<int>* Current = S.gettop();
-	while (Current->getNext())
-	{
-		cout << Current->getItem() << ", ";
-		Current = Current->getNext();
-	}
-	cout << Current->getItem();
-	cout << "]" << endl;
-}
-
-StackList<HealUnit*> EarthArmy::getHL()
-{
-	return HL;
+	return ++EarthID;
 }
 
 void EarthArmy::ReAddEarthUnit(Unit* unit)

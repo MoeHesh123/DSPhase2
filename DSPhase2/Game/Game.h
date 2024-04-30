@@ -16,6 +16,9 @@ class Game
 	LinkedQueue <Unit*> KL;
 	LinkedQueue <Unit*> TL;
 
+	StackList <HealUnit*> HL;
+	int HUcount = 0;
+
 	int KilledCount = 0;
 	int TimeStep = 1;
 
@@ -32,5 +35,11 @@ public:
 	void PrintKilledList();
 
 	void Readinput();
+
+	bool isEmpty_HL();
+	bool addHU(int jt, double H, int P, int AttC);
+	bool removeHU(HealUnit*& hu);
+	void printHL();
+	StackList <HealUnit*> getHL();
 
 };

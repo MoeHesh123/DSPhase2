@@ -18,9 +18,6 @@ class EarthArmy
 	priQueue <EarthGunnery*> EG;
 	int EGcount = 0;
 
-	StackList <HealUnit*> HL;
-	int HUcount = 0;
-
 public:
 
 	bool isEmpty_ES();
@@ -41,11 +38,8 @@ public:
 	void printEG();
 	priQueue <EarthGunnery*> getEG();
 
-	bool isEmpty_HL();
-	bool addHU(int jt, double H, int P, int AttC);
-	bool removeHU(HealUnit*& hu);
-	void printHL();
-	StackList <HealUnit*> getHL();
+	int getEarthID();
+	int IncrementEarthID();
 
 	void ReAddEarthUnit(Unit* Unit);
 
