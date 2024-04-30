@@ -29,6 +29,7 @@ void Game::ProduceOutput()
 		OutputFile /*<< Current->getItem()->GetTd()*/ <<"      " << Current->getItem()->GetId() << "      " << Current->getItem()->GetJoinTime() << "      " /*<< Current->getItem()->GetDf()<<"      " << Current->getItem()->GetDd()<<"      " << Current->getItem()->GetDb()*/ << endl;
 	    Current = Current->getNext();
 	}
+	OutputFile.close();
 }
 
 bool Game::isEmpty_ESUML()
