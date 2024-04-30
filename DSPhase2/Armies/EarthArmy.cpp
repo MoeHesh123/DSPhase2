@@ -52,6 +52,11 @@ LinkedQueue <EarthSoldier*> EarthArmy::getES()
 	return ES;
 }
 
+int EarthArmy::getEScount()
+{
+	return EScount;
+}
+
 bool EarthArmy::isEmpty_ET()
 {
 	if (ETcount == 0) return true;
@@ -111,6 +116,11 @@ StackList <EarthTank*> EarthArmy::getET()
 	return ET;
 }
 
+int EarthArmy::getETcount()
+{
+	return ETcount;
+}
+
 bool EarthArmy::isEmpty_EG()
 {
 	if (EGcount == 0) return true;
@@ -164,6 +174,11 @@ void EarthArmy::printEG()
 priQueue <EarthGunnery*> EarthArmy::getEG()
 {
 	return EG;
+}
+
+int EarthArmy::getEGcount()
+{
+	return EGcount;
 }
 
 int EarthArmy::getEarthID()

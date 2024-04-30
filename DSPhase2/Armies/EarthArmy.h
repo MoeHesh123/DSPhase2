@@ -25,18 +25,21 @@ public:
 	bool removeES(EarthSoldier*& es);
 	void printES();
 	LinkedQueue <EarthSoldier*> getES();
+	int getEScount();
 
 	bool isEmpty_ET();
 	bool addET(int jt, double H, int P, int AttC);
 	bool removeET(EarthTank*& et);
 	void printET();
 	StackList <EarthTank*> getET();
+	int getETcount();
 
 	bool isEmpty_EG();
 	bool addEG(int jt, double H, int P, int AttC);
 	bool removeEG(EarthGunnery*& eg, int& pri);
 	void printEG();
 	priQueue <EarthGunnery*> getEG();
+	int getEGcount();
 
 	int getEarthID();
 	int IncrementEarthID();

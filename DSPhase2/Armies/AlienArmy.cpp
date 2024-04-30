@@ -56,6 +56,11 @@ LinkedQueue <AlienSoldier*> AlienArmy::getAS()
 	return AS;
 }
 
+int AlienArmy::getAScount()
+{
+	return AScount;
+}
+
 bool AlienArmy::isEmpty_AD()
 {
 	if (ADcount == 0) return true;
@@ -127,6 +132,11 @@ DoubleEndedQueueList <AlienDrone*> AlienArmy::getAD()
 	return AD;
 }
 
+int AlienArmy::getADcount()
+{
+	return ADcount;
+}
+
 bool AlienArmy::isEmpty_AM()
 {
 	if (AMcount == 0) return true;
@@ -175,6 +185,10 @@ void AlienArmy::printAM()
 bag <AlienMonster*> AlienArmy::getAM()
 {
 	return AM;
+}
+int AlienArmy::getAMcount()
+{
+	return AMcount;
 }
 void AlienArmy::ReAddAlienUnit(Unit* unit)
 {

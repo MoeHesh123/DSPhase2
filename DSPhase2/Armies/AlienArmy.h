@@ -27,18 +27,21 @@ public:
 	bool removeAS(AlienSoldier*& as);
 	void printAS();
 	LinkedQueue <AlienSoldier*> getAS();
+	int getAScount();
 
 	bool isEmpty_AD();
 	bool addAD(int jt, double H, int P, int AttC);
 	bool removeAD(AlienDrone*& ad1, AlienDrone*& ad2);
 	void printAD();
 	DoubleEndedQueueList <AlienDrone*> getAD();
+	int getADcount();
 
 	bool isEmpty_AM();
 	bool addAM(int jt, double H, int P, int AttC);
 	bool removeAM(AlienMonster*& am);
 	void printAM();
 	bag <AlienMonster*> getAM();
+	int getAMcount();
 
 	void ReAddAlienUnit(Unit* Unit);
 };
