@@ -52,7 +52,7 @@ public:
 	void PrintKilledList();
 
 	void Readinput();
-	void ProduceOutput();
+	void ProduceOutput(EarthArmy* earmy, AlienArmy* Aarmy);
 
 	bool isEmpty_ESUML();
 	bool addESToUML(EarthSoldier* esptr);

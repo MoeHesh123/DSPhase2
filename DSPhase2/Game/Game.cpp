@@ -20,9 +20,9 @@ void Game::Readinput()
 	}
 }
 
-void Game::ProduceOutput()
+void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 {
-	ofstream OutputFile("Outputfile.txt");
+	ofstream OutputFile("OutputfilE.txt");
 
 	Node<Unit*>* Current = KL.getfrontPtr();
 	OutputFile 
@@ -51,15 +51,19 @@ void Game::ProduceOutput()
 	<< setw(6) << left << "ES"
 	<< setw(6) << left << "ET"
 	<< setw(6) << left << "EG" << endl;
-
-	EarthArmy Earmy;
-
 	OutputFile 
-	<< setw(6) << left << Earmy.getEScount()
-	<< setw(6) << left << Earmy.getETcount()
-	<< setw(6) << left << Earmy.getEGcount() << endl;
-
-	//OutputFile << (ESKilledcount / (Earmy.getEScount())) * 100 << " " << (ETKilledcount / (Earmy.getETcount())) * 100 << " " << (EGKilledcount / (Earmy.getEGcount())) * 100 << endl;
+	<< setw(6) << left << earmy->getEScount()
+	<< setw(6) << left << earmy->getETcount()
+	<< setw(6) << left << earmy->getEGcount() << endl;
+	OutputFile
+	<< setw(6) << left << (ESKilledcount)
+	<< setw(6) << left << (ETKilledcount)
+	<< setw(6) << left << (EGKilledcount)<< endl;
+	OutputFile
+	<< setw(6) << left << (ESKilledcount / (earmy->getEScount()+ ESKilledcount)) * 100
+	<< setw(6) << left << (ETKilledcount / (earmy->getETcount()+ ETKilledcount)) * 100
+	<< setw(6) << left << (EGKilledcount / (earmy->getEGcount()+ EGKilledcount)) * 100 << endl;
+	/*OutputFile << (ESKilledcount / (Earmy.getEScount())) * 100 << " " << (ETKilledcount / (Earmy.getETcount())) * 100 << " " << (EGKilledcount / (Earmy.getEGcount())) * 100 << endl;*/
 	//OutputFile << ((ESKilledcount + ETKilledcount + EGKilledcount) / (Earmy.getEScount() + Earmy.getETcount() + Earmy.getEGcount())) * 100;
 
 	OutputFile
@@ -67,13 +71,14 @@ void Game::ProduceOutput()
 	<< setw(6) << left << "AS"
 	<< setw(6) << left << "AM"
 	<< setw(6) << left << "AD" << endl;
-
-	AlienArmy Aarmy;
-
 	OutputFile
-	<< setw(6) << left << Aarmy.getAScount()
-	<< setw(6) << left << Aarmy.getAMcount()
-	<< setw(6) << left << Aarmy.getADcount() << endl;
+	<< setw(6) << left << aarmy->getAScount()
+	<< setw(6) << left << aarmy->getAMcount()
+	<< setw(6) << left << aarmy->getADcount() << endl;
+	OutputFile
+	<< setw(6) << left << (ASKilledcount / (aarmy->getAScount()+ ASKilledcount)) * 100
+	<< setw(6) << left << (AMKilledcount / (aarmy->getAMcount()+ AMKilledcount)) * 100
+	<< setw(6) << left << (ADKilledcount / (aarmy->getADcount()+ ADKilledcount)) * 100 << endl;
 
 	//OutputFile << (ASKilledcount / (Aarmy.getAMcount())) * 100 << " " << (AMKilledcount / (Aarmy.getAMcount())) * 100 << " " << (ADKilledcount / (Aarmy.getADcount())) * 100 << endl;
 	//OutputFile << ((ASKilledcount + AMKilledcount + ADKilledcount) / (Aarmy.getAScount() + Aarmy.getAMcount() + Aarmy.getADcount())) * 100;
@@ -235,14 +240,42 @@ void Game::AddToKilled(Unit* unit)
 {
 	if (unit != nullptr)
 	{
-		KL.enqueue(unit);
-		KilledCount++;
-		if (unit->GetType() == "ES") ESKilledcount++;
-		else if (unit->GetType() == "ET") ETKilledcount++;
-		else if (unit->GetType() == "EG") EGKilledcount++;
-		else if (unit->GetType() == "AS") ASKilledcount++;
-		else if (unit->GetType() == "AM") AMKilledcount++;
-		else ADKilledcount++;
+		if (unit->GetType() == "ES") 
+		{
+			KL.enqueue(unit);
+			KilledCount++;
+			ESKilledcount++;
+		}
+		else if (unit->GetType() == "ET")
+		{
+			KL.enqueue(unit);
+			KilledCount++;
+			ETKilledcount++;
+		}
+		else if (unit->GetType() == "EG")
+		{
+			KL.enqueue(unit);
+			KilledCount++;
+			EGKilledcount++;
+		}
+		else if (unit->GetType() == "AS")
+		{
+			KL.enqueue(unit);
+			KilledCount++;
+			ASKilledcount++;
+		}
+		else if (unit->GetType() == "AM")
+		{
+			KL.enqueue(unit);
+			KilledCount++;
+			AMKilledcount++;
+		}
+		else if (unit->GetType() == "AD")
+		{
+			KL.enqueue(unit);
+			KilledCount++;
+			ADKilledcount++;
+		}
 	}
 }
 
@@ -317,14 +350,15 @@ void Game::StartGame()
 			{
 				EarthSoldier* esptr = nullptr;
 				earthArmy.removeES(esptr);
-				gameManager.addESToUML(esptr);
-				earthArmy.ReAddEarthUnit(esptr);
+				gameManager.AddToKilled(esptr);
+				/*gameManager.addESToUML(esptr);*/
+				/*earthArmy.ReAddEarthUnit(esptr);*/
 			}
 			else if (X > 10 && X <= 20)
 			{
 				EarthTank* etptr = nullptr;
 				earthArmy.removeET(etptr);
-				gameManager.addETToUML(etptr);
+				/*gameManager.addETToUML(etptr);*/
 				gameManager.AddToKilled(etptr);
 			}
 			else if (X > 20 && X <= 30)
@@ -334,9 +368,10 @@ void Game::StartGame()
 				earthArmy.removeEG(egptr, Priority);
 				if (egptr != nullptr)
 				{
-					egptr->SetHealth(0.5 * egptr->GetHealth());
+					/*egptr->SetHealth(0.5 * egptr->GetHealth());
 					if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
-					else earthArmy.ReAddEarthUnit(egptr);
+					else earthArmy.ReAddEarthUnit(egptr);*/
+					gameManager.AddToKilled(egptr);
 				}
 			}
 			else if (X > 30 && X <= 40)
@@ -347,11 +382,12 @@ void Game::StartGame()
 					alienArmy.removeAS(asptr);
 					if (asptr != nullptr)
 					{
-						asptr->SetHealth(asptr->GetHealth() - 1.5);
+						/*asptr->SetHealth(asptr->GetHealth() - 1.5);
 						gameManager.AddToTempList(asptr);
 						gameManager.RemoveFromTempList(asptr);
 						if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
-						else alienArmy.ReAddAlienUnit(asptr);
+						else alienArmy.ReAddAlienUnit(asptr);*/
+						gameManager.AddToKilled(asptr);
 					}
 				}
 			}
@@ -361,7 +397,11 @@ void Game::StartGame()
 				{
 					AlienMonster* amptr = nullptr;
 					alienArmy.removeAM(amptr);
-					if (amptr) alienArmy.ReAddAlienUnit(amptr);
+					if (amptr)
+					{
+						gameManager.AddToKilled(amptr);
+						/*alienArmy.ReAddAlienUnit(amptr);*/
+					}
 				}
 			}
 			else if (X > 50 && X <= 60)
@@ -401,7 +441,7 @@ void Game::StartGame()
 			std::cout << "Press any key to move to next timestep" << endl;
 			std::cin.get();
 		}
-		gameManager.ProduceOutput();
+		gameManager.ProduceOutput(&earthArmy, &alienArmy);
 	}
 	else
 	{
@@ -487,7 +527,7 @@ void Game::StartGame()
 				}
 			}
 		}
-		gameManager.ProduceOutput();
+		gameManager.ProduceOutput(&earthArmy, &alienArmy);
 		std::cout << "Silent Mode" << endl;
 		std::cout << "Simulation Starts..." << endl;
 		std::cout << "Simulation ends, Output file is created" << endl;
