@@ -96,7 +96,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	//<< setw(6) << left << "DfAVG"
 	//<< setw(6) << left << "DdAVG"
 	//<< setw(6) << left << "DbAVG" << endl;
-	//OutputFile 555555555555555555555555555555555555555555555555555555555555555555555555555555555555
+	//OutputFile
 	//<< setw(6) << left << round(ESumDf)
 	//<< setw(6) << left << round(ESumDd/KilledCount)
 	//<< setw(6) << left << round(ESumDb/KilledCount) << endl;
