@@ -362,6 +362,18 @@ void Game::SetTimeStep(int TS)
 	TimeStep = TS;
 }
 
+EarthArmy* Game::GetEarthArmy()
+{
+	if(EA)
+	return EA;
+}
+
+AlienArmy* Game::GetAlienArmy()
+{
+	if(ALA)
+	return ALA;
+}
+
 
 void Game::StartGame()
 {
