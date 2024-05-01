@@ -1,35 +1,24 @@
 File Name: manga
 
 ============================================================================
-Killed Units: 11
+Killed Units: 0
 Td    ID    Tj    Df    Dd    Db    
-      17    17                      
-      1     2                       
-      2     2                       
-      3     2                       
-      4     4                       
-      5     4                       
-      35    40                      
-      7     6                       
-      39    41                      
-      9     6                       
-      10    10                      
 ============================================================================
 Total Earth Army Units Alive: 
 ES    ET    EG    
-17    10    1     
+48    0     0     
 
 Percentage Of Destructed Earth Units Relative To Their Total: 
-32    23    0     
+0     -nan(ind)-nan(ind)
 
-Percentage Of Total Destructed Earth units Relative To Total Earth Units: 28
+Percentage Of Total Destructed Earth units Relative To Total Earth Units: 0
 ============================================================================
 Total Alien Army Units Alive: 
 AS    AM    AD    
-37    2     0     
+37    5     8     
 
 Percentage Of Destructed Alien Units Relative To Their Total: 
-0     0     -nan(ind)
+0     0     0     
 
 Percentage Of Total Destructed Alien units Relative To Total Alien Units: 0
 ============================================================================

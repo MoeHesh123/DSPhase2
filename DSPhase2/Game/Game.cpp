@@ -387,15 +387,15 @@ void Game::StartGame()
 	gameManager.Readinput();
 
 	srand((unsigned)time(0));
-	int X = 0;
+	int X = 5;
 	int Timestep = gameManager.GetTimeStep();
 
-	for (Timestep = 1; Timestep <= 50; Timestep++)
+	for (Timestep = 1; Timestep <= 200; Timestep++)
 	{
 		gameManager.SetTimeStep(Timestep);
 		if (x == 1) cout << endl << "Current TimeStep " << Timestep << endl;
-		X = 1 + (rand() % 100);
-		cout << X << endl;
+		//X = 1 + (rand() % 30);
+		//cout << X << endl;
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 		if (X > 0 && X <= 10)
 		{
@@ -404,29 +404,47 @@ void Game::StartGame()
 			if (esptr)
 			{
 				double h = esptr->GetHealth();
-				esptr->SetHealth(esptr->GetHealth() - 10);
-
-				if ((esptr->GetHealth() <= 0.2 * h) && (esptr->GetHealth() > 0)) gameManager.addESToUML(esptr);
-				else gameManager.AddToKilled(esptr);
+				esptr->SetHealth(esptr->GetHealth() - 20);
+				if (esptr->GetHealth() <= 0) gameManager.AddToKilled(esptr);
+				else if ((esptr->GetHealth()) <= (0.5 * h)) gameManager.addESToUML(esptr);
+				else earthArmy.ReAddEarthUnit(esptr);
 			}
-		}
-		else if (X > 10 && X <= 20)
-		{
 			EarthTank* etptr = nullptr;
 			earthArmy.removeET(etptr);
 			if (etptr)
 			{
 				double h = etptr->GetHealth();
-				etptr->SetHealth(etptr->GetHealth() - 10);
-				if ((etptr->GetHealth() <= 0.2 * h) && (etptr->GetHealth() > 0)) gameManager.addETToUML(etptr);
-				else gameManager.AddToKilled(etptr);
+				etptr->SetHealth(etptr->GetHealth() - 20);
+				if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
+				else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
+				else earthArmy.ReAddEarthUnit(etptr);
 			}
+			HealUnit* huptr = nullptr;
+			if (!gameManager.isEmpty_HL()) HL.pop(huptr);
+			if (huptr) huptr->Attack(&gameManager, &earthArmy, &alienArmy);
+		}
+		else if (X > 10 && X <= 20)
+		{
+			//EarthTank* etptr = nullptr;
+			//earthArmy.removeET(etptr);
+			//if (etptr)
+			//{
+			//	double h = etptr->GetHealth();
+			//	etptr->SetHealth(etptr->GetHealth() - 20);
+			//	if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
+			//	else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
+			//	else earthArmy.ReAddEarthUnit(etptr);
+			//}
 		}
 		else if (X > 20 && X <= 30)
 		{
-			EarthGunnery* egptr = nullptr;
-			int Priority = 0;
-			earthArmy.removeEG(egptr, Priority);
+			//HealUnit* huptr = nullptr;
+			//if(! gameManager.isEmpty_HL()) HL.pop(huptr);
+			//if (huptr) huptr->Attack(&gameManager, &earthArmy, &alienArmy);
+			
+			//EarthGunnery* egptr = nullptr;
+			//int Priority = 0;
+			//earthArmy.removeEG(egptr, Priority);
 			//gameManager.AddToKilled(egptr);
 		}
 		else if (X > 30 && X <= 40)
@@ -453,8 +471,6 @@ void Game::StartGame()
 		}
 		else
 		{
-			//HealUnit hu;
-			//hu.Attack(&gameManager, &earthArmy, &alienArmy);
 		}
 		if (x == 1)
 		{
