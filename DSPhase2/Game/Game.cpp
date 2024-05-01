@@ -27,6 +27,11 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	cin >> file;
 	ofstream OutputFile(file + ".txt");
 
+	OutputFile << "File Name: " << file << endl << endl;
+
+	OutputFile << "============================================================================" << endl;
+
+	OutputFile << "Killed Units: " << KilledCount << endl;
 	Node<Unit*>* Current = KL.getfrontPtr();
 	OutputFile 
 	<< setw(6) << left << "Td"
@@ -47,39 +52,49 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 		Current = Current->getNext();
 	}
 
+	//OutputFile << "============================================================================" << endl;
+
 	//Output File win/loss/draw
-	
+
+	OutputFile << "============================================================================" << endl;
+
 	OutputFile 
-	<< "Earth Army: " << endl
+	<< "Total Earth Army Units Alive: " << endl
 	<< setw(6) << left << "ES"
 	<< setw(6) << left << "ET"
 	<< setw(6) << left << "EG" << endl;
 	OutputFile 
 	<< setw(6) << left << earmy->getEScount()
 	<< setw(6) << left << earmy->getETcount()
-	<< setw(6) << left << earmy->getEGcount() << endl;
+	<< setw(6) << left << earmy->getEGcount() << endl <<endl;
 	OutputFile
-	<< setw(6) << left << int((ESKilledcount / (earmy->getEScount()+ ESKilledcount)) * 100)
-	<< setw(6) << left << int((ETKilledcount / (earmy->getETcount()+ ETKilledcount)) * 100)
-	<< setw(6) << left << int((EGKilledcount / (earmy->getEGcount()+ EGKilledcount)) * 100) << endl;
+	<< "Percentage Of Destructed Earth Units Relative To Their Total: " << endl
+	<< setw(6) << left << round((ESKilledcount / (earmy->getEScount() + ESKilledcount)) * 100)
+	<< setw(6) << left << round((ETKilledcount / (earmy->getETcount() + ETKilledcount)) * 100)
+	<< setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100) << endl << endl;
+	OutputFile << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: " 
+	<< round((ESKilledcount + ETKilledcount + EGKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount)) * 100) << endl;
 
-	//OutputFile << ((ESKilledcount + ETKilledcount + EGKilledcount) / (Earmy.getEScount() + Earmy.getETcount() + Earmy.getEGcount())) * 100;
+	OutputFile << "============================================================================" << endl;
 
 	OutputFile
-	<< "Alien Army: " << endl
+	<< "Total Alien Army Units Alive: " << endl
 	<< setw(6) << left << "AS"
 	<< setw(6) << left << "AM"
 	<< setw(6) << left << "AD" << endl;
 	OutputFile
 	<< setw(6) << left << aarmy->getAScount()
 	<< setw(6) << left << aarmy->getAMcount()
-	<< setw(6) << left << aarmy->getADcount() << endl;
+	<< setw(6) << left << aarmy->getADcount() << endl<<endl;
 	OutputFile
-	<< setw(6) << left << int((ASKilledcount / (aarmy->getAScount()+ ASKilledcount)) * 100)
-	<< setw(6) << left << int((AMKilledcount / (aarmy->getAMcount()+ AMKilledcount)) * 100)
-	<< setw(6) << left << int((ADKilledcount / (aarmy->getADcount()+ ADKilledcount)) * 100) << endl;
+	<< "Percentage Of Destructed Alien Units Relative To Their Total: " << endl
+	<< setw(6) << left << round((ASKilledcount / (aarmy->getAScount() + ASKilledcount)) * 100)
+	<< setw(6) << left << round((AMKilledcount / (aarmy->getAMcount() + AMKilledcount)) * 100)
+	<< setw(6) << left << round((ADKilledcount / (aarmy->getADcount() + ADKilledcount)) * 100) << endl<<endl;
+	OutputFile << "Percentage Of Total Destructed Alien units Relative To Total Alien Units: "
+	<< round((ASKilledcount + AMKilledcount + ADKilledcount) / ((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) * 100) << endl;
 
-	//OutputFile << ((ASKilledcount + AMKilledcount + ADKilledcount) / (Aarmy.getAScount() + Aarmy.getAMcount() + Aarmy.getADcount())) * 100;
+	OutputFile << "============================================================================" << endl;
 
 	OutputFile.close();
 }
