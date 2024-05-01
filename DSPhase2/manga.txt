@@ -1,0 +1,65 @@
+File Name: manga
+
+============================================================================
+Killed Units: 41
+Td    ID    Tj    Df    Dd    Db    
+      2001  4                       
+      2002  4                       
+      2003  4                       
+      2006  4                       
+      2007  4                       
+      7     4                       
+      2005  4                       
+      1     4                       
+      2004  4                       
+      2008  13                      
+      2009  13                      
+      2010  13                      
+      2011  13                      
+      2012  13                      
+      2024  16                      
+      2023  16                      
+      34    21                      
+      30    21                      
+      2013  13                      
+      2014  13                      
+      2015  15                      
+      2016  15                      
+      2017  15                      
+      54    26                      
+      2041  22                      
+      2033  21                      
+      2060  31                      
+      2057  31                      
+      2064  35                      
+      2045  25                      
+      2048  25                      
+      2050  26                      
+      74    36                      
+      2080  38                      
+      2068  35                      
+      2     4                       
+      2089  39                      
+      2097  40                      
+      2086  39                      
+      2111  48                      
+      2108  48                      
+============================================================================
+Total Earth Army Units Alive: 
+ES    ET    EG    
+74    15    8     
+
+Percentage Of Destructed Earth Units Relative To Their Total: 
+1     29    0     
+
+Percentage Of Total Destructed Earth units Relative To Total Earth Units: 7
+============================================================================
+Total Alien Army Units Alive: 
+AS    AM    AD    
+77    0     1     
+
+Percentage Of Destructed Alien Units Relative To Their Total: 
+16    100   89    
+
+Percentage Of Total Destructed Alien units Relative To Total Alien Units: 30
+============================================================================

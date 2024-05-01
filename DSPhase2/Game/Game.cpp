@@ -40,8 +40,20 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "Df"
 	<< setw(6) << left << "Dd"
 	<< setw(6) << left << "Db" << endl;
+	//float ESumDd = 0, ESumDb = 0;
+	//float ASumDd = 0, ASumDb = 0;
 	while (Current) 
 	{
+		//if ((Current->getItem()->GetType() == "ES") || (Current->getItem()->GetType() == "ET") || (Current->getItem()->GetType() == "EG")) 
+		//{
+		//	ESumDd += Current->getItem()->GetDd();
+		//	ESumDb += Current->getItem()->GetDb();
+		//}
+		//else
+		//{
+		//	ASumDd += Current->getItem()->GetDd();
+		//	ASumDb += Current->getItem()->GetDb();
+		//}
 		OutputFile 
 		<< setw(6) << left << ""
 		<< setw(6) << left << Current->getItem()->GetId()
@@ -74,6 +86,16 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100) << endl << endl;
 	OutputFile << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: " 
 	<< round((ESKilledcount + ETKilledcount + EGKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount)) * 100) << endl;
+	//OutputFile << "Average of Df,Dd & Db for Earth Units:"
+	//<< setw(6) << left << "DfAVG"
+	//<< setw(6) << left << "DdAVG"
+	//<< setw(6) << left << "DbAVG" << endl;
+	//OutputFile
+	//<< setw(6) << left << round(ESumDf)
+	//<< setw(6) << left << round(ESumDd/KilledCount)
+	//<< setw(6) << left << round(ESumDb/KilledCount) << endl;
+	//OutputFile << "Earth Df/Db%: " << round((ESumDf / ESumDb) * 100) << endl;
+	//OutputFile << "Earth Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
 
 	OutputFile << "============================================================================" << endl;
 
@@ -93,6 +115,17 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << round((ADKilledcount / (aarmy->getADcount() + ADKilledcount)) * 100) << endl<<endl;
 	OutputFile << "Percentage Of Total Destructed Alien units Relative To Total Alien Units: "
 	<< round((ASKilledcount + AMKilledcount + ADKilledcount) / ((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) * 100) << endl;
+	//OutputFile << "Average of Df,Dd & Db for Alien Units:"
+	//<< setw(6) << left << "DfAVG"
+	//<< setw(6) << left << "DdAVG"
+	//<< setw(6) << left << "DbAVG" << endl;
+	//OutputFile
+	//<< setw(6) << left << round(ASumDf)
+	//<< setw(6) << left << round(ASumDd / KilledCount)
+	//<< setw(6) << left << round(ASumDb / KilledCount) << endl;
+	//OutputFile << "Alien Df/Db%: " << round((ESumDf / ESumDb) * 100) << endl;
+	//OutputFile << "Alien Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
+
 
 	OutputFile << "============================================================================" << endl;
 
