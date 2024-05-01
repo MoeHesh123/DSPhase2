@@ -81,10 +81,10 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << earmy->getEScount()
 	<< setw(6) << left << earmy->getETcount()
 	<< setw(6) << left << earmy->getEGcount() << endl <<endl;
-	OutputFile
-	<< setw(6) << left << ESKilledcount
-	<< setw(6) << left << ETKilledcount
-	<< setw(6) << left << EGKilledcount << endl << endl;
+	//OutputFile
+	//<< setw(6) << left << ESKilledcount
+	//<< setw(6) << left << ETKilledcount
+	//<< setw(6) << left << EGKilledcount << endl << endl;
 	OutputFile
 	<< "Percentage Of Destructed Earth Units Relative To Their Total: " << endl
 	<< setw(6) << left << round((ESKilledcount / (earmy->getEScount() + ESKilledcount + ESUMLcount)) * 100)
@@ -114,10 +114,10 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << aarmy->getAScount()
 	<< setw(6) << left << aarmy->getAMcount()
 	<< setw(6) << left << aarmy->getADcount() << endl<<endl;
-	OutputFile
-	<< setw(6) << left << ASKilledcount
-	<< setw(6) << left << AMKilledcount
-	<< setw(6) << left << ADKilledcount << endl << endl;
+	//OutputFile
+	//<< setw(6) << left << ASKilledcount
+	//<< setw(6) << left << AMKilledcount
+	//<< setw(6) << left << ADKilledcount << endl << endl;
 	OutputFile
 	<< "Percentage Of Destructed Alien Units Relative To Their Total: " << endl
 	<< setw(6) << left << round((ASKilledcount / (aarmy->getAScount() + ASKilledcount)) * 100)
