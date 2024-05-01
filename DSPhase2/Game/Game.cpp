@@ -409,6 +409,9 @@ void Game::StartGame()
 				else if ((esptr->GetHealth()) <= (0.5 * h)) gameManager.addESToUML(esptr);
 				else earthArmy.ReAddEarthUnit(esptr);
 			}
+		}
+		else if (X > 10 && X <= 20)
+		{
 			EarthTank* etptr = nullptr;
 			earthArmy.removeET(etptr);
 			if (etptr)
@@ -419,45 +422,25 @@ void Game::StartGame()
 				else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
 				else earthArmy.ReAddEarthUnit(etptr);
 			}
-			HealUnit* huptr = nullptr;
-			if (!gameManager.isEmpty_HL()) HL.pop(huptr);
-			if (huptr) huptr->Attack(&gameManager, &earthArmy, &alienArmy);
-		}
-		else if (X > 10 && X <= 20)
-		{
-			//EarthTank* etptr = nullptr;
-			//earthArmy.removeET(etptr);
-			//if (etptr)
-			//{
-			//	double h = etptr->GetHealth();
-			//	etptr->SetHealth(etptr->GetHealth() - 20);
-			//	if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
-			//	else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
-			//	else earthArmy.ReAddEarthUnit(etptr);
-			//}
 		}
 		else if (X > 20 && X <= 30)
 		{
-			//HealUnit* huptr = nullptr;
-			//if(! gameManager.isEmpty_HL()) HL.pop(huptr);
-			//if (huptr) huptr->Attack(&gameManager, &earthArmy, &alienArmy);
-			
-			//EarthGunnery* egptr = nullptr;
-			//int Priority = 0;
-			//earthArmy.removeEG(egptr, Priority);
-			//gameManager.AddToKilled(egptr);
+			EarthGunnery* egptr = nullptr;
+			int Priority = 0;
+			earthArmy.removeEG(egptr, Priority);
+			gameManager.AddToKilled(egptr);
 		}
 		else if (X > 30 && X <= 40)
 		{
 			AlienSoldier* asptr = nullptr;
 			alienArmy.removeAS(asptr);
-			//gameManager.AddToKilled(asptr);
+			gameManager.AddToKilled(asptr);
 		}
 		else if (X > 40 && X <= 50)
 		{
 			AlienMonster* amptr = nullptr;
 			alienArmy.removeAM(amptr);
-			//gameManager.AddToKilled(amptr);
+			gameManager.AddToKilled(amptr);
 		}
 		else if (X > 50 && X <= 60)
 		{
@@ -465,8 +448,8 @@ void Game::StartGame()
 			alienArmy.removeAD(adptr1, adptr2);
 			if (adptr1 || adptr2)
 			{
-				//gameManager.AddToKilled(adptr1);
-				//gameManager.AddToKilled(adptr2);
+				gameManager.AddToKilled(adptr1);
+				gameManager.AddToKilled(adptr2);
 			}
 		}
 		else
