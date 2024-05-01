@@ -5,7 +5,8 @@ void Game::Readinput()
 {
 	ifstream myfile;
 	myfile.open("Game/InputFile.txt");
-	if (!(myfile.is_open())) {
+	if (!(myfile.is_open())) 
+	{
 		cout << "file not found";
 	}
 	else
@@ -22,6 +23,7 @@ void Game::Readinput()
 
 void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 {
+
 	cout << "Please Enter The Output File Name: ";
 	string file;
 	cin >> file;
@@ -125,7 +127,6 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	//<< setw(6) << left << round(ASumDb / KilledCount) << endl;
 	//OutputFile << "Alien Df/Db%: " << round((ESumDf / ESumDb) * 100) << endl;
 	//OutputFile << "Alien Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
-
 
 	OutputFile << "============================================================================" << endl;
 
