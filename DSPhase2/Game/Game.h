@@ -36,6 +36,7 @@ class Game
 	float ASKilledcount = 0;
 	float AMKilledcount = 0;
 	float ADKilledcount = 0;
+	float HUKilledcount = 0;
 
 	int TimeStep = 1;
 
