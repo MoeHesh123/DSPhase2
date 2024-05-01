@@ -38,8 +38,8 @@ class Game
 	float ADKilledcount = 0;
 
 	int TimeStep = 1;
-	EarthArmy* EA = nullptr;
-	AlienArmy* ALA = nullptr;
+	EarthArmy* EA;
+	AlienArmy* ALA;
 
 public:
 
