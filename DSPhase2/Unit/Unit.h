@@ -9,6 +9,8 @@ using namespace std;
 #include"../DataStructures/ArrayOfPointers.h"
 
 class Game;
+class EarthArmy;
+class AlienArmy;
 
 class Unit
 {
@@ -51,7 +53,7 @@ public:
     virtual void SetTa(int ta);
 	virtual void SetTd(int td);
 	virtual void SetUAP(double damage);
-	virtual void Attack(Game*& game)=0;
+	virtual void Attack(Game*& game, EarthArmy*& eartharmy, AlienArmy*& alienarmy)=0;
 	int GetJTUML();
 	void SetJTUML(int jtuml);
 

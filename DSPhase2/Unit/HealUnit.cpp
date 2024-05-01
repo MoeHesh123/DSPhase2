@@ -1,5 +1,6 @@
 #include "HealUnit.h"
-#include"../Game/Game.h"
+#include "../Game/Game.h"
+#include "../Armies/EarthArmy.h"
 
 HealUnit::HealUnit(int ID, int JT, double H, int P, int AC) : Unit(ID, JT, H, P, AC) {}
 
@@ -8,7 +9,7 @@ string HealUnit::GetType()
 	return type;
 }
 
-void HealUnit::Attack(Game*& game)
+void HealUnit::Attack(Game*& game, EarthArmy*& eartharmy, AlienArmy*& alienarmy)
 {
 	LinkedQueue<Unit*> Temp;
 	for (int i = 0; i < attackCapacity; i++)
