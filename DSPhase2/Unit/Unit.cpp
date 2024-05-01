@@ -88,3 +88,12 @@ void Unit::SetUAP(double damage)
 {
 	UAP = damage;
 }
+int Unit::GetJTUML()
+{
+	return JTUML;
+}
+
+void Unit::SetJTUML(int jtuml)
+{
+	JTUML = jtuml;
+}

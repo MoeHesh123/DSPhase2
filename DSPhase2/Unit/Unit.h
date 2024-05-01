@@ -26,6 +26,7 @@ protected:
 	int power;
 	int attackCapacity;
 	string type;
+	int JTUML = 0;
 
 public:
 
@@ -49,5 +50,7 @@ public:
 	virtual void SetTd(int td);
 	virtual void SetUAP(double damage);
 	virtual void Attack() = 0;
+	int GetJTUML();
+	void SetJTUML(int jtuml);
 
 };

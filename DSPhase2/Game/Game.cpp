@@ -596,3 +596,4 @@ void Game::StartGame()
 		std::cout << "Simulation ends, Output file is created" << endl;
 	}
 }
+
