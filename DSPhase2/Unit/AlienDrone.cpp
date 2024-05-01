@@ -9,7 +9,7 @@ string AlienDrone::GetType()
     return type;
 }
 
-void AlienDrone::Attack(Game*& game, EarthArmy*& eartharmy, AlienArmy*& alienarmy)
+void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
 
 }

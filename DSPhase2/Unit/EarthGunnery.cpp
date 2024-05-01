@@ -9,7 +9,7 @@ string EarthGunnery::GetType()
     return type;
 }
 
-void EarthGunnery::Attack(Game*& game, EarthArmy*& eartharmy, AlienArmy*& alienarmy)
+void EarthGunnery::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
 
 }

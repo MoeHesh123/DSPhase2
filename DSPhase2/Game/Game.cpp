@@ -395,37 +395,51 @@ void Game::StartGame()
 		gameManager.SetTimeStep(Timestep);
 		if (x == 1) cout << endl << "Current TimeStep " << Timestep << endl;
 		X = 1 + (rand() % 100);
+		cout << X << endl;
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 		if (X > 0 && X <= 10)
 		{
 			EarthSoldier* esptr = nullptr;
 			earthArmy.removeES(esptr);
-			gameManager.AddToKilled(esptr);
+			if (esptr)
+			{
+				double h = esptr->GetHealth();
+				esptr->SetHealth(esptr->GetHealth() - 10);
+
+				if ((esptr->GetHealth() <= 0.2 * h) && (esptr->GetHealth() > 0)) gameManager.addESToUML(esptr);
+				else gameManager.AddToKilled(esptr);
+			}
 		}
 		else if (X > 10 && X <= 20)
 		{
 			EarthTank* etptr = nullptr;
 			earthArmy.removeET(etptr);
-			gameManager.AddToKilled(etptr);
+			if (etptr)
+			{
+				double h = etptr->GetHealth();
+				etptr->SetHealth(etptr->GetHealth() - 10);
+				if ((etptr->GetHealth() <= 0.2 * h) && (etptr->GetHealth() > 0)) gameManager.addETToUML(etptr);
+				else gameManager.AddToKilled(etptr);
+			}
 		}
 		else if (X > 20 && X <= 30)
 		{
 			EarthGunnery* egptr = nullptr;
 			int Priority = 0;
 			earthArmy.removeEG(egptr, Priority);
-			gameManager.AddToKilled(egptr);
+			//gameManager.AddToKilled(egptr);
 		}
 		else if (X > 30 && X <= 40)
 		{
 			AlienSoldier* asptr = nullptr;
 			alienArmy.removeAS(asptr);
-			gameManager.AddToKilled(asptr);
+			//gameManager.AddToKilled(asptr);
 		}
 		else if (X > 40 && X <= 50)
 		{
 			AlienMonster* amptr = nullptr;
 			alienArmy.removeAM(amptr);
-			gameManager.AddToKilled(amptr);
+			//gameManager.AddToKilled(amptr);
 		}
 		else if (X > 50 && X <= 60)
 		{
@@ -433,9 +447,14 @@ void Game::StartGame()
 			alienArmy.removeAD(adptr1, adptr2);
 			if (adptr1 || adptr2)
 			{
-				gameManager.AddToKilled(adptr1);
-				gameManager.AddToKilled(adptr2);
+				//gameManager.AddToKilled(adptr1);
+				//gameManager.AddToKilled(adptr2);
 			}
+		}
+		else
+		{
+			//HealUnit hu;
+			//hu.Attack(&gameManager, &earthArmy, &alienArmy);
 		}
 		if (x == 1)
 		{
