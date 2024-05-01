@@ -91,7 +91,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << round((ETKilledcount / (earmy->getETcount() + ETKilledcount + ETUMLcount)) * 100)
 	<< setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100) << endl << endl;
 	OutputFile << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: " 
-	<< round((ESKilledcount + ETKilledcount + EGKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount) + (ESUMLcount + ETUMLcount)) * 100) << endl;
+	<< round((ESKilledcount + ETKilledcount + EGKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount) + (ESUMLcount + ETUMLcount) + HUcount) * 100) << endl;
 	//OutputFile << "Average of Df,Dd & Db for Earth Units:"
 	//<< setw(6) << left << "DfAVG"
 	//<< setw(6) << left << "DdAVG"
