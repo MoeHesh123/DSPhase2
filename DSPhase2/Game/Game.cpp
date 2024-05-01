@@ -95,7 +95,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100)
 	<< setw(6) << left << round((HUKilledcount / (HUcount + HUKilledcount)) * 100) << endl << endl;
 	OutputFile << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: " 
-	<< round((ESKilledcount + ETKilledcount + EGKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount) + (ESUMLcount + ETUMLcount) + HUcount) * 100) << endl;
+	<< ((ESKilledcount + ETKilledcount + EGKilledcount + HUKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount) + (ESUMLcount + ETUMLcount + HUcount)) * 100) << endl;
 	//OutputFile << "Average of Df,Dd & Db for Earth Units:"
 	//<< setw(6) << left << "DfAVG"
 	//<< setw(6) << left << "DdAVG"
@@ -423,7 +423,7 @@ void Game::StartGame()
 			if (esptr)
 			{
 				double h = esptr->GetHealth();
-				esptr->SetHealth(esptr->GetHealth() - 30);
+				esptr->SetHealth(esptr->GetHealth() - 100);
 				if (esptr->GetHealth() <= 0) gameManager.AddToKilled(esptr);
 				else if ((esptr->GetHealth()) <= (0.5 * h)) gameManager.addESToUML(esptr);
 				else earthArmy.ReAddEarthUnit(esptr);
@@ -436,7 +436,7 @@ void Game::StartGame()
 			if (etptr)
 			{
 				double h = etptr->GetHealth();
-				etptr->SetHealth(etptr->GetHealth() - 30);
+				etptr->SetHealth(etptr->GetHealth() - 100);
 				if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
 				else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
 				else earthArmy.ReAddEarthUnit(etptr);
@@ -450,7 +450,7 @@ void Game::StartGame()
 			if (egptr)
 			{
 				double h = egptr->GetHealth();
-				egptr->SetHealth(egptr->GetHealth() - 30);
+				egptr->SetHealth(egptr->GetHealth() - 100);
 				if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
 				else earthArmy.ReAddEarthUnit(egptr);
 			}
@@ -462,7 +462,7 @@ void Game::StartGame()
 			if (asptr)
 			{
 				double h = asptr->GetHealth();
-				asptr->SetHealth(asptr->GetHealth() - 30);
+				asptr->SetHealth(asptr->GetHealth() - 100);
 				if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
 				else alienArmy.ReAddAlienUnit(asptr);
 			}
@@ -474,7 +474,7 @@ void Game::StartGame()
 			if (amptr)
 			{
 				double h = amptr->GetHealth();
-				amptr->SetHealth(amptr->GetHealth() - 30);
+				amptr->SetHealth(amptr->GetHealth() - 100);
 				if (amptr->GetHealth() <= 0) gameManager.AddToKilled(amptr);
 				else alienArmy.ReAddAlienUnit(amptr);
 			}
@@ -487,14 +487,14 @@ void Game::StartGame()
 			if (adptr1)
 			{
 				double h = adptr1->GetHealth();
-				adptr1->SetHealth(adptr1->GetHealth() - 30);
+				adptr1->SetHealth(adptr1->GetHealth() - 100);
 				if (adptr1->GetHealth() <= 0) gameManager.AddToKilled(adptr1);
 				else alienArmy.ReAddAlienUnit(adptr1);
 			}
 			if (adptr2)
 			{
 				double h = adptr2->GetHealth();
-				adptr2->SetHealth(adptr2->GetHealth() - 30);
+				adptr2->SetHealth(adptr2->GetHealth() - 100);
 				if (adptr2->GetHealth() <= 0) gameManager.AddToKilled(adptr2);
 				else alienArmy.ReAddAlienUnit(adptr2);
 			}
