@@ -1,6 +1,6 @@
 #include "RandGen.h"
 
-void RandGen::Generate(Game*& game, EarthArmy*& EA, AlienArmy*& ALA,int tj)
+void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA,int tj)
 {
 	game->in;
 	game->Readinput();

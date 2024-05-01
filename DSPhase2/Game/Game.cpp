@@ -362,243 +362,109 @@ void Game::SetTimeStep(int TS)
 	TimeStep = TS;
 }
 
-EarthArmy* Game::GetEarthArmy()
-{
-	return EA;
-}
-
-AlienArmy* Game::GetAlienArmy()
-{
-	return ALA;
-}
-
-
 void Game::StartGame()
 {
-
 	int x = 0;
-	std::cout << "Which Mode Do you like to simulate with ?" << endl;
-	std::cout << "For Interactive Mode Press 1" << endl;
-	std::cout << "For Silent Mode Press 2" << endl;
-	std::cout << "choice: ";
-	std::cin >> x;
+	cout << "Which Mode Do you like to simulate with ?" << endl;
+	cout << "For Interactive Mode Press 1" << endl;
+	cout << "For Silent Mode Press 2" << endl;
+	cout << "choice: ";
+	cin >> x;
 
 	while (x <= 0 || x > 2)
 	{
-		std::cout << "Invalid Mode please choose again!" << endl;
-		std::cout << "choice: ";
-		std::cin >> x;
+		cout << "Invalid Mode please choose again!" << endl;
+		cout << "choice: ";
+		cin >> x;
 	}
+    cin.ignore();
 
-	std::cin.ignore();
+	Game gameManager;
+	RandGen generator;
+	EarthArmy earthArmy;
+	AlienArmy alienArmy;
 
-	if (x == 1)
+	gameManager.Readinput();
+
+	srand((unsigned)time(0));
+	int X = 0;
+	int Timestep = gameManager.GetTimeStep();
+
+	for (Timestep = 1; Timestep <= 50; Timestep++)
 	{
-		Game* gameManager = nullptr;
-
-		gameManager->Readinput();
-
-		RandGen generator;
-
-		srand((unsigned)time(0));
-		int X = 0;
-		int Timestep = gameManager->GetTimeStep();
-		for (Timestep = 1; Timestep <= 50; Timestep++)
+		gameManager.SetTimeStep(Timestep);
+		if (x == 1) cout << endl << "Current TimeStep " << Timestep << endl;
+		X = 1 + (rand() % 100);
+		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
+		if (X > 0 && X <= 10)
 		{
-			gameManager->SetTimeStep(Timestep);
-			std::cout << endl << "Current TimeStep " << Timestep << endl;
-			X = 1 + (rand() % 100);
-			generator.Generate(gameManager,EA, ALA, Timestep);
-			if (X > 0 && X <= 10)
-			{
-				EarthSoldier* esptr = nullptr;
-				EA->removeES(esptr);
-				gameManager->AddToKilled(esptr);
-				/*gameManager.addESToUML(esptr);*/
-				/*earthArmy.ReAddEarthUnit(esptr);*/
-			}
-			else if (X > 10 && X <= 20)
-			{
-				EarthTank* etptr = nullptr;
-				EA->removeET(etptr);
-				/*gameManager.addETToUML(etptr);*/
-				gameManager->AddToKilled(etptr);
-			}
-			else if (X > 20 && X <= 30)
-			{
-				EarthGunnery* egptr = nullptr;
-				int Priority = 0;
-				EA->removeEG(egptr, Priority);
-				if (egptr != nullptr)
-				{
-					/*egptr->SetHealth(0.5 * egptr->GetHealth());
-					if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
-					else earthArmy.ReAddEarthUnit(egptr);*/
-					gameManager->AddToKilled(egptr);
-				}
-			}
-			else if (X > 30 && X <= 40)
-			{
-				for (int i = 0; i < 5; i++)
-				{
-					AlienSoldier* asptr;
-					ALA->removeAS(asptr);
-					if (asptr != nullptr)
-					{
-						/*asptr->SetHealth(asptr->GetHealth() - 1.5);
-						gameManager.AddToTempList(asptr);
-						gameManager.RemoveFromTempList(asptr);
-						if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
-						else alienArmy.ReAddAlienUnit(asptr);*/
-						gameManager->AddToKilled(asptr);
-					}
-				}
-			}
-			else if (X > 40 && X <= 50)
-			{
-				for (int i = 0; i < 5; i++)
-				{
-					AlienMonster* amptr = nullptr;
-					ALA->removeAM(amptr);
-					if (amptr)
-					{
-						gameManager->AddToKilled(amptr);
-						/*alienArmy.ReAddAlienUnit(amptr);*/
-					}
-				}
-			}
-			else if (X > 50 && X <= 60)
-			{
-				for (int i = 0; i < 3; i++)
-				{
-					AlienDrone* adptr1, * adptr2;
-					ALA->removeAD(adptr1, adptr2);
-					if (adptr1 || adptr2)
-					{
-						gameManager->AddToKilled(adptr1);
-						gameManager->AddToKilled(adptr2);
-					}
-				}
-			}
-			std::cout << "==============  Earth Army Alive Units ========" << endl;
-
-			EA->printES();
-			EA->printET();
-			EA->printEG();
-			gameManager->printHL();
-
-			std::cout << endl << "============= Unit Maintenance List ===========" << endl;
-
-			gameManager->printUML();
-
-			std::cout << endl << "==============  Alien Army Alive Units ========" << endl;
-
-			ALA->printAS();
-			ALA->printAD();
-			ALA->printAM();
-
-			std::cout << endl << "==============  Killed/Destructed Units =======" << endl;
-
-			gameManager->PrintKilledList();
-
-			std::cout << "Press any key to move to next timestep" << endl;
-			std::cin.get();
+			EarthSoldier* esptr = nullptr;
+			earthArmy.removeES(esptr);
+			gameManager.AddToKilled(esptr);
 		}
-		gameManager->ProduceOutput(EA, ALA);
-	}
-	else
-	{
-		Game* gameManager = nullptr;
-
-		gameManager->Readinput();
-
-		RandGen generator;
-
-		srand((unsigned)time(0));
-		int X = 0;
-		int Timestep = gameManager->GetTimeStep();
-		for (Timestep = 1; Timestep <= 50; Timestep++)
+		else if (X > 10 && X <= 20)
 		{
-			gameManager->SetTimeStep(Timestep);
-			std::cout << endl << "Current TimeStep " << Timestep << endl;
-			X = 1 + (rand() % 100);
-			generator.Generate(gameManager, EA, ALA, Timestep);
-			if (X > 0 && X <= 10)
+			EarthTank* etptr = nullptr;
+			earthArmy.removeET(etptr);
+			gameManager.AddToKilled(etptr);
+		}
+		else if (X > 20 && X <= 30)
+		{
+			EarthGunnery* egptr = nullptr;
+			int Priority = 0;
+			earthArmy.removeEG(egptr, Priority);
+			gameManager.AddToKilled(egptr);
+		}
+		else if (X > 30 && X <= 40)
+		{
+			AlienSoldier* asptr = nullptr;
+			alienArmy.removeAS(asptr);
+			gameManager.AddToKilled(asptr);
+		}
+		else if (X > 40 && X <= 50)
+		{
+			AlienMonster* amptr = nullptr;
+			alienArmy.removeAM(amptr);
+			gameManager.AddToKilled(amptr);
+		}
+		else if (X > 50 && X <= 60)
+		{
+			AlienDrone* adptr1, * adptr2;
+			alienArmy.removeAD(adptr1, adptr2);
+			if (adptr1 || adptr2)
 			{
-				EarthSoldier* esptr = nullptr;
-				EA->removeES(esptr);
-				gameManager->AddToKilled(esptr);
-				/*gameManager.addESToUML(esptr);*/
-				/*earthArmy.ReAddEarthUnit(esptr);*/
-			}
-			else if (X > 10 && X <= 20)
-			{
-				EarthTank* etptr = nullptr;
-				EA->removeET(etptr);
-				/*gameManager.addETToUML(etptr);*/
-				gameManager->AddToKilled(etptr);
-			}
-			else if (X > 20 && X <= 30)
-			{
-				EarthGunnery* egptr = nullptr;
-				int Priority = 0;
-				EA->removeEG(egptr, Priority);
-				if (egptr != nullptr)
-				{
-					/*egptr->SetHealth(0.5 * egptr->GetHealth());
-					if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
-					else earthArmy.ReAddEarthUnit(egptr);*/
-					gameManager->AddToKilled(egptr);
-				}
-			}
-			else if (X > 30 && X <= 40)
-			{
-				for (int i = 0; i < 5; i++)
-				{
-					AlienSoldier* asptr;
-					ALA->removeAS(asptr);
-					if (asptr != nullptr)
-					{
-						/*asptr->SetHealth(asptr->GetHealth() - 1.5);
-						gameManager.AddToTempList(asptr);
-						gameManager.RemoveFromTempList(asptr);
-						if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
-						else alienArmy.ReAddAlienUnit(asptr);*/
-						gameManager->AddToKilled(asptr);
-					}
-				}
-			}
-			else if (X > 40 && X <= 50)
-			{
-				for (int i = 0; i < 5; i++)
-				{
-					AlienMonster* amptr = nullptr;
-					ALA->removeAM(amptr);
-					if (amptr)
-					{
-						gameManager->AddToKilled(amptr);
-						/*alienArmy.ReAddAlienUnit(amptr);*/
-					}
-				}
-			}
-			else if (X > 50 && X <= 60)
-			{
-				for (int i = 0; i < 3; i++)
-				{
-					AlienDrone* adptr1, * adptr2;
-					ALA->removeAD(adptr1, adptr2);
-					if (adptr1 || adptr2)
-					{
-						gameManager->AddToKilled(adptr1);
-						gameManager->AddToKilled(adptr2);
-					}
-				}
+				gameManager.AddToKilled(adptr1);
+				gameManager.AddToKilled(adptr2);
 			}
 		}
-		gameManager->ProduceOutput(EA, ALA);
-		std::cout << "Silent Mode" << endl;
-		std::cout << "Simulation Starts..." << endl;
-		std::cout << "Simulation ends, Output file is created" << endl;
+		if (x == 1)
+		{
+			cout << "==============  Earth Army Alive Units ========" << endl;
+			earthArmy.printES();
+			earthArmy.printET();
+			earthArmy.printEG();
+			gameManager.printHL();
+
+			cout << endl << "============= Unit Maintenance List ===========" << endl;
+			gameManager.printUML();
+
+			cout << endl << "==============  Alien Army Alive Units ========" << endl;
+			alienArmy.printAS();
+			alienArmy.printAD();
+			alienArmy.printAM();
+
+			cout << endl << "==============  Killed/Destructed Units =======" << endl;
+			gameManager.PrintKilledList();
+
+			cout << "Press any key to move to next timestep" << endl;
+			cin.get();
+		}
 	}
+	if(x == 2)
+	{
+		cout << "Silent Mode" << endl;
+		cout << "Simulation Starts..." << endl;
+		cout << "Simulation ends, Output file is created" << endl;
+	}
+	gameManager.ProduceOutput(&earthArmy, &alienArmy);
 }
-
