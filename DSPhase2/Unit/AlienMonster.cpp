@@ -7,6 +7,6 @@ string AlienMonster::GetType()
     return type;
 }
 
-void AlienMonster::Attack()
+void AlienMonster::Attack(Game*& game)
 {
 }

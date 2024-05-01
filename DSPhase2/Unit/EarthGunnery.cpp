@@ -7,6 +7,6 @@ string EarthGunnery::GetType()
     return type;
 }
 
-void EarthGunnery::Attack()
+void EarthGunnery::Attack(Game*& game)
 {
 }

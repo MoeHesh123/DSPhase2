@@ -8,6 +8,8 @@ using namespace std;
 #include"../DataStructures/StackList.h"
 #include"../DataStructures/ArrayOfPointers.h"
 
+class Game;
+
 class Unit
 {
 
@@ -49,7 +51,7 @@ public:
     virtual void SetTa(int ta);
 	virtual void SetTd(int td);
 	virtual void SetUAP(double damage);
-	virtual void Attack() = 0;
+	virtual void Attack(Game*& game)=0;
 	int GetJTUML();
 	void SetJTUML(int jtuml);
 

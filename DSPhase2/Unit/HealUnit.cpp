@@ -8,28 +8,15 @@ string HealUnit::GetType()
 	return type;
 }
 
-void HealUnit::Attack()
+void HealUnit::Attack(Game*& game)
 {
-}
+	LinkedQueue<Unit*> Temp;
+	Node<Unit*>* Current = nullptr;
+	if (!(game->isEmpty_ESUML())) 
+	{
 
-//void HealUnit::Attack(Game*& game)
-//{
-//	LinkedQueue<Unit*> Temp;
-//	Node<Unit*>* Current = nullptr;
-//	if (!(game->isEmpty_ESUML())) 
-//	{
-//
-//
-//
-//	}
-//	else if (!(game->isEmpty_ETUML())
-//	{
-//
-//	}
-//	else 
-//	{
-//
-//
-//
-//	}
-//}
+
+
+	}
+
+}

@@ -7,6 +7,6 @@ string AlienSoldier::GetType()
     return type;
 }
 
-void AlienSoldier::Attack()
+void AlienSoldier::Attack(Game*& game)
 {
 }

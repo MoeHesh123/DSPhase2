@@ -7,6 +7,6 @@ string EarthTank::GetType()
 	return type;
 }
 
-void EarthTank::Attack()
+void EarthTank::Attack(Game*& game)
 {
 }
