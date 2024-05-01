@@ -1,43 +1,59 @@
 File Name: manga
 
 ============================================================================
-Killed Units: 19
+Killed Units: 35
 Td    ID    Tj    Df    Dd    Db    
-      2     16                      
-      5     16                      
-      4     16                      
-      2013  20                      
-      2017  21                      
-      2001  16                      
-      7     16                      
-      33    31                      
-      2023  27                      
-      2034  31                      
-      2018  21                      
-      2012  20                      
-      2046  41                      
-      2048  41                      
-      34    31                      
-      2002  16                      
-      2003  16                      
-      2004  16                      
-      48    41                      
+      2005  2                       
+      2001  2                       
+      2018  5                       
+      2027  7                       
+      2     2                       
+      3     2                       
+      2002  2                       
+      40    12                      
+      48    14                      
+      22    7                       
+      2003  2                       
+      2050  16                      
+      27    7                       
+      2069  18                      
+      52    16                      
+      2054  16                      
+      4     2                       
+      2072  22                      
+      89    25                      
+      2097  28                      
+      2029  11                      
+      97    28                      
+      2004  2                       
+      5     2                       
+      95    28                      
+      2093  28                      
+      2031  11                      
+      125   40                      
+      2051  16                      
+      2090  25                      
+      2038  12                      
+      2006  2                       
+      138   47                      
+      2136  47                      
+      2055  16                      
 ============================================================================
 Total Earth Army Units Alive: 
 ES    ET    EG    
-41    12    3     
+92    23    5     
 
 Percentage Of Destructed Earth Units Relative To Their Total: 
-7     14    40    
+3     21    50    
 
-Percentage Of Total Destructed Earth units Relative To Total Earth Units: 11
+Percentage Of Total Destructed Earth units Relative To Total Earth Units: 10
 ============================================================================
 Total Alien Army Units Alive: 
 AS    AM    AD    
-46    5     0     
+107   11    1     
 
 Percentage Of Destructed Alien Units Relative To Their Total: 
-8     38    100   
+4     39    90    
 
-Percentage Of Total Destructed Alien units Relative To Total Alien Units: 19
+Percentage Of Total Destructed Alien units Relative To Total Alien Units: 15
 ============================================================================

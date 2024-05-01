@@ -460,11 +460,12 @@ void Game::StartGame()
 			cin.get();
 		}
 	}
-	if(x == 2)
+	if (x == 2)
 	{
+		gameManager.ProduceOutput(&earthArmy, &alienArmy);
 		cout << "Silent Mode" << endl;
 		cout << "Simulation Starts..." << endl;
 		cout << "Simulation ends, Output file is created" << endl;
 	}
-	gameManager.ProduceOutput(&earthArmy, &alienArmy);
+	else gameManager.ProduceOutput(&earthArmy, &alienArmy);
 }
