@@ -71,5 +71,7 @@ public:
 	StackList <HealUnit*> getHL();
 
 	void StartGame();
+	int GetTimeStep();
+	void SetTimeStep(int TS);
 
 };

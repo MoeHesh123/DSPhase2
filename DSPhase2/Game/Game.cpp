@@ -352,6 +352,16 @@ void Game::RemoveFromTempList(Unit* unit)
 {
 	TL.dequeue(unit);
 }
+int Game::GetTimeStep()
+{
+	return TimeStep;
+}
+
+void Game::SetTimeStep(int TS)
+{
+	TimeStep = TS;
+}
+
 
 void Game::StartGame()
 {
@@ -386,12 +396,13 @@ void Game::StartGame()
 
 		srand((unsigned)time(0));
 		int X = 0;
-
-		for (int TimeStep = 1; TimeStep <= 50; TimeStep++)
+		int Timestep = gameManager.GetTimeStep();
+		for (Timestep = 1; Timestep <= 50; Timestep++)
 		{
-			std::cout << endl << "Current TimeStep " << TimeStep << endl;
+			gameManager.SetTimeStep(Timestep);
+			std::cout << endl << "Current TimeStep " << Timestep << endl;
 			X = 1 + (rand() % 100);
-			generator.Generate(&gameManager, &earthArmy, &alienArmy, TimeStep);
+			generator.Generate(&gameManager, &earthArmy, &alienArmy, Timestep);
 			if (X > 0 && X <= 10)
 			{
 				EarthSoldier* esptr = nullptr;
@@ -503,11 +514,12 @@ void Game::StartGame()
 
 		srand((unsigned)time(0));
 		int X = 0;
-
-		for (int TimeStep = 1; TimeStep <= 50; TimeStep++)
+		int Timestep = gameManager.GetTimeStep();
+		for (Timestep =1; Timestep <= 50; Timestep++)
 		{
+			gameManager.SetTimeStep(Timestep);
 			X = 1 + (rand() % 100);
-			generator.Generate(&gameManager, &earthArmy, &alienArmy, TimeStep);
+			generator.Generate(&gameManager, &earthArmy, &alienArmy, Timestep);
 			if (X > 0 && X <= 10)
 			{
 				EarthSoldier* esptr = nullptr;
