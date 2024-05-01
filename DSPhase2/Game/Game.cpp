@@ -387,15 +387,16 @@ void Game::StartGame()
 	gameManager.Readinput();
 
 	srand((unsigned)time(0));
-	int X = 5;
-	int Timestep = gameManager.GetTimeStep();
+	int X = 0;
 
-	for (Timestep = 1; Timestep <= 200; Timestep++)
+	for (int Timestep = 1; Timestep <= 50; Timestep++)
 	{
 		gameManager.SetTimeStep(Timestep);
 		if (x == 1) cout << endl << "Current TimeStep " << Timestep << endl;
-		//X = 1 + (rand() % 30);
-		//cout << X << endl;
+
+		X = 1 + (rand() % 100);
+		cout << "X= " << X << endl;
+
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 		if (X > 0 && X <= 10)
 		{
@@ -404,7 +405,7 @@ void Game::StartGame()
 			if (esptr)
 			{
 				double h = esptr->GetHealth();
-				esptr->SetHealth(esptr->GetHealth() - 20);
+				esptr->SetHealth(esptr->GetHealth() - 30);
 				if (esptr->GetHealth() <= 0) gameManager.AddToKilled(esptr);
 				else if ((esptr->GetHealth()) <= (0.5 * h)) gameManager.addESToUML(esptr);
 				else earthArmy.ReAddEarthUnit(esptr);
@@ -417,7 +418,7 @@ void Game::StartGame()
 			if (etptr)
 			{
 				double h = etptr->GetHealth();
-				etptr->SetHealth(etptr->GetHealth() - 20);
+				etptr->SetHealth(etptr->GetHealth() - 30);
 				if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
 				else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
 				else earthArmy.ReAddEarthUnit(etptr);
@@ -428,32 +429,67 @@ void Game::StartGame()
 			EarthGunnery* egptr = nullptr;
 			int Priority = 0;
 			earthArmy.removeEG(egptr, Priority);
-			gameManager.AddToKilled(egptr);
+			if (egptr)
+			{
+				double h = egptr->GetHealth();
+				egptr->SetHealth(egptr->GetHealth() - 30);
+				if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
+				else earthArmy.ReAddEarthUnit(egptr);
+			}
 		}
 		else if (X > 30 && X <= 40)
 		{
 			AlienSoldier* asptr = nullptr;
 			alienArmy.removeAS(asptr);
-			gameManager.AddToKilled(asptr);
+			if (asptr)
+			{
+				double h = asptr->GetHealth();
+				asptr->SetHealth(asptr->GetHealth() - 30);
+				if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
+				else alienArmy.ReAddAlienUnit(asptr);
+			}
 		}
 		else if (X > 40 && X <= 50)
 		{
 			AlienMonster* amptr = nullptr;
 			alienArmy.removeAM(amptr);
-			gameManager.AddToKilled(amptr);
+			if (amptr)
+			{
+				double h = amptr->GetHealth();
+				amptr->SetHealth(amptr->GetHealth() - 30);
+				if (amptr->GetHealth() <= 0) gameManager.AddToKilled(amptr);
+				else alienArmy.ReAddAlienUnit(amptr);
+			}
 		}
 		else if (X > 50 && X <= 60)
 		{
-			AlienDrone* adptr1, * adptr2;
+			AlienDrone* adptr1 = nullptr;
+			AlienDrone* adptr2 = nullptr;
 			alienArmy.removeAD(adptr1, adptr2);
-			if (adptr1 || adptr2)
+			if (adptr1)
 			{
-				gameManager.AddToKilled(adptr1);
-				gameManager.AddToKilled(adptr2);
+				double h = adptr1->GetHealth();
+				adptr1->SetHealth(adptr1->GetHealth() - 30);
+				if (adptr1->GetHealth() <= 0) gameManager.AddToKilled(adptr1);
+				else alienArmy.ReAddAlienUnit(adptr1);
+			}
+			if (adptr2)
+			{
+				double h = adptr2->GetHealth();
+				adptr2->SetHealth(adptr2->GetHealth() - 30);
+				if (adptr2->GetHealth() <= 0) gameManager.AddToKilled(adptr2);
+				else alienArmy.ReAddAlienUnit(adptr2);
 			}
 		}
 		else
 		{
+			HealUnit* huptr = nullptr;
+			gameManager.removeHU(huptr);
+			if (huptr)
+			{
+				huptr->Attack(&gameManager, &earthArmy, &alienArmy);
+				gameManager.AddToKilled(huptr);
+			}
 		}
 		if (x == 1)
 		{

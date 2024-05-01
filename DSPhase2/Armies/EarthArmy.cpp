@@ -204,7 +204,7 @@ void EarthArmy::ReAddEarthUnit(Unit* unit)
 	{
 		EarthTank* et = dynamic_cast<EarthTank*>(unit);
 		ET.push(et);
-		EScount++;
+		ETcount++;
 	}
 	if (unit->GetType() == "EG")
 	{

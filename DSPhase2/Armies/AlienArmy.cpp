@@ -211,11 +211,13 @@ void AlienArmy::ReAddAlienUnit(Unit* unit)
 		if (alternating % 2 == 0) 
 		{
 			AD.enqueue(ad);
+			ADcount++;
 			alternating++;
 		}
 		else 
 		{
 			AD.enqueueFront(ad);
+			ADcount++;
 			alternating++;
 		}
 
