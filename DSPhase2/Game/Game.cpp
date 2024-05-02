@@ -421,11 +421,21 @@ void Game::StartGame()
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 
-		EarthSoldier* ES;
-		if (!(earthArmy.getES().isEmpty()))
+		/*EarthSoldier* ES; 
+		if (!(earthArmy.getES().isEmpty())) 
 		{
-			earthArmy.getES().peek(ES);
-			ES->Attack(&gameManager, &earthArmy, &alienArmy);
+			earthArmy.getES().peek(ES); 
+			ES->Attack(&gameManager, &earthArmy, &alienArmy); 
+		}*/
+		EarthTank* ET;
+		if (!(earthArmy.isEmpty_ET()))
+		{
+			earthArmy.getET().peek(ET);
+			if (ET)
+			{
+				ET->Attack(&gameManager, &earthArmy, &alienArmy);
+				/*earthArmy.getET().push(ET);*/
+			}
 		}
 
 		//if (X > 0 && X <= 10)
@@ -540,6 +550,10 @@ void Game::StartGame()
 			cout << "Press any key to move to next timestep" << endl;
 			cin.get();
 		}
+
+
+
+
 	}
 	if (x == 2)
 	{
