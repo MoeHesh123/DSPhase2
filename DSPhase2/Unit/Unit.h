@@ -18,7 +18,7 @@ class Unit
 protected:
 
 	int jointime;
-	int Ta;
+	int Ta=0;
 	int Td;
 	int Df;
 	int Dd;
