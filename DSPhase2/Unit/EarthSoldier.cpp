@@ -14,19 +14,20 @@ void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
     LinkedQueue<AlienSoldier*> tempList;
     EarthSoldier* ES;
     AlienSoldier* AS;
-    bool check = false;
     eartharmy->getES().peek(ES);
- 
+
     for (int i = 0; i < ES->GetAttackCapacity(); i++)
     {
         alienarmy->removeAS(AS);
-
-        if (AS) {
+        if (AS) 
+        {
             AS->SetHealth(AS->GetHealth() - ((ES->GetPower() * (ES->GetHealth()) / 100) / sqrt(AS->GetHealth())));
-            if (Ta == 0) {
+            if (Ta == 0) 
+            {
                 Ta = game->GetTimeStep();
             }
-            if (AS->GetHealth() <= 0) {
+            if (AS->GetHealth() <= 0)
+            {
                 game->AddToKilled(AS);
                 Td = game->GetTimeStep();
             }
@@ -36,12 +37,8 @@ void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
             }
         }
     }
-
     while (tempList.dequeue(AS)) 
     {
         alienarmy->ReAddAlienUnit(AS);
     }
-    
-
-
 }
