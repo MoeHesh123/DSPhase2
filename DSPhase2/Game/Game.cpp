@@ -506,11 +506,7 @@ void Game::StartGame()
 		{
 			HealUnit* huptr = nullptr;
 			gameManager.removeHU(huptr);
-			if (huptr)
-			{
-				//huptr->Attack(&gameManager, &earthArmy, &alienArmy);
-				gameManager.AddToKilled(huptr);
-			}
+			if (huptr) gameManager.AddToKilled(huptr);
 		}
 		if (x == 1)
 		{
