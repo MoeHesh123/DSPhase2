@@ -95,7 +95,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100)
 	<< setw(6) << left << round((HUKilledcount / (HUcount + HUKilledcount)) * 100) << endl << endl;
 	OutputFile << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: " 
-	<< ((ESKilledcount + ETKilledcount + EGKilledcount + HUKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount) + (ESUMLcount + ETUMLcount + HUcount)) * 100) << endl;
+	<< round((ESKilledcount + ETKilledcount + EGKilledcount + HUKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount) + (ESUMLcount + ETUMLcount + HUcount)) * 100) << endl;
 	//OutputFile << "Average of Df,Dd & Db for Earth Units:"
 	//<< setw(6) << left << "DfAVG"
 	//<< setw(6) << left << "DdAVG"
@@ -410,10 +410,13 @@ void Game::StartGame()
 	for (int Timestep = 1; Timestep <= 50; Timestep++)
 	{
 		gameManager.SetTimeStep(Timestep);
-		if (x == 1) cout << endl << "Current TimeStep " << Timestep << endl;
-
 		X = 1 + (rand() % 100);
-		cout << "X= " << X << endl;
+
+		if (x == 1)
+		{
+			cout << endl << "Current TimeStep " << Timestep << endl;
+			cout << "X= " << X << endl;
+		}
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 		if (X > 0 && X <= 10)
