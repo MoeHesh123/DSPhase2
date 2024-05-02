@@ -24,9 +24,9 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 		eartharmy->getET().peek(ET);
 
 		if (ET) {
-			if (eartharmy->getES().getCount() < 0.3 * alienarmy->getAS().getCount())
+			if (eartharmy->getEScount() < (0.3 * (alienarmy->getAScount())))
 			{
-				while (eartharmy->getES().getCount() < 0.8 * alienarmy->getAS().getCount())
+				while (eartharmy->getEScount() < (0.8 * alienarmy->getAScount()))
 				{
 					if (ET->GetAttackCapacity() % 2 == 0)
 					{
@@ -35,7 +35,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						{
 							alienarmy->removeAS(AS);
 							alienarmy->removeAM(AM);
-							if (AS && AM)
+							if (!alienarmy->isEmpty_AS())
 							{
 								AS->SetHealth(AS->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AS->GetHealth()));
 								if (Ta == 0)
@@ -51,19 +51,22 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 								{
 									tempAS.enqueue(AS);
 								}
-								AM->SetHealth(AM->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AM->GetHealth()));
-								if (Ta == 0)
+								if (!alienarmy->isEmpty_AM())
 								{
-									Ta = game->GetTimeStep();
-								}
-								if (AM->GetHealth() <= 0)
-								{
-									game->AddToKilled(AM);
-									Td = game->GetTimeStep();
-								}
-								else
-								{
-									tempAM.enqueue(AM);
+									AM->SetHealth(AM->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AM->GetHealth()));
+									if (Ta == 0)
+									{
+										Ta = game->GetTimeStep();
+									}
+									if (AM->GetHealth() <= 0)
+									{
+										game->AddToKilled(AM);
+										Td = game->GetTimeStep();
+									}
+									else
+									{
+										tempAM.enqueue(AM);
+									}
 								}
 							}
 						}
@@ -127,7 +130,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 				for (int i = 0; i < ET->GetAttackCapacity(); i++)
 				{
 					alienarmy->removeAM(AM);
-					if (AM)
+					if (!alienarmy->isEmpty_AM())
 					{
 						AM->SetHealth(AM->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AM->GetHealth()));
 						if (Ta == 0)

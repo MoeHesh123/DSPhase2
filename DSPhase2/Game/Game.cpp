@@ -434,7 +434,7 @@ void Game::StartGame()
 			if (ET)
 			{
 				ET->Attack(&gameManager, &earthArmy, &alienArmy);
-	
+				/*earthArmy.getET().push(ET);*/
 			}
 		}
 
