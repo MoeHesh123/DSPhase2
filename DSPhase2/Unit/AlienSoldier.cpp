@@ -11,5 +11,39 @@ string AlienSoldier::GetType()
 
 void AlienSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
+    LinkedQueue<EarthSoldier*>templistES;
+    AlienSoldier* ASp = nullptr;
+    EarthSoldier* ESp = nullptr;
+    alienarmy->getAS().peek(ASp);
 
+    for (int i = 0; i < attackCapacity; i++)
+    {
+        eartharmy->removeES(ESp);
+        if (ESp)
+        {
+            double oghealth = ESp->GetHealth();
+            ESp->SetHealth(ESp->GetHealth() - (ASp->GetPower() * ((ASp->GetHealth()) / 100)) / sqrt(ESp->GetHealth()));
+            if (Ta == 0)
+            {
+                Ta = game->GetTimeStep();
+            }
+            if (ESp->GetHealth() <= 0)
+            {
+                game->AddToKilled(ESp);
+                Td = game->GetTimeStep();
+            }
+            else if (ESp->GetHealth() > 0 && ESp->GetHealth() < 0.2 * oghealth)
+            {
+                game->addESToUML(ESp);
+            }
+            else
+            {
+                templistES.enqueue(ESp);
+            }
+        }
+        while (templistES.dequeue(ESp))
+        {
+            eartharmy->ReAddEarthUnit(ESp);
+        }
+    }
 }

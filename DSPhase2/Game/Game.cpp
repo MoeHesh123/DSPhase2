@@ -42,27 +42,27 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "Df"
 	<< setw(6) << left << "Dd"
 	<< setw(6) << left << "Db" << endl;
-	//float ESumDd = 0, ESumDb = 0;
-	//float ASumDd = 0, ASumDb = 0;
+	float ESumDd = 0, ESumDb = 0;
+	float ASumDd = 0, ASumDb = 0;
 	while (Current) 
 	{
-		//if ((Current->getItem()->GetType() == "ES") || (Current->getItem()->GetType() == "ET") || (Current->getItem()->GetType() == "EG")) 
-		//{
-		//	ESumDd += Current->getItem()->GetDd();
-		//	ESumDb += Current->getItem()->GetDb();
-		//}
-		//else
-		//{
-		//	ASumDd += Current->getItem()->GetDd();
-		//	ASumDb += Current->getItem()->GetDb();
-		//}
-		OutputFile 
-		<< setw(6) << left << ""
+		if ((Current->getItem()->GetType() == "ES") || (Current->getItem()->GetType() == "ET") || (Current->getItem()->GetType() == "EG")) 
+		{
+			ESumDd += Current->getItem()->GetDd();
+			ESumDb += Current->getItem()->GetDb();
+		}
+		else
+		{
+			ASumDd += Current->getItem()->GetDd();
+			ASumDb += Current->getItem()->GetDb();
+		}
+		OutputFile
+		<< setw(6) << left << Current->getItem()->GetTd()
 		<< setw(6) << left << Current->getItem()->GetId()
 		<< setw(6) << left << Current->getItem()->GetJoinTime()
-		<< setw(6) << left << ""
-		<< setw(6) << left << ""
-		<< setw(6) << left << "" << endl;
+		<< setw(6) << left << Current->getItem()->GetDf()
+		<< setw(6) << left << Current->getItem()->GetDd()
+		<< setw(6) << left << Current->getItem()->GetDb() << endl;
 		Current = Current->getNext();
 	}
 
@@ -129,16 +129,17 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << round((ADKilledcount / (aarmy->getADcount() + ADKilledcount)) * 100) << endl<<endl;
 	OutputFile << "Percentage Of Total Destructed Alien units Relative To Total Alien Units: "
 	<< round((ASKilledcount + AMKilledcount + ADKilledcount) / ((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) * 100) << endl;
-	//OutputFile << "Average of Df,Dd & Db for Alien Units:"
-	//<< setw(6) << left << "DfAVG"
-	//<< setw(6) << left << "DdAVG"
-	//<< setw(6) << left << "DbAVG" << endl;
-	//OutputFile
-	//<< setw(6) << left << round(ASumDf)
-	//<< setw(6) << left << round(ASumDd / KilledCount)
-	//<< setw(6) << left << round(ASumDb / KilledCount) << endl;
-	//OutputFile << "Alien Df/Db%: " << round((ESumDf / ESumDb) * 100) << endl;
-	//OutputFile << "Alien Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
+	OutputFile
+	<< "Average of Df,Dd & Db for Alien Units: " << endl
+	<< setw(6) << left << "DfAVG"
+	<< setw(6) << left << "DdAVG"
+	<< setw(6) << left << "DbAVG" << endl;
+	OutputFile
+	<< setw(6) << left /*<< round(ASumDf)*/
+	<< setw(6) << left << round(ASumDd / KilledCount)
+	<< setw(6) << left << round(ASumDb / KilledCount) << endl;
+	OutputFile << "Alien Df/Db%: " << /*round((ESumDf / ESumDb) * 100) <<*/ endl;
+	OutputFile << "Alien Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
 
 	OutputFile << "============================================================================" << endl;
 
@@ -419,95 +420,104 @@ void Game::StartGame()
 		}
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
-		if (X > 0 && X <= 10)
+
+		EarthSoldier* ES;
+		if (!(earthArmy.getES().isEmpty()))
 		{
-			EarthSoldier* esptr = nullptr;
-			earthArmy.removeES(esptr);
-			if (esptr)
-			{
-				double h = esptr->GetHealth();
-				esptr->SetHealth(esptr->GetHealth() - 100);
-				if (esptr->GetHealth() <= 0) gameManager.AddToKilled(esptr);
-				else if ((esptr->GetHealth()) <= (0.5 * h)) gameManager.addESToUML(esptr);
-				else earthArmy.ReAddEarthUnit(esptr);
-			}
+			earthArmy.getES().peek(ES);
+			ES->Attack(&gameManager, &earthArmy, &alienArmy);
 		}
-		else if (X > 10 && X <= 20)
-		{
-			EarthTank* etptr = nullptr;
-			earthArmy.removeET(etptr);
-			if (etptr)
-			{
-				double h = etptr->GetHealth();
-				etptr->SetHealth(etptr->GetHealth() - 100);
-				if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
-				else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
-				else earthArmy.ReAddEarthUnit(etptr);
-			}
-		}
-		else if (X > 20 && X <= 30)
-		{
-			EarthGunnery* egptr = nullptr;
-			int Priority = 0;
-			earthArmy.removeEG(egptr, Priority);
-			if (egptr)
-			{
-				double h = egptr->GetHealth();
-				egptr->SetHealth(egptr->GetHealth() - 100);
-				if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
-				else earthArmy.ReAddEarthUnit(egptr);
-			}
-		}
-		else if (X > 30 && X <= 40)
-		{
-			AlienSoldier* asptr = nullptr;
-			alienArmy.removeAS(asptr);
-			if (asptr)
-			{
-				double h = asptr->GetHealth();
-				asptr->SetHealth(asptr->GetHealth() - 100);
-				if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
-				else alienArmy.ReAddAlienUnit(asptr);
-			}
-		}
-		else if (X > 40 && X <= 50)
-		{
-			AlienMonster* amptr = nullptr;
-			alienArmy.removeAM(amptr);
-			if (amptr)
-			{
-				double h = amptr->GetHealth();
-				amptr->SetHealth(amptr->GetHealth() - 100);
-				if (amptr->GetHealth() <= 0) gameManager.AddToKilled(amptr);
-				else alienArmy.ReAddAlienUnit(amptr);
-			}
-		}
-		else if (X > 50 && X <= 60)
-		{
-			AlienDrone* adptr1 = nullptr;
-			AlienDrone* adptr2 = nullptr;
-			alienArmy.removeAD(adptr1, adptr2);
-			if (adptr1)
-			{
-				double h = adptr1->GetHealth();
-				adptr1->SetHealth(adptr1->GetHealth() - 100);
-				if (adptr1->GetHealth() <= 0) gameManager.AddToKilled(adptr1);
-				else alienArmy.ReAddAlienUnit(adptr1);
-			}
-			if (adptr2)
-			{
-				double h = adptr2->GetHealth();
-				adptr2->SetHealth(adptr2->GetHealth() - 100);
-				if (adptr2->GetHealth() <= 0) gameManager.AddToKilled(adptr2);
-				else alienArmy.ReAddAlienUnit(adptr2);
-			}
-		}
-		else
-		{
-			HealUnit* huptr = nullptr;
-			gameManager.removeHU(huptr);
-			if (huptr) gameManager.AddToKilled(huptr);
-		}
+
+		//if (X > 0 && X <= 10)
+		//{
+		//	EarthSoldier* esptr = nullptr;
+		//	earthArmy.removeES(esptr);
+		//	if (esptr)
+		//	{
+		//		double h = esptr->GetHealth();
+		//		esptr->SetHealth(esptr->GetHealth() - 100);
+		//		if (esptr->GetHealth() <= 0) gameManager.AddToKilled(esptr);
+		//		else if ((esptr->GetHealth()) <= (0.5 * h)) gameManager.addESToUML(esptr);
+		//		else earthArmy.ReAddEarthUnit(esptr);
+		//	}
+		//}
+		//else if (X > 10 && X <= 20)
+		//{
+		//	EarthTank* etptr = nullptr;
+		//	earthArmy.removeET(etptr);
+		//	if (etptr)
+		//	{
+		//		double h = etptr->GetHealth();
+		//		etptr->SetHealth(etptr->GetHealth() - 100);
+		//		if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
+		//		else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
+		//		else earthArmy.ReAddEarthUnit(etptr);
+		//	}
+		//}
+		//else if (X > 20 && X <= 30)
+		//{
+		//	EarthGunnery* egptr = nullptr;
+		//	int Priority = 0;
+		//	earthArmy.removeEG(egptr, Priority);
+		//	if (egptr)
+		//	{
+		//		double h = egptr->GetHealth();
+		//		egptr->SetHealth(egptr->GetHealth() - 100);
+		//		if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
+		//		else earthArmy.ReAddEarthUnit(egptr);
+		//	}
+		//}
+		//else if (X > 30 && X <= 40)
+		//{
+		//	AlienSoldier* asptr = nullptr;
+		//	alienArmy.removeAS(asptr);
+		//	if (asptr)
+		//	{
+		//		double h = asptr->GetHealth();
+		//		asptr->SetHealth(asptr->GetHealth() - 100);
+		//		if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
+		//		else alienArmy.ReAddAlienUnit(asptr);
+		//	}
+		//}
+		//else if (X > 40 && X <= 50)
+		//{
+		//	AlienMonster* amptr = nullptr;
+		//	alienArmy.removeAM(amptr);
+		//	if (amptr)
+		//	{
+		//		double h = amptr->GetHealth();
+		//		amptr->SetHealth(amptr->GetHealth() - 100);
+		//		if (amptr->GetHealth() <= 0) gameManager.AddToKilled(amptr);
+		//		else alienArmy.ReAddAlienUnit(amptr);
+		//	}
+		//}
+		//else if (X > 50 && X <= 60)
+		//{
+		//	AlienDrone* adptr1 = nullptr;
+		//	AlienDrone* adptr2 = nullptr;
+		//	alienArmy.removeAD(adptr1, adptr2);
+		//	if (adptr1)
+		//	{
+		//		double h = adptr1->GetHealth();
+		//		adptr1->SetHealth(adptr1->GetHealth() - 100);
+		//		if (adptr1->GetHealth() <= 0) gameManager.AddToKilled(adptr1);
+		//		else alienArmy.ReAddAlienUnit(adptr1);
+		//	}
+		//	if (adptr2)
+		//	{
+		//		double h = adptr2->GetHealth();
+		//		adptr2->SetHealth(adptr2->GetHealth() - 100);
+		//		if (adptr2->GetHealth() <= 0) gameManager.AddToKilled(adptr2);
+		//		else alienArmy.ReAddAlienUnit(adptr2);
+		//	}
+		//}
+		//else
+		//{
+		//	HealUnit* huptr = nullptr;
+		//	gameManager.removeHU(huptr);
+		//	if (huptr) gameManager.AddToKilled(huptr);
+		//}
+
 		if (x == 1)
 		{
 			cout << "==============  Earth Army Alive Units ========" << endl;
