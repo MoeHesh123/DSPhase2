@@ -45,6 +45,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 
 	float ESumDd = 0, ESumDb = 0;
 	float ASumDd = 0, ASumDb = 0;
+
 	while (Current) 
 	{
 		if ((Current->getItem()->GetType() == "ES") || (Current->getItem()->GetType() == "ET") || (Current->getItem()->GetType() == "EG")) 
@@ -96,18 +97,18 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << round((ETKilledcount / (earmy->getETcount() + ETKilledcount + ETUMLcount)) * 100)
 	<< setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100)
 	<< setw(6) << left << round((HUKilledcount / (HUcount + HUKilledcount)) * 100) << endl << endl;
-	OutputFile << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: " 
-	<< round((ESKilledcount + ETKilledcount + EGKilledcount + HUKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount) + (ESUMLcount + ETUMLcount + HUcount)) * 100) << endl;
-	//OutputFile << "Average of Df,Dd & Db for Earth Units:"
-	//<< setw(6) << left << "DfAVG"
-	//<< setw(6) << left << "DdAVG"
-	//<< setw(6) << left << "DbAVG" << endl;
-	//OutputFile
-	//<< setw(6) << left << round(ESumDf)
-	//<< setw(6) << left << round(ESumDd/KilledCount)
-	//<< setw(6) << left << round(ESumDb/KilledCount) << endl;
-	//OutputFile << "Earth Df/Db%: " << round((ESumDf / ESumDb) * 100) << endl;
-	//OutputFile << "Earth Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
+	OutputFile << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: "
+	<< round((ESKilledcount + ETKilledcount + EGKilledcount + HUKilledcount) / ((earmy->getEScount() + ESKilledcount) + (earmy->getETcount() + ETKilledcount) + (earmy->getEGcount() + EGKilledcount) + (ESUMLcount + ETUMLcount + HUcount)) * 100) << endl << endl;
+	OutputFile << "Average of Df,Dd & Db for Earth Units:" <<endl
+	<< setw(6) << left << "DfAVG"
+	<< setw(6) << left << "DdAVG"
+	<< setw(6) << left << "DbAVG" << endl;
+	OutputFile
+	<< setw(6) << left /*<< round(ESumDf)*/
+	<< setw(6) << left << round(ESumDd/KilledCount)
+	<< setw(6) << left << round(ESumDb/KilledCount) << endl;
+	OutputFile << "Earth Df/Db%: " /*<< round((ESumDf / ESumDb) * 100)*/ << endl;
+	OutputFile << "Earth Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
 
 	OutputFile << "============================================================================" << endl;
 
@@ -130,7 +131,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << round((AMKilledcount / (aarmy->getAMcount() + AMKilledcount)) * 100)
 	<< setw(6) << left << round((ADKilledcount / (aarmy->getADcount() + ADKilledcount)) * 100) << endl<<endl;
 	OutputFile << "Percentage Of Total Destructed Alien units Relative To Total Alien Units: "
-	<< round((ASKilledcount + AMKilledcount + ADKilledcount) / ((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) * 100) << endl;
+	<< round((ASKilledcount + AMKilledcount + ADKilledcount) / ((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) * 100) << endl <<endl;
 	OutputFile
 	<< "Average of Df,Dd & Db for Alien Units: " << endl
 	<< setw(6) << left << "DfAVG"
@@ -140,8 +141,8 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left /*<< round(ASumDf)*/
 	<< setw(6) << left << round(ASumDd / KilledCount)
 	<< setw(6) << left << round(ASumDb / KilledCount) << endl;
-	OutputFile << "Alien Df/Db%: " << /*round((ESumDf / ESumDb) * 100) <<*/ endl;
-	OutputFile << "Alien Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
+	OutputFile << "Alien Df/Db%: " /*<< round((ASumDf / ASumDb) * 100)*/ << endl;
+	OutputFile << "Alien Dd/Db%: " << round((ASumDd / ASumDb) * 100) << endl;
 
 	OutputFile << "============================================================================" << endl;
 
@@ -426,21 +427,23 @@ void Game::StartGame()
 		EarthSoldier* ES;  
 		if (!(earthArmy.getES().isEmpty()))  
 		{
-			earthArmy.getES().peek(ES);  
-			ES->Attack(&gameManager, &earthArmy, &alienArmy);  
-		}
-		EarthTank* ET; 
-		if (!(earthArmy.isEmpty_ET())) 
-		{
-			earthArmy.getET().peek(ET); 
-			if (ET) 
+			earthArmy.getES().peek(ES); 
+			if (ES)
 			{
-				ET->Attack(&gameManager, &earthArmy, &alienArmy); 
-				/*earthArmy.getET().push(ET);*/
+				ES->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
+		//EarthTank* ET; 
+		//if (!(earthArmy.getET().isEmpty())) 
+		//{
+		//	earthArmy.getET().peek(ET); 
+		//	if (ET) 
+		//	{
+		//		ET->Attack(&gameManager, &earthArmy, &alienArmy); 
+		//	}
+		//}
 		AlienSoldier* AS; 
-		if (!(alienArmy.isEmpty_AS())) 
+		if (!(alienArmy.getAS().isEmpty())) 
 		{
 			alienArmy.getAS().peek(AS); 
 			if (AS) 
@@ -561,10 +564,6 @@ void Game::StartGame()
 			cout << "Press any key to move to next timestep" << endl;
 			cin.get();
 		}
-
-
-
-
 	}
 	if (x == 2)
 	{
