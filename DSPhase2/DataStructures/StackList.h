@@ -8,7 +8,7 @@ class StackList : public StackADT<T>
 {
 
 	Node<T>* top;
-	int itemCount;
+	int itemCount = 0;
 
 public:
 

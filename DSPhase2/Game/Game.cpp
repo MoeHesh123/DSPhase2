@@ -41,7 +41,8 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "Tj"
 	<< setw(6) << left << "Df"
 	<< setw(6) << left << "Dd"
-	<< setw(6) << left << "Db" << endl;
+	<< setw(6) << left << "Db" << endl; 
+
 	float ESumDd = 0, ESumDb = 0;
 	float ASumDd = 0, ASumDb = 0;
 	while (Current) 
@@ -63,6 +64,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 		<< setw(6) << left << Current->getItem()->GetDf()
 		<< setw(6) << left << Current->getItem()->GetDd()
 		<< setw(6) << left << Current->getItem()->GetDb() << endl;
+
 		Current = Current->getNext();
 	}
 
@@ -421,20 +423,29 @@ void Game::StartGame()
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 
-		/*EarthSoldier* ES; 
-		if (!(earthArmy.getES().isEmpty())) 
+		EarthSoldier* ES;  
+		if (!(earthArmy.getES().isEmpty()))  
 		{
-			earthArmy.getES().peek(ES); 
-			ES->Attack(&gameManager, &earthArmy, &alienArmy); 
-		}*/
-		EarthTank* ET;
-		if (!(earthArmy.isEmpty_ET()))
+			earthArmy.getES().peek(ES);  
+			ES->Attack(&gameManager, &earthArmy, &alienArmy);  
+		}
+		EarthTank* ET; 
+		if (!(earthArmy.isEmpty_ET())) 
 		{
-			earthArmy.getET().peek(ET);
-			if (ET)
+			earthArmy.getET().peek(ET); 
+			if (ET) 
 			{
-				ET->Attack(&gameManager, &earthArmy, &alienArmy);
+				ET->Attack(&gameManager, &earthArmy, &alienArmy); 
 				/*earthArmy.getET().push(ET);*/
+			}
+		}
+		AlienSoldier* AS; 
+		if (!(alienArmy.isEmpty_AS())) 
+		{
+			alienArmy.getAS().peek(AS); 
+			if (AS) 
+			{
+				AS->Attack(&gameManager, &earthArmy, &alienArmy); 
 			}
 		}
 

@@ -10,7 +10,7 @@ class DoubleEndedQueueList : public QueueADT<T>
 
 	Node<T>* frontPtr;
 	Node<T>* backPtr;
-	int itemCount;
+	int itemCount = 0;
 
 public:
 

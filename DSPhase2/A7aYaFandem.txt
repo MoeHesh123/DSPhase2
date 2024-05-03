@@ -1,0 +1,44 @@
+File Name: a7ayafandem
+
+============================================================================
+Killed Units: 11
+Td    ID    Tj    Df    Dd    Db    
+20    1     4     0     16    16    
+20    3     4     0     16    16    
+21    4     4     0     17    17    
+24    8     5     1     18    19    
+24    15    7     3     14    17    
+36    23    10    5     21    26    
+36    24    10    5     21    26    
+38    18    7     4     27    31    
+42    31    17    9     16    25    
+45    10    5     2     38    40    
+45    11    5     2     38    40    
+============================================================================
+Total Earth Army Units Alive: 
+ES    ET    EG    HU    
+59    16    4     7     
+
+11    0     0     0     
+
+Percentage Of Destructed Earth Units Relative To Their Total: 
+15    0     0     0     
+
+Percentage Of Total Destructed Earth units Relative To Total Earth Units: 11
+============================================================================
+Total Alien Army Units Alive: 
+AS    AM    AD    
+72    18    8     
+
+0     0     0     
+
+Percentage Of Destructed Alien Units Relative To Their Total: 
+0     0     0     
+
+Percentage Of Total Destructed Alien units Relative To Total Alien Units: 0
+Average of Df,Dd & Db for Alien Units: 
+DfAVG DdAVG DbAVG 
+0     0     
+Alien Df/Db%: 
+Alien Dd/Db%: 89
+============================================================================

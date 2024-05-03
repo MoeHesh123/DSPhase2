@@ -19,7 +19,7 @@ protected:
 
 	int jointime;
 	int Ta=0;
-	int Td;
+	int Td=0;
 	int Df;
 	int Dd;
 	int Db;

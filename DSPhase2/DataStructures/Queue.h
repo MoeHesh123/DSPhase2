@@ -9,7 +9,7 @@ class LinkedQueue : public QueueADT <T>
 
 	Node<T>* backPtr;
 	Node<T>* frontPtr;
-	int itemCount;
+	int itemCount = 0;
 
 public:
 

@@ -23,14 +23,15 @@ void AlienSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
         {
             double oghealth = ESp->GetHealth();
             ESp->SetHealth(ESp->GetHealth() - (ASp->GetPower() * ((ASp->GetHealth()) / 100)) / sqrt(ESp->GetHealth()));
-            if (Ta == 0)
+            if (ESp->GetTa() == 0)
             {
-                Ta = game->GetTimeStep();
+                ESp->SetTa(game->GetTimeStep());
             }
             if (ESp->GetHealth() <= 0)
             {
                 game->AddToKilled(ESp);
-                Td = game->GetTimeStep();
+
+                ESp->SetTd(game->GetTimeStep());
             }
             else if (ESp->GetHealth() > 0 && ESp->GetHealth() < 0.2 * oghealth)
             {

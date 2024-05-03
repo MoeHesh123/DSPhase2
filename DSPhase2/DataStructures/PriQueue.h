@@ -8,7 +8,7 @@ class priQueue
 {
 
     priNode<T>* head;
-    int itemCount;
+    int itemCount = 0;
 
 public:
 

@@ -22,14 +22,14 @@ void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
         if (AS) 
         {
             AS->SetHealth(AS->GetHealth() - ((ES->GetPower() * (ES->GetHealth()) / 100) / sqrt(AS->GetHealth())));
-            if (Ta == 0) 
+            if (AS->GetTa() == 0)
             {
-                Ta = game->GetTimeStep();
+                AS->SetTa( game->GetTimeStep());
             }
             if (AS->GetHealth() <= 0)
             {
                 game->AddToKilled(AS);
-                Td = game->GetTimeStep();
+                AS->SetTd(game->GetTimeStep());
             }
             else
             {

@@ -33,35 +33,38 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						attackCount = ET->GetAttackCapacity() / 2;
 						for (int i = 0; i < attackCount; i++)
 						{
-							alienarmy->removeAS(AS);
-							alienarmy->removeAM(AM);
 							if (!alienarmy->isEmpty_AS())
 							{
+							    alienarmy->removeAS(AS);
+							    
+							
 								AS->SetHealth(AS->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AS->GetHealth()));
-								if (Ta == 0)
+								if (AS->GetTa() == 0)
 								{
-									Ta = game->GetTimeStep();
+									AS->SetTa(game->GetTimeStep());
 								}
 								if (AS->GetHealth() <= 0)
 								{
 									game->AddToKilled(AS);
-									Td = game->GetTimeStep();
+									AS->SetTd(game->GetTimeStep()); 
 								}
 								else
 								{
 									tempAS.enqueue(AS);
 								}
-								if (!alienarmy->isEmpty_AM())
+								if (!alienarmy->isEmpty_AM()) 
 								{
+									alienarmy->removeAM(AM); 
+
 									AM->SetHealth(AM->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AM->GetHealth()));
-									if (Ta == 0)
+									if (AM->GetTa() == 0)
 									{
-										Ta = game->GetTimeStep();
+										AM->SetTa( game->GetTimeStep());
 									}
 									if (AM->GetHealth() <= 0)
 									{
 										game->AddToKilled(AM);
-										Td = game->GetTimeStep();
+										AM->SetTd(game->GetTimeStep());
 									}
 									else
 									{
@@ -78,22 +81,24 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						attackCountAM = (ET->GetAttackCapacity() - attackCountAS);
 						for (int i = 0; i < attackCountAS; i++)
 						{
-							alienarmy->removeAS(AS);
-							if (AS)
+							
+							if (alienarmy->getAS().isEmpty())
 							{
+								alienarmy->removeAS(AS); 
+
 								AS->SetHealth(AS->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AS->GetHealth()));
-								if (Ta == 0)
+								if (AS->GetTa() == 0) 
 								{
-									Ta = game->GetTimeStep();
+									AS->SetTa(game->GetTimeStep()); 
 								}
-								if (AS->GetHealth() <= 0)
+								if (AS->GetHealth() <= 0) 
 								{
-									game->AddToKilled(AS);
-									Td = game->GetTimeStep();
+									game->AddToKilled(AS); 
+									AS->SetTd(game->GetTimeStep()); 
 								}
 								else
 								{
-									tempAS.enqueue(AS);
+									tempAS.enqueue(AS); 
 								}
 							}
 						}
@@ -103,14 +108,14 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 							if (AM)
 							{
 								AM->SetHealth(AM->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AM->GetHealth()));
-								if (Ta == 0)
+								if (AM->GetTa() == 0)
 								{
-									Ta = game->GetTimeStep();
+									AM->SetTa(game->GetTimeStep());
 								}
 								if (AM->GetHealth() <= 0)
 								{
 									game->AddToKilled(AM);
-									Td = game->GetTimeStep();
+									AM->SetTd(game->GetTimeStep());
 								}
 								else
 								{
@@ -129,18 +134,19 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 			{
 				for (int i = 0; i < ET->GetAttackCapacity(); i++)
 				{
-					alienarmy->removeAM(AM);
+					
 					if (!alienarmy->isEmpty_AM())
 					{
+						alienarmy->removeAM(AM); 
 						AM->SetHealth(AM->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AM->GetHealth()));
-						if (Ta == 0)
+						if (AM->GetTa() == 0)
 						{
-							Ta = game->GetTimeStep();
+							AM->SetTa(game->GetTimeStep());
 						}
 						if (AM->GetHealth() <= 0)
 						{
 							game->AddToKilled(AM);
-							Td = game->GetTimeStep();
+							AM->SetTd(game->GetTimeStep());
 						}
 						else
 						{
@@ -151,7 +157,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 				}
 			}
 		}
-		while (tempAS.dequeue(AS))
+		while (tempAS.dequeue(AS)) 
 		{
 			alienarmy->ReAddAlienUnit(AS);
 		}
