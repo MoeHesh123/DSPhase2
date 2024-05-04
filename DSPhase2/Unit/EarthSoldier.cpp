@@ -28,9 +28,10 @@ void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
 
     for (int i = 0; i < ES->GetAttackCapacity(); i++)
     {
-        alienarmy->removeAS(AS);
-        if (AS) 
+        
+        if (!alienarmy->isEmpty_AS()) 
         {
+            alienarmy->removeAS(AS); 
             AS->SetHealth(AS->GetHealth() - ((ES->GetPower() * (ES->GetHealth()) / 100) / sqrt(AS->GetHealth())));
             if (AS->GetTa() == 0)
             {
