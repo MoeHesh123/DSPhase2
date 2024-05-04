@@ -231,33 +231,36 @@ bool Game::removeETFromUML(EarthTank*& etptr)
 
 bool Game::CheckESUMLKilled()
 {
-	Node<EarthTank*>* TraverseTank1 = ETUML.getfrontPtr();
-	Node<EarthTank*>* TraverseTank2 = TraverseTank1;
-	while (TraverseTank1)
+	if (ESUML.isEmpty()) return false;
+	priNode<EarthSoldier*>* TraverseSoldier1 = ESUML.getfrontPtr();
+	priNode<EarthSoldier*>* TraverseSoldier2 = TraverseSoldier1;
+	while (TraverseSoldier1)
 	{
-		if ((TimeStep - (TraverseTank1->getItem()->GetJTUML()) >= 10))
+		int pri = 0;
+		if ((TimeStep - (TraverseSoldier1->getItem(pri)->GetJTUML())) >= 10)
 		{
-			AddToKilled((Unit*)TraverseTank1);
-			ETUMLcount--;
-			TraverseTank2->setNext(TraverseTank1->getNext());
-			TraverseTank1->setNext(nullptr);
-			delete TraverseTank1;
-			TraverseTank1 = nullptr;
+			AddToKilled((Unit*)TraverseSoldier1); ///////////
+			ESUMLcount--;
+			TraverseSoldier2->setNext(TraverseSoldier1->getNext());
+			TraverseSoldier1->setNext(nullptr);
+			delete TraverseSoldier1;
+			TraverseSoldier1 = nullptr;
 			return  true;
 		}
-		TraverseTank2 = TraverseTank1;
-		TraverseTank1 = TraverseTank1->getNext();
+		TraverseSoldier2 = TraverseSoldier1;
+		TraverseSoldier1 = TraverseSoldier1->getNext();
 	}
 	return false;
 }
 
 bool Game::CheckETUMLKilled()
 {
+	if (ETUML.isEmpty()) return false;
 	Node<EarthTank*>* TraverseTank1 = ETUML.getfrontPtr();
 	Node<EarthTank*>* TraverseTank2 = TraverseTank1;
 	while (TraverseTank1)
 	{
-		if ((TimeStep - (TraverseTank1->getItem()->GetJTUML()) >= 10))
+		if ((TimeStep - (TraverseTank1->getItem()->GetJTUML())) >= 10)
 		{
 			AddToKilled((Unit*)TraverseTank1);
 			ETUMLcount--;
@@ -367,7 +370,7 @@ StackList<HealUnit*> Game::getHL()
 
 void Game::AddToKilled(Unit* unit)
 {
-	if (unit != nullptr)
+	if (unit)
 	{
 		if (unit->GetType() == "ES") 
 		{
@@ -518,6 +521,14 @@ void Game::StartGame()
 		//		AS->Attack(&gameManager, &earthArmy, &alienArmy); 
 		//	}
 		//}
+		EarthSoldier* es1 = nullptr;
+		earthArmy.removeES(es1);
+		gameManager.addESToUML(es1);
+		EarthTank* et1 = nullptr;
+		earthArmy.removeET(et1);
+		gameManager.addETToUML(et1);
+		while (gameManager.CheckESUMLKilled());
+		while (gameManager.CheckETUMLKilled());
 
 		while (CheckESUMLKilled());
 
@@ -610,7 +621,7 @@ void Game::StartGame()
 		//	gameManager.removeHU(huptr);
 		//	if (huptr) gameManager.AddToKilled(huptr);
 		//}
-
+	
 		if (x == 1)
 		{
 			cout << "==============  Earth Army Alive Units ========" << endl;

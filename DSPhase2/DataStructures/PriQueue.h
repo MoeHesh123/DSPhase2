@@ -62,6 +62,10 @@ public:
     {
         return itemCount;
     }
+    priNode<T>* getfrontPtr()
+    {
+        return head;
+    }
 
     priNode<T>* gethead()
     {
