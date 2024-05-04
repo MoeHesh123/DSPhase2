@@ -1,0 +1,49 @@
+File Name: A7A
+
+============================================================================
+Killed Units: 9
+Td    ID    Tj    Df    Dd    Ta    Db    
+9     2001  2     0     7     2     7     
+10    2003  2     0     8     2     8     
+11    2012  6     0     5     6     5     
+13    2005  2     1     10    3     11    
+15    2025  10    0     5     10    5     
+16    2035  11    0     5     11    5     
+16    2026  10    0     6     10    6     
+18    2038  14    0     4     14    4     
+40    2051  35    0     5     35    5     
+============================================================================
+============================================================================
+Total Earth Army Units Alive: 
+ES    ET    EG    HU    ESUML ETUML 
+57    16    4     0     0     0     
+0     0     0     0     
+
+Percentage Of Destructed Earth Units Relative To Their Total: 
+0     0     0     -nan(ind)
+
+Percentage Of Total Destructed Earth units Relative To Total Earth Units: 0
+
+Average of Df,Dd & Db for Earth Units:
+DfAVG DdAVG DbAVG 
+-nan(ind)-nan(ind)-nan(ind)
+
+Db Of Earth is 0 cant generate Earth Dd/Db% or Earth Df/Db%
+============================================================================
+Total Alien Army Units Alive: 
+AS    AM    AD    
+66    0     2     
+0     4     5     
+
+Percentage Of Destructed Alien Units Relative To Their Total: 
+0     100   71    
+
+Percentage Of Total Destructed Alien units Relative To Total Alien Units: 12
+
+Average of Df,Dd & Db for Alien Units: 
+DfAVG DdAVG DbAVG 
+0     6     6     
+
+Alien Df/Db%: 2
+Alien Dd/Db%: 98
+============================================================================
