@@ -445,33 +445,33 @@ void Game::StartGame()
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 
-		EarthSoldier* ES;  
-		if (!(earthArmy.getES().isEmpty()))  
-		{
-			earthArmy.getES().peek(ES); 
-			if (ES)
-			{
-				ES->Attack(&gameManager, &earthArmy, &alienArmy);
-			}
-		}
-		EarthTank* ET; 
-		if (!(earthArmy.getET().isEmpty())) 
-		{
-			earthArmy.getET().peek(ET); 
-			if (ET) 
-			{
-				ET->Attack(&gameManager, &earthArmy, &alienArmy); 
-			}
-		}
-		AlienSoldier* AS; 
-		if (!(alienArmy.getAS().isEmpty())) 
-		{
-			alienArmy.getAS().peek(AS); 
-			if (AS) 
-			{
-				AS->Attack(&gameManager, &earthArmy, &alienArmy); 
-			}
-		}
+		//EarthSoldier* ES;  
+		//if (!(earthArmy.getES().isEmpty()))  
+		//{
+		//	earthArmy.getES().peek(ES); 
+		//	if (ES)
+		//	{
+		//		ES->Attack(&gameManager, &earthArmy, &alienArmy);
+		//	}
+		//}
+		//EarthTank* ET; 
+		//if (!(earthArmy.getET().isEmpty())) 
+		//{
+		//	earthArmy.getET().peek(ET); 
+		//	if (ET) 
+		//	{
+		//		ET->Attack(&gameManager, &earthArmy, &alienArmy); 
+		//	}
+		//}
+		//AlienSoldier* AS; 
+		//if (!(alienArmy.getAS().isEmpty())) 
+		//{
+		//	alienArmy.getAS().peek(AS); 
+		//	if (AS) 
+		//	{
+		//		AS->Attack(&gameManager, &earthArmy, &alienArmy); 
+		//	}
+		//}
 
 		//if (X > 0 && X <= 10)
 		//{
@@ -488,29 +488,29 @@ void Game::StartGame()
 		//}
 		//else if (X > 10 && X <= 20)
 		//{
-		//	EarthTank* etptr = nullptr;
-		//	earthArmy.removeET(etptr);
-		//	if (etptr)
-		//	{
-		//		double h = etptr->GetHealth();
-		//		etptr->SetHealth(etptr->GetHealth() - 50);
-		//		if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
-		//		else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
-		//		else earthArmy.ReAddEarthUnit(etptr);
-		//	}
+			EarthTank* etptr = nullptr;
+			earthArmy.peekET(etptr);
+			if (etptr)
+			{
+				double h = etptr->GetHealth();
+				etptr->SetHealth(etptr->GetHealth() - 50);
+				if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
+				else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
+				else earthArmy.ReAddEarthUnit(etptr);
+			}
 		//}
 		//else if (X > 20 && X <= 30)
 		//{
-		//	EarthGunnery* egptr = nullptr;
-		//	int Priority = 0;
-		//	earthArmy.removeEG(egptr, Priority);
-		//	if (egptr)
-		//	{
-		//		double h = egptr->GetHealth();
-		//		egptr->SetHealth(egptr->GetHealth() - 50);
-		//		if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
-		//		else earthArmy.ReAddEarthUnit(egptr);
-		//	}
+			//EarthGunnery* egptr = nullptr;
+			//int Priority = 0;
+			//earthArmy.removeEG(egptr, Priority);
+			//if (egptr)
+			//{
+			//	double h = egptr->GetHealth();
+			//	egptr->SetHealth(egptr->GetHealth() - 50);
+			//	if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
+			//	else earthArmy.ReAddEarthUnit(egptr);
+			//}
 		//}
 		//else if (X > 30 && X <= 40)
 		//{

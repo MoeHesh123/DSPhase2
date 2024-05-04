@@ -28,6 +28,7 @@ public:
 	void printAS();
 	LinkedQueue <AlienSoldier*> getAS();
 	int getAScount();
+	bool peekAS(AlienSoldier*& as);
 
 	bool isEmpty_AD();
 	bool addAD(int jt, double H, int P, int AttC);
@@ -35,6 +36,8 @@ public:
 	void printAD();
 	DoubleEndedQueueList <AlienDrone*> getAD();
 	int getADcount();
+	bool peekADfront(AlienDrone*& ad);
+	bool peekADback(AlienDrone*& ad);
 
 	bool isEmpty_AM();
 	bool addAM(int jt, double H, int P, int AttC);
@@ -42,6 +45,7 @@ public:
 	void printAM();
 	bag <AlienMonster*> getAM();
 	int getAMcount();
+	bool peekAM(AlienMonster*& am);
 
 	void ReAddAlienUnit(Unit* Unit);
 };

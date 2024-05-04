@@ -57,6 +57,13 @@ int EarthArmy::getEScount()
 	return EScount;
 }
 
+bool EarthArmy::peekES(EarthSoldier*& es)
+{
+	if (isEmpty_ES()) return false;
+	ES.peek(es);
+	return true;
+}
+
 bool EarthArmy::isEmpty_ET()
 {
 	if (ETcount == 0) return true;
@@ -121,6 +128,13 @@ int EarthArmy::getETcount()
 	return ETcount;
 }
 
+bool EarthArmy::peekET(EarthTank*& et)
+	{
+		if (isEmpty_ET()) return false;
+		ET.peek(et);
+		return true;
+	}
+
 bool EarthArmy::isEmpty_EG()
 {
 	if (EGcount == 0) return true;
@@ -179,6 +193,13 @@ priQueue <EarthGunnery*> EarthArmy::getEG()
 int EarthArmy::getEGcount()
 {
 	return EGcount;
+}
+
+bool EarthArmy::peekEG(EarthGunnery*& eg, int& pri)
+{
+	if (isEmpty_EG()) return false;
+	EG.peek(eg,pri);
+	return true;
 }
 
 int EarthArmy::getEarthID()

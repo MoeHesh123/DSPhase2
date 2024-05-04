@@ -26,6 +26,7 @@ public:
 	void printES();
 	LinkedQueue <EarthSoldier*> getES();
 	int getEScount();
+	bool peekES(EarthSoldier*& es);
 
 	bool isEmpty_ET();
 	bool addET(int jt, double H, int P, int AttC);
@@ -33,6 +34,7 @@ public:
 	void printET();
 	StackList <EarthTank*> getET();
 	int getETcount();
+	bool peekET(EarthTank*& et);
 
 	bool isEmpty_EG();
 	bool addEG(int jt, double H, int P, int AttC);
@@ -40,6 +42,7 @@ public:
 	void printEG();
 	priQueue <EarthGunnery*> getEG();
 	int getEGcount();
+	bool peekEG(EarthGunnery*& eg, int& pri);
 
 	int getEarthID();
 	int IncrementEarthID();

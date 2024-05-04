@@ -59,6 +59,15 @@ public:
         }
         return true;
     }
+    bool peek(T& value, const int& i)
+    {
+        if (isEmpty() || !isFound(i)) return false;
+        else
+        {
+            value = *arr[i];
+        }
+        return true;
+    }
 
     int getCount()
     {

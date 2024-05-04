@@ -61,6 +61,13 @@ int AlienArmy::getAScount()
 	return AScount;
 }
 
+bool AlienArmy::peekAS(AlienSoldier*& as)
+{
+	if (isEmpty_AS()) return false;
+	AS.peek(as);
+	return true;
+}
+
 bool AlienArmy::isEmpty_AD()
 {
 	if (ADcount == 0) return true;
@@ -137,6 +144,20 @@ int AlienArmy::getADcount()
 	return ADcount;
 }
 
+bool AlienArmy::peekADfront(AlienDrone*& ad)
+{
+	if (isEmpty_AD()) return false;
+	AD.peek(ad);
+	return true;
+}
+
+bool AlienArmy::peekADback(AlienDrone*& ad)
+{
+	if (isEmpty_AD()) return false;
+	AD.peekBack(ad);
+	return true;
+}
+
 bool AlienArmy::isEmpty_AM()
 {
 	if (AMcount == 0) return true;
@@ -189,6 +210,16 @@ bag <AlienMonster*> AlienArmy::getAM()
 int AlienArmy::getAMcount()
 {
 	return AMcount;
+}
+bool AlienArmy::peekAM(AlienMonster*& am)
+{
+	if (isEmpty_AM()) return false;
+	else
+	{
+		int index = rand() % AMcount;
+		AM.peek(am, index);
+		return true;
+	}
 }
 void AlienArmy::ReAddAlienUnit(Unit* unit)
 {
