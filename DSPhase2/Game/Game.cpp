@@ -463,13 +463,24 @@ void Game::StartGame()
 				ET->Attack(&gameManager, &earthArmy, &alienArmy); 
 			}
 		}
-		AlienSoldier* AS; 
-		if (!(alienArmy.isEmpty_AS())) 
+		AlienSoldier* AS;  
+		if (!(alienArmy.isEmpty_AS()))  
 		{
-			alienArmy.peekAS(AS); 
-			if (AS) 
+			alienArmy.peekAS(AS);  
+			if (AS)  
 			{
-				AS->Attack(&gameManager, &earthArmy, &alienArmy); 
+				AS->Attack(&gameManager, &earthArmy, &alienArmy);  
+			}
+		}
+		EarthGunnery* EG; 
+		int p = 0;
+		if (!earthArmy.isEmpty_EG() 
+			)
+		{
+			earthArmy.peekEG(EG, p); 
+			if (EG) 
+			{
+				EG->Attack(&gameManager, &earthArmy, &alienArmy); 
 			}
 		}
 

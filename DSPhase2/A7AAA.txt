@@ -1,0 +1,73 @@
+File Name: A7AAA
+
+============================================================================
+Killed Units: 33
+Td    ID    Tj    Df    Dd    Ta    Db    
+9     2004  7     0     2     7     2     
+10    2006  7     0     3     7     3     
+11    2019  9     0     2     9     2     
+13    2017  9     0     4     9     4     
+13    2003  7     0     6     7     6     
+16    2012  8     0     8     8     8     
+20    2042  18    0     2     18    2     
+21    2043  20    0     1     20    1     
+25    2057  22    0     3     22    3     
+25    2052  21    0     4     21    4     
+28    2087  26    0     2     26    2     
+28    2077  24    0     4     24    4     
+29    2002  7     0     22    7     22    
+29    2098  27    0     2     27    2     
+30    2094  27    0     3     27    3     
+32    2007  7     0     25    7     25    
+32    2093  27    0     5     27    5     
+34    2102  30    0     4     30    4     
+34    2110  32    0     2     32    2     
+35    2106  32    0     3     32    3     
+35    2045  20    9     6     29    15    
+35    2099  30    0     5     30    5     
+37    2113  35    0     2     35    2     
+38    2116  35    0     3     35    3     
+39    2044  20    0     19    20    19    
+41    2048  20    0     21    20    21    
+42    2121  37    0     5     37    5     
+45    2128  43    0     2     43    2     
+47    2133  43    0     4     43    4     
+49    2154  46    0     3     46    3     
+49    2138  44    0     5     44    5     
+50    2001  7     0     43    7     43    
+50    2145  45    0     5     45    5     
+============================================================================
+============================================================================
+Total Earth Army Units Alive: 
+ES    ET    EG    HU    ESUML ETUML 
+112   26    16    0     0     0     
+0     0     0     0     
+
+Percentage Of Destructed Earth Units Relative To Their Total: 
+0     0     0     -nan(ind)
+
+Percentage Of Total Destructed Earth units Relative To Total Earth Units: 0
+
+Average of Df,Dd & Db for Earth Units:
+DfAVG DdAVG DbAVG 
+-nan(ind)-nan(ind)-nan(ind)
+
+Db Of Earth is 0 cant generate Earth Dd/Db% or Earth Df/Db%
+============================================================================
+Total Alien Army Units Alive: 
+AS    AM    AD    
+117   0     4     
+3     16    14    
+
+Percentage Of Destructed Alien Units Relative To Their Total: 
+3     100   78    
+
+Percentage Of Total Destructed Alien units Relative To Total Alien Units: 21
+
+Average of Df,Dd & Db for Alien Units: 
+DfAVG DdAVG DbAVG 
+0     7     7     
+
+Alien Df/Db%: 4
+Alien Dd/Db%: 96
+============================================================================
