@@ -254,28 +254,29 @@ bool Game::CheckESUMLKilled()
 	return false;
 }
 
-//bool Game::CheckETUMLKilled()
-//{
-//	if (ETUML.isEmpty()) return false;
-//	Node<EarthTank*>* TraverseTank1 = ETUML.getfrontPtr();
-//	Node<EarthTank*>* TraverseTank2 = TraverseTank1;
-//	while (TraverseTank1)
-//	{
-//		if ((TimeStep - (TraverseTank1->getItem()->GetJTUML())) >= 10)
-//		{
-//			AddToKilled((Unit*)TraverseTank1);
-//			ETUMLcount--;
-//			TraverseTank2->setNext(TraverseTank1->getNext());
-//			TraverseTank1->setNext(nullptr);
-//			delete TraverseTank1;
-//			TraverseTank1 = nullptr;
-//			return  true;
-//		}
-//		TraverseTank2 = TraverseTank1;
-//		TraverseTank1 = TraverseTank1->getNext();
-//	}
-//	return false;
-//}
+bool Game::CheckETUMLKilled()
+{
+	if (ETUML.isEmpty()) return false;
+	Node<EarthTank*>* TraverseTank1 = ETUML.getfrontPtr();
+	Node<EarthTank*>* TraverseTank2 = TraverseTank1;
+	while (TraverseTank1)
+	{
+			if ((TimeStep - (TraverseTank1->getItem()->GetJTUML())) >= 10)
+			{
+				EarthTank* ETank = TraverseTank1->getItem();
+				AddToKilled(ETank);
+				ETUMLcount--;
+				TraverseTank2->setNext(TraverseTank1->getNext());
+				TraverseTank1->setNext(nullptr);
+				delete TraverseTank1;
+				TraverseTank1 = nullptr;
+				return  true;
+			}
+			TraverseTank2 = TraverseTank1;
+			TraverseTank1 = TraverseTank1->getNext();
+	}
+	return false;
+}
 
 void Game::printUML()
 {
@@ -530,7 +531,7 @@ void Game::StartGame()
 		earthArmy.removeET(et1);
 		gameManager.addETToUML(et1);
 		while (gameManager.CheckESUMLKilled());
-		//while (gameManager.CheckETUMLKilled());
+		while (gameManager.CheckETUMLKilled());
 
 		//if (X > 0 && X <= 10)
 		//{

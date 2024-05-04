@@ -70,7 +70,7 @@ public:
 	bool removeETFromUML(EarthTank*& etptr);
 
 	bool CheckESUMLKilled();
-	//bool CheckETUMLKilled();
+	bool CheckETUMLKilled();
 
 	void printUML();
 
