@@ -23,7 +23,6 @@ void Game::Readinput()
 
 void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 {
-
 	cout << "Please Enter The Output File Name: ";
 	string file;
 	cin >> file;
@@ -43,8 +42,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "Dd"
 	<< setw(6) << left << "Db" << endl; 
 
-	float ESumDd = 0, ESumDb = 0;
-	float ASumDd = 0, ASumDb = 0;
+	float ESumDd = 0, ESumDb = 0, ESumDf = 0, ASumDd = 0, ASumDb = 0, ASumDf = 0;
 
 	while (Current) 
 	{
@@ -52,11 +50,13 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 		{
 			ESumDd += Current->getItem()->GetDd();
 			ESumDb += Current->getItem()->GetDb();
+			ESumDf += Current->getItem()->GetDf();
 		}
 		else
 		{
 			ASumDd += Current->getItem()->GetDd();
 			ASumDb += Current->getItem()->GetDb();
+			ASumDf += Current->getItem()->GetDf();
 		}
 		OutputFile
 		<< setw(6) << left << Current->getItem()->GetTd()
@@ -65,11 +65,10 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 		<< setw(6) << left << Current->getItem()->GetDf()
 		<< setw(6) << left << Current->getItem()->GetDd()
 		<< setw(6) << left << Current->getItem()->GetDb() << endl;
-
 		Current = Current->getNext();
 	}
 
-	//OutputFile << "============================================================================" << endl;
+	OutputFile << "============================================================================" << endl;
 
 	//Output File win/loss/draw
 
@@ -85,7 +84,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << earmy->getEScount()
 	<< setw(6) << left << earmy->getETcount()
 	<< setw(6) << left << earmy->getEGcount() 
-	<< setw(6) << left << HUcount << endl <<endl;
+	<< setw(6) << left << HUcount << endl;
 	OutputFile
 	<< setw(6) << left << ESKilledcount
 	<< setw(6) << left << ETKilledcount
@@ -104,16 +103,16 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "DdAVG"
 	<< setw(6) << left << "DbAVG" << endl;
 	OutputFile
-	<< setw(6) << left /*<< round(ESumDf)*/
+	<< setw(6) << left << round(ESumDf)
 	<< setw(6) << left << round(ESumDd/KilledCount)
-	<< setw(6) << left << round(ESumDb/KilledCount) << endl;
+	<< setw(6) << left << round(ESumDb/KilledCount) << endl <<endl;
 	if (ESumDb == 0)
 	{
-		OutputFile << "Db Of Earth is 0 cant genarate Earth Dd/Db% or Earth Df/Db%" << endl;
+		OutputFile << "Db Of Earth is 0 cant generate Earth Dd/Db% or Earth Df/Db%" << endl;
 	}
 	else 
 	{
-		OutputFile << "Earth Df/Db%: " /*<< round((ESumDf / ESumDb) * 100)*/ << endl;
+		OutputFile << "Earth Df/Db%: " << round((ESumDf / ESumDb) * 100) << endl;
 		OutputFile << "Earth Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
 	}
 
@@ -127,7 +126,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	OutputFile
 	<< setw(6) << left << aarmy->getAScount()
 	<< setw(6) << left << aarmy->getAMcount()
-	<< setw(6) << left << aarmy->getADcount() << endl<<endl;
+	<< setw(6) << left << aarmy->getADcount() << endl;
 	OutputFile
 	<< setw(6) << left << ASKilledcount
 	<< setw(6) << left << AMKilledcount
@@ -145,19 +144,18 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "DdAVG"
 	<< setw(6) << left << "DbAVG" << endl;
 	OutputFile
-	<< setw(6) << left /*<< round(ASumDf)*/
+	<< setw(6) << left << round(ASumDf)
 	<< setw(6) << left << round(ASumDd / KilledCount)
-	<< setw(6) << left << round(ASumDb / KilledCount) << endl;
+	<< setw(6) << left << round(ASumDb / KilledCount) << endl <<endl;
 	if (ASumDb == 0)
 	{
-		OutputFile << "Db Of Alien is 0 cant genarate Alien Dd/Db% or Earth Df/Db%" << endl;
+		OutputFile << "Db Of Alien is 0 cant generate Alien Dd/Db% or Earth Df/Db%" << endl;
 	}
 	else 
 	{
-		OutputFile << "Alien Df/Db%: " /*<< round((ASumDf / ASumDb) * 100)*/ << endl;
+		OutputFile << "Alien Df/Db%: " << round((ASumDf / ASumDb) * 100) << endl;
 		OutputFile << "Alien Dd/Db%: " << round((ASumDd / ASumDb) * 100) << endl;
 	}
-	
 
 	OutputFile << "============================================================================" << endl;
 
