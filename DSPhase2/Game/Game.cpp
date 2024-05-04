@@ -530,8 +530,6 @@ void Game::StartGame()
 		while (gameManager.CheckESUMLKilled());
 		while (gameManager.CheckETUMLKilled());
 
-		while (CheckESUMLKilled());
-
 		//if (X > 0 && X <= 10)
 		//{
 		//	EarthSoldier* esptr = nullptr;
