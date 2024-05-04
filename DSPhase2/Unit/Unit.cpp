@@ -88,3 +88,13 @@ void Unit::SetHealth(double H)
 {
 	health = H;
 }
+
+int Unit::GetJTUML()
+{
+	return JTUML;
+}
+
+void Unit::SetJTUML(int jtuml)
+{
+	JTUML = jtuml;
+}

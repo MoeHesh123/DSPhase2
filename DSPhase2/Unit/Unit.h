@@ -30,6 +30,8 @@ protected:
 	int Db = 0;
 	double UAP = 0.0;
 
+	int JTUML = 0;
+
 public:
 
 	Unit(int ID, int JT, double H, int P, int AC);
@@ -51,6 +53,9 @@ public:
 	virtual void SetTd(int td);
 	virtual void SetUAP(double damage);
 	virtual void SetHealth(double H);
+
+	int GetJTUML();
+	void SetJTUML(int jtuml);
 
 	virtual string GetType() = 0;
 	virtual void Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy) = 0;
