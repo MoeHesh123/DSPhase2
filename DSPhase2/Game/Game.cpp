@@ -107,8 +107,15 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left /*<< round(ESumDf)*/
 	<< setw(6) << left << round(ESumDd/KilledCount)
 	<< setw(6) << left << round(ESumDb/KilledCount) << endl;
-	OutputFile << "Earth Df/Db%: " /*<< round((ESumDf / ESumDb) * 100)*/ << endl;
-	OutputFile << "Earth Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
+	if (ESumDb == 0)
+	{
+		OutputFile << "Db Of Earth is 0 cant genarate Earth Dd/Db% or Earth Df/Db%" << endl;
+	}
+	else 
+	{
+		OutputFile << "Earth Df/Db%: " /*<< round((ESumDf / ESumDb) * 100)*/ << endl;
+		OutputFile << "Earth Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
+	}
 
 	OutputFile << "============================================================================" << endl;
 
@@ -141,8 +148,16 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left /*<< round(ASumDf)*/
 	<< setw(6) << left << round(ASumDd / KilledCount)
 	<< setw(6) << left << round(ASumDb / KilledCount) << endl;
-	OutputFile << "Alien Df/Db%: " /*<< round((ASumDf / ASumDb) * 100)*/ << endl;
-	OutputFile << "Alien Dd/Db%: " << round((ASumDd / ASumDb) * 100) << endl;
+	if (ASumDb == 0)
+	{
+		OutputFile << "Db Of Alien is 0 cant genarate Alien Dd/Db% or Earth Df/Db%" << endl;
+	}
+	else 
+	{
+		OutputFile << "Alien Df/Db%: " /*<< round((ASumDf / ASumDb) * 100)*/ << endl;
+		OutputFile << "Alien Dd/Db%: " << round((ASumDd / ASumDb) * 100) << endl;
+	}
+	
 
 	OutputFile << "============================================================================" << endl;
 

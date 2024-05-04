@@ -3,11 +3,11 @@ File Name: manga
 ============================================================================
 Killed Units: 1
 Td    ID    Tj    Df    Dd    Db    
-38    2002  7     0     31    31    
+33    2001  2     0     31    31    
 ============================================================================
 Total Earth Army Units Alive: 
 ES    ET    EG    HU    
-76    20    5     11    
+85    23    6     5     
 
 0     0     0     0     
 
@@ -19,12 +19,11 @@ Percentage Of Total Destructed Earth units Relative To Total Earth Units: 0
 Average of Df,Dd & Db for Earth Units:
 DfAVG DdAVG DbAVG 
 0     0     
-Earth Df/Db%: 
-Earth Dd/Db%: -nan(ind)
+Db Of Earth is 0 cant genarate Earth Dd/Db% or Earth Df/Db%
 ============================================================================
 Total Alien Army Units Alive: 
 AS    AM    AD    
-97    7     7     
+88    18    12    
 
 1     0     0     
 
