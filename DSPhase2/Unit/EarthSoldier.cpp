@@ -14,7 +14,7 @@ void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
     LinkedQueue<AlienSoldier*> tempList;
     EarthSoldier* ES;
     AlienSoldier* AS;
-    eartharmy->getES().peek(ES);
+    eartharmy->peekES(ES);
 
     for (int i = 0; i < ES->GetAttackCapacity(); i++)
     {

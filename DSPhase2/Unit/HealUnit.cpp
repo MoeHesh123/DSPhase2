@@ -11,8 +11,10 @@ string HealUnit::GetType()
 
 void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
-	LinkedQueue<Unit*> Temp;
-	for (int i = 0; i < attackCapacity; i++)
+    LinkedQueue<Unit*> Temp;
+	HealUnit* HU;
+	game->removeHU(HU);
+	for (int i = 0; i < HU->GetAttackCapacity(); i++)
 	{
 		if (!(game->isEmpty_ESUML()))
 		{
@@ -20,10 +22,10 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 			int pri = 0;
 			game->removeESFromUML(es, pri);
 			double OriginalHealth = es->GetHealth();
-			if ((game->GetTimeStep() - es->GetJTUML()) >= 10) game->AddToKilled(es);
-			else
+			//if ((game->GetTimeStep() - es->GetJTUML()) >= 10) game->AddToKilled(es);
+			//else
 			{
-				double HealthImprovement = (((power * health)/100)/sqrt(es->GetHealth()));
+				double HealthImprovement = (((HU->GetPower() * HU->GetHealth())/100)/sqrt(es->GetHealth()));
 				es->SetHealth(es->GetHealth() + HealthImprovement);
 				if (es->GetHealth() >= 0.2 * OriginalHealth) eartharmy->ReAddEarthUnit(es);
 				else Temp.enqueue(es);
@@ -35,8 +37,8 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 			EarthTank* et;
 			game->removeETFromUML(et);
 			double OriginalHealth = et->GetHealth();
-			if ((game->GetTimeStep() - et->GetJTUML()) >= 10) game->AddToKilled(et);
-			else
+			/*if ((game->GetTimeStep() - et->GetJTUML()) >= 10) game->AddToKilled(et);
+			else*/
 			{
 				double HealthImprovement = (((power * health) / 100) / sqrt(et->GetHealth()));
 				et->SetHealth(et->GetHealth() + HealthImprovement);

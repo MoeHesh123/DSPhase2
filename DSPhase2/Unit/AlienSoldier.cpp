@@ -14,7 +14,7 @@ void AlienSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
     LinkedQueue<EarthSoldier*>templistES;
     AlienSoldier* ASp = nullptr;
     EarthSoldier* ESp = nullptr;
-    alienarmy->getAS().peek(ASp);
+    alienarmy->peekAS(ASp);
 
     for (int i = 0; i < attackCapacity; i++)
     {

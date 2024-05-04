@@ -21,7 +21,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 	int attackCountAM = 0;
 	int attackCountAS = 0;
 
-		eartharmy->getET().peek(ET);
+	eartharmy->peekET(ET);
 
 		if (ET) {
 			if (eartharmy->getEScount() < (0.3 * (alienarmy->getAScount())))

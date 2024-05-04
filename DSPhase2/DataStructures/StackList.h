@@ -66,11 +66,11 @@ public:
 		return top;
 	}
 
-	/*~StackList()
+	~StackList()
 	{
 		T temp;
 		while (pop(temp));
-	}*/
+	}
 
 };
 #endif

@@ -445,33 +445,33 @@ void Game::StartGame()
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 
-		//EarthSoldier* ES;  
-		//if (!(earthArmy.getES().isEmpty()))  
-		//{
-		//	earthArmy.getES().peek(ES); 
-		//	if (ES)
-		//	{
-		//		ES->Attack(&gameManager, &earthArmy, &alienArmy);
-		//	}
-		//}
-		//EarthTank* ET; 
-		//if (!(earthArmy.getET().isEmpty())) 
-		//{
-		//	earthArmy.getET().peek(ET); 
-		//	if (ET) 
-		//	{
-		//		ET->Attack(&gameManager, &earthArmy, &alienArmy); 
-		//	}
-		//}
-		//AlienSoldier* AS; 
-		//if (!(alienArmy.getAS().isEmpty())) 
-		//{
-		//	alienArmy.getAS().peek(AS); 
-		//	if (AS) 
-		//	{
-		//		AS->Attack(&gameManager, &earthArmy, &alienArmy); 
-		//	}
-		//}
+		EarthSoldier* ES;  
+		if (!(earthArmy.isEmpty_ES()))  
+		{
+			earthArmy.peekES(ES);
+			if (ES)
+			{
+				ES->Attack(&gameManager, &earthArmy, &alienArmy);
+			}
+		}
+		EarthTank* ET; 
+		if (!(earthArmy.isEmpty_ET())) 
+		{
+			earthArmy.peekET(ET);
+			if (ET) 
+			{
+				ET->Attack(&gameManager, &earthArmy, &alienArmy); 
+			}
+		}
+		AlienSoldier* AS; 
+		if (!(alienArmy.isEmpty_AS())) 
+		{
+			alienArmy.peekAS(AS); 
+			if (AS) 
+			{
+				AS->Attack(&gameManager, &earthArmy, &alienArmy); 
+			}
+		}
 
 		//if (X > 0 && X <= 10)
 		//{
@@ -488,16 +488,16 @@ void Game::StartGame()
 		//}
 		//else if (X > 10 && X <= 20)
 		//{
-			EarthTank* etptr = nullptr;
-			earthArmy.peekET(etptr);
-			if (etptr)
-			{
-				double h = etptr->GetHealth();
-				etptr->SetHealth(etptr->GetHealth() - 50);
-				if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
-				else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
-				else earthArmy.ReAddEarthUnit(etptr);
-			}
+		//	EarthTank* etptr = nullptr;
+		//	earthArmy.peekET(etptr);
+		//	if (etptr)
+		//	{
+		//		double h = etptr->GetHealth();
+		//		etptr->SetHealth(etptr->GetHealth() - 50);
+		//		if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
+		//		else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
+		//		else earthArmy.ReAddEarthUnit(etptr);
+		//	}
 		//}
 		//else if (X > 20 && X <= 30)
 		//{
