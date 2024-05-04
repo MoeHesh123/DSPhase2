@@ -9,16 +9,6 @@ string EarthSoldier::GetType()
     return type;
 }
 
-int EarthSoldier::GetJTUML()
-{
-    return JTUML;
-}
-
-void EarthSoldier::SetJTUML(int jtuml)
-{
-    JTUML = jtuml;
-}
-
 void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
     LinkedQueue<AlienSoldier*> tempList;
