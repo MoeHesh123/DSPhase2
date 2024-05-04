@@ -180,6 +180,7 @@ bool Game::addESToUML(EarthSoldier* esptr)
 {
 	if (esptr)
 	{
+		esptr->SetJTUML(TimeStep);
 		int Priority = 1000 - (esptr->GetHealth());
 		ESUML.enqueue(esptr, Priority);
 		ESUMLcount++;
@@ -209,6 +210,7 @@ bool Game::addETToUML(EarthTank* etptr)
 {
 	if (etptr)
 	{
+		etptr->SetJTUML(TimeStep);
 		ETUML.enqueue(etptr);
 		ETUMLcount++;
 		return true;
@@ -489,35 +491,35 @@ void Game::StartGame()
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 
-		EarthSoldier* ES;  
-		if (!(earthArmy.isEmpty_ES()))  
-		{
-			earthArmy.peekES(ES);
-			if (ES)
-			{
-				ES->Attack(&gameManager, &earthArmy, &alienArmy);
-			}
-		}
-		EarthTank* ET; 
-		if (!(earthArmy.isEmpty_ET())) 
-		{
-			earthArmy.peekET(ET);
-			if (ET) 
-			{
-				ET->Attack(&gameManager, &earthArmy, &alienArmy); 
-			}
-		}
-		AlienSoldier* AS; 
-		if (!(alienArmy.isEmpty_AS())) 
-		{
-			alienArmy.peekAS(AS); 
-			if (AS) 
-			{
-				AS->Attack(&gameManager, &earthArmy, &alienArmy); 
-			}
-		}
+		//EarthSoldier* ES;  
+		//if (!(earthArmy.isEmpty_ES()))  
+		//{
+		//	earthArmy.peekES(ES);
+		//	if (ES)
+		//	{
+		//		ES->Attack(&gameManager, &earthArmy, &alienArmy);
+		//	}
+		//}
+		//EarthTank* ET; 
+		//if (!(earthArmy.isEmpty_ET())) 
+		//{
+		//	earthArmy.peekET(ET);
+		//	if (ET) 
+		//	{
+		//		ET->Attack(&gameManager, &earthArmy, &alienArmy); 
+		//	}
+		//}
+		//AlienSoldier* AS; 
+		//if (!(alienArmy.isEmpty_AS())) 
+		//{
+		//	alienArmy.peekAS(AS); 
+		//	if (AS) 
+		//	{
+		//		AS->Attack(&gameManager, &earthArmy, &alienArmy); 
+		//	}
+		//}
 
-		//while(CheckUMLKilled());
+		while (CheckESUMLKilled());
 
 		//if (X > 0 && X <= 10)
 		//{
