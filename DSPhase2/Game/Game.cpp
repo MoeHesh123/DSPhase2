@@ -448,15 +448,15 @@ void Game::StartGame()
 				ES->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
-		//EarthTank* ET; 
-		//if (!(earthArmy.getET().isEmpty())) 
-		//{
-		//	earthArmy.getET().peek(ET); 
-		//	if (ET) 
-		//	{
-		//		ET->Attack(&gameManager, &earthArmy, &alienArmy); 
-		//	}
-		//}
+		EarthTank* ET; 
+		if (!(earthArmy.getET().isEmpty())) 
+		{
+			earthArmy.getET().peek(ET); 
+			if (ET) 
+			{
+				ET->Attack(&gameManager, &earthArmy, &alienArmy); 
+			}
+		}
 		AlienSoldier* AS; 
 		if (!(alienArmy.getAS().isEmpty())) 
 		{
@@ -466,6 +466,9 @@ void Game::StartGame()
 				AS->Attack(&gameManager, &earthArmy, &alienArmy); 
 			}
 		}
+		//HealUnit* huptr = nullptr;
+		//gameManager.removeHU(huptr);
+		//if (huptr) gameManager.AddToKilled(huptr);
 
 		//if (X > 0 && X <= 10)
 		//{
