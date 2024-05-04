@@ -40,6 +40,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "Tj"
 	<< setw(6) << left << "Df"
 	<< setw(6) << left << "Dd"
+	<< setw(6) << left << "Ta"
 	<< setw(6) << left << "Db" << endl; 
 
 	float ESumDd = 0, ESumDb = 0, ESumDf = 0, ASumDd = 0, ASumDb = 0, ASumDf = 0, EarthKilled = 0, AlienKilled = 0;
@@ -66,6 +67,7 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 		<< setw(6) << left << Current->getItem()->GetJoinTime()
 		<< setw(6) << left << Current->getItem()->GetDf()
 		<< setw(6) << left << Current->getItem()->GetDd()
+		<< setw(6) << left << Current->getItem()->GetTa()
 		<< setw(6) << left << Current->getItem()->GetDb() << endl;
 		Current = Current->getNext();
 	}
@@ -150,9 +152,9 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "DdAVG"
 	<< setw(6) << left << "DbAVG" << endl;
 	OutputFile
-	<< setw(6) << left << round(ASumDf)
-	<< setw(6) << left << round(ASumDd / KilledCount)
-	<< setw(6) << left << round(ASumDb / KilledCount) << endl <<endl;
+	<< setw(6) << left << round(ASumDf / AlienKilled)
+	<< setw(6) << left << round(ASumDd / AlienKilled)
+	<< setw(6) << left << round(ASumDb / AlienKilled) << endl <<endl;
 	if (ASumDb == 0)
 	{
 		OutputFile << "Db Of Alien is 0 cant generate Alien Dd/Db% or Earth Df/Db%" << endl;
