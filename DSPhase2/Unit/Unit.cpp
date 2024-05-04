@@ -14,11 +14,6 @@ int Unit::GetId()
 	return id;
 }
 
-int Unit::GetJoinTime()
-{
-	return jointime;
-}
-
 double Unit::GetHealth()
 {
 	return health;
@@ -29,19 +24,14 @@ int Unit::GetPower()
 	return power;
 }
 
-void Unit::SetHealth(double H)
-{
-	health = H;
-}
-
-void Unit::SetJT(int Timestep)
-{
-	jointime = Timestep;
-}
-
 int Unit::GetAttackCapacity()
 {
 	return attackCapacity;
+}
+
+int Unit::GetJoinTime()
+{
+	return jointime;
 }
 
 int Unit::GetTa()
@@ -56,22 +46,27 @@ int Unit::GetTd()
 
 int Unit::GetDf()
 {
-	return (Ta-jointime);
+	return (Ta - jointime);
 }
 
 int Unit::GetDd()
 {
-	return (Td-Ta);
+	return (Td - Ta);
 }
 
 int Unit::GetDb()
 {
-	return (Td-jointime);
+	return (Td - jointime);
 }
 
 double Unit::GetUAP()
 {
 	return UAP;
+}
+
+void Unit::SetJT(int Timestep)
+{
+	jointime = Timestep;
 }
 
 void Unit::SetTa(int ta)
@@ -88,12 +83,8 @@ void Unit::SetUAP(double damage)
 {
 	UAP = damage;
 }
-int Unit::GetJTUML()
-{
-	return JTUML;
-}
 
-void Unit::SetJTUML(int jtuml)
+void Unit::SetHealth(double H)
 {
-	JTUML = jtuml;
+	health = H;
 }
