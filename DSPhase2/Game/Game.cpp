@@ -227,6 +227,50 @@ bool Game::removeETFromUML(EarthTank*& etptr)
 	}
 }
 
+bool Game::CheckESUMLKilled()
+{
+	Node<EarthTank*>* TraverseTank1 = ETUML.getfrontPtr();
+	Node<EarthTank*>* TraverseTank2 = TraverseTank1;
+	while (TraverseTank1)
+	{
+		if ((TimeStep - (TraverseTank1->getItem()->GetJTUML()) >= 10))
+		{
+			AddToKilled((Unit*)TraverseTank1);
+			ETUMLcount--;
+			TraverseTank2->setNext(TraverseTank1->getNext());
+			TraverseTank1->setNext(nullptr);
+			delete TraverseTank1;
+			TraverseTank1 = nullptr;
+			return  true;
+		}
+		TraverseTank2 = TraverseTank1;
+		TraverseTank1 = TraverseTank1->getNext();
+	}
+	return false;
+}
+
+bool Game::CheckETUMLKilled()
+{
+	Node<EarthTank*>* TraverseTank1 = ETUML.getfrontPtr();
+	Node<EarthTank*>* TraverseTank2 = TraverseTank1;
+	while (TraverseTank1)
+	{
+		if ((TimeStep - (TraverseTank1->getItem()->GetJTUML()) >= 10))
+		{
+			AddToKilled((Unit*)TraverseTank1);
+			ETUMLcount--;
+			TraverseTank2->setNext(TraverseTank1->getNext());
+			TraverseTank1->setNext(nullptr);
+			delete TraverseTank1;
+			TraverseTank1 = nullptr;
+			return  true;
+		}
+		TraverseTank2 = TraverseTank1;
+		TraverseTank1 = TraverseTank1->getNext();
+	}
+	return false;
+}
+
 void Game::printUML()
 {
 	if (ESUML.isEmpty() && ETUML.isEmpty())
@@ -483,6 +527,8 @@ void Game::StartGame()
 				EG->Attack(&gameManager, &earthArmy, &alienArmy); 
 			}
 		}
+
+		//while(CheckUMLKilled());
 
 		//if (X > 0 && X <= 10)
 		//{

@@ -9,6 +9,17 @@ string EarthTank::GetType()
 	return type;
 }
 
+
+int EarthTank::GetJTUML()
+{
+	return JTUML;
+}
+
+void EarthTank::SetJTUML(int jtuml)
+{
+	JTUML = jtuml;
+}
+
 void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
 	LinkedQueue<AlienSoldier*>tempAS;

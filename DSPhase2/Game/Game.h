@@ -20,14 +20,14 @@ class Game
 
 	LinkedQueue <Unit*> TL;
 
+	StackList <HealUnit*> HL;
+	int HUcount = 0;
+
 	priQueue <EarthSoldier*> ESUML;
 	int ESUMLcount = 0;
 
 	LinkedQueue <EarthTank*> ETUML;
 	int ETUMLcount = 0;
-
-	StackList <HealUnit*> HL;
-	int HUcount = 0;
 
 	float KilledCount = 0;
 	float ESKilledcount = 0;
@@ -55,6 +55,12 @@ public:
 	void Readinput();
 	void ProduceOutput(EarthArmy* earmy, AlienArmy* Aarmy);
 
+	bool isEmpty_HL();
+	bool addHU(int jt, double H, int P, int AttC, EarthArmy*& earmy);
+	bool removeHU(HealUnit*& hu);
+	void printHL();
+	StackList <HealUnit*> getHL();
+
 	bool isEmpty_ESUML();
 	bool addESToUML(EarthSoldier* esptr);
 	bool removeESFromUML(EarthSoldier*& esptr, int& pri);
@@ -63,13 +69,10 @@ public:
 	bool addETToUML(EarthTank* etptr);
 	bool removeETFromUML(EarthTank*& etptr);
 
-	void printUML();
+	bool CheckESUMLKilled();
+	bool CheckETUMLKilled();
 
-	bool isEmpty_HL();
-	bool addHU(int jt, double H, int P, int AttC,EarthArmy*& earmy);
-	bool removeHU(HealUnit*& hu);
-	void printHL();
-	StackList <HealUnit*> getHL();
+	void printUML();
 
 	void StartGame();
 	int GetTimeStep();
