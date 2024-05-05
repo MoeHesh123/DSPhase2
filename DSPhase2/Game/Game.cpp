@@ -509,7 +509,7 @@ void Game::StartGame()
 	srand((unsigned)time(0));
 	int X = 0;
 
-	for (int Timestep = 1; Timestep <= 50; Timestep++)
+	for (int Timestep = 1; Timestep <= 200; Timestep++)
 	{
 		gameManager.SetTimeStep(Timestep);
 		X = 1 + (rand() % 100);
