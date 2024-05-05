@@ -144,11 +144,11 @@ void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
         }
         while (tempEG.dequeue(EG))
         {
-            alienarmy->ReAddAlienUnit(EG);
+            eartharmy->ReAddEarthUnit(EG);
         }
         while (tempET.dequeue(ET))
         {
-            alienarmy->ReAddAlienUnit(ET);
+            eartharmy->ReAddEarthUnit(ET);
         }
     }
 
