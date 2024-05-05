@@ -40,6 +40,8 @@ class Game
 
 	int TimeStep = 1;
 
+	int EndGame;
+
 public:
 
 	input in;
@@ -48,7 +50,7 @@ public:
 	void PrintKilledList();
 
 	void Readinput();
-	void ProduceOutput(EarthArmy* earmy, AlienArmy* Aarmy);
+	void ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* Aarmy);
 
 	bool isEmpty_HL();
 	bool addHU(int jt, double H, int P, int AttC, EarthArmy*& earmy);
@@ -71,4 +73,7 @@ public:
 	int GetTimeStep();
 	void SetTimeStep(int TS);
 
+	bool ContinueGame(Game* game, EarthArmy* earmy, AlienArmy* aarmy);
+	void SetEndGameCondition(int flag);
+	int GetEndGameCondition();
 };
