@@ -27,7 +27,11 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 				game->removeESFromUML(ES, PRI);
 				if (ES)
 				{
-					if ((game->GetTimeStep() - ES->GetJTUML()) >= 10) game->AddToKilled(ES);
+					if ((game->GetTimeStep() - ES->GetJTUML()) >= 10)
+					{
+						ES->SetTd(game->GetTimeStep());
+				        game->AddToKilled(ES);
+					}
 					else
 					{
 						double OGH = ES->GetHealth();
@@ -46,7 +50,11 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 				game->removeETFromUML(ET);
 				if (ET)
 				{
-					if ((game->GetTimeStep() - ET->GetJTUML()) >= 10) game->AddToKilled(ET);
+					if ((game->GetTimeStep() - ET->GetJTUML()) >= 10)
+					{
+						ET->SetTd(game->GetTimeStep());
+						game->AddToKilled(ET);
+					}
 					else
 					{
 						double OGH = ET->GetHealth();

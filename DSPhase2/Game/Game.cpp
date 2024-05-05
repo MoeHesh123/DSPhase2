@@ -628,10 +628,13 @@ void Game::StartGame()
 			cout << "Press any key to move to next timestep" << endl;
 			cin.get();
 		}
-		if (!(gameManager.ContinueGame(&gameManager, &earthArmy, &alienArmy)))
+		if (gameManager.GetTimeStep() >= 40)
 		{
-			if (x == 1) cout << "Game Ended !";
-			break;
+			if (!(gameManager.ContinueGame(&gameManager, &earthArmy, &alienArmy)))
+			{
+				if (x == 1) cout << "Game Ended !" << endl;
+				break;
+			}
 		}
 	}
 	if (x == 2)
@@ -646,9 +649,14 @@ void Game::StartGame()
 
 bool Game::ContinueGame(Game* game,EarthArmy* earmy, AlienArmy* aarmy)
 {
-	if (aarmy->GetAlienCount() == 0)
+	if (aarmy->GetAlienCount() == 0 && earmy->GetEarthCount() == 0)
 	{
-		game->SetEndGameCondition(2);
+		game->SetEndGameCondition(0);
+		return false;
+	}
+	else if (game->GetTimeStep() == 200)
+	{
+		game->SetEndGameCondition(0);
 		return false;
 	}
 	else if (earmy->GetEarthCount() == 0)
@@ -656,9 +664,9 @@ bool Game::ContinueGame(Game* game,EarthArmy* earmy, AlienArmy* aarmy)
 		game->SetEndGameCondition(1);
 		return false;
 	}
-	else if(game->GetTimeStep() == 150)
+    else if (aarmy->GetAlienCount() == 0)
 	{
-		game->SetEndGameCondition(0);
+		game->SetEndGameCondition(2);
 		return false;
 	}
 	return true;
