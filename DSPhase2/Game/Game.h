@@ -42,7 +42,7 @@ class Game
 
 	int TimeStep = 1;
 
-	int EndGame;
+	int EndGameCondition = 0;
 
 public:
 

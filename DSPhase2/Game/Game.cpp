@@ -576,15 +576,15 @@ void Game::StartGame()
 			}
 		}
 
-		//AlienDrone* AD;
-		//if (!alienArmy.isEmpty_AD())
-		//{
-		//	alienArmy.peekADfront(AD);
-		//	if (AD)
-		//	{
-		//		AD->Attack(&gameManager, &earthArmy, &alienArmy);
-		//	}
-		//}
+		AlienDrone* AD;
+		if (!alienArmy.isEmpty_AD())
+		{
+			alienArmy.peekADfront(AD);
+			if (AD)
+			{
+				AD->Attack(&gameManager, &earthArmy, &alienArmy);
+			}
+		}
 
 		AlienMonster* AM;
 		if (!alienArmy.isEmpty_AM()) 
@@ -626,8 +626,12 @@ void Game::StartGame()
 			gameManager.PrintKilledList();
 
 			cout << "Press any key to move to next timestep" << endl;
-			gameManager.ContinueGame(&gameManager, &earthArmy, &alienArmy);
 			cin.get();
+		}
+		if (!(gameManager.ContinueGame(&gameManager, &earthArmy, &alienArmy)))
+		{
+			if (x == 1) cout << "Game Ended !";
+			break;
 		}
 	}
 	if (x == 2)
@@ -652,7 +656,7 @@ bool Game::ContinueGame(Game* game,EarthArmy* earmy, AlienArmy* aarmy)
 		game->SetEndGameCondition(1);
 		return false;
 	}
-	else
+	else if(game->GetTimeStep() == 150)
 	{
 		game->SetEndGameCondition(0);
 		return false;
@@ -662,10 +666,10 @@ bool Game::ContinueGame(Game* game,EarthArmy* earmy, AlienArmy* aarmy)
 
 void Game::SetEndGameCondition(int flag)
 {
-	EndGame = flag;
+	EndGameCondition = flag;
 }
 
 int Game::GetEndGameCondition()
 {
-	return EndGame;
+	return EndGameCondition;
 }
