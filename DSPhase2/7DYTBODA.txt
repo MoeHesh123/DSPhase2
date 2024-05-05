@@ -1,0 +1,55 @@
+File Name: 7DYTBODA
+
+============================================================================
+Killed Units: 14
+Td    ID    Tj    Df    Dd    Ta    Db    
+3     2     2     0     1     2     1     
+6     2002  2     0     4     2     4     
+9     2005  2     0     7     2     7     
+9     7     2     1     6     3     7     
+26    41    13    13    0     26    13    
+37    16    7     4     26    11    30    
+40    2003  2     0     38    2     38    
+47    17    7     5     35    12    40    
+52    2007  2     0     50    2     50    
+53    46    14    14    25    28    39    
+58    12    6     2     50    8     52    
+61    2122  36    5     20    41    25    
+66    2008  6     1     59    7     60    
+72    60    18    18    36    36    54    
+============================================================================
+============================================================================
+Total Earth Army Units Alive: 
+ES    ET    EG    HU    ESUML ETUML 
+210   0     0     51    3     1     
+8     0     0     0     
+
+Percentage Of Destructed Earth Units Relative To Their Total: 
+4     0     -nan(ind)0     
+
+Percentage Of Total Destructed Earth units Relative To Total Earth Units: 3
+
+Average of Df,Dd & Db for Earth Units:
+DfAVG DdAVG DbAVG 
+7     22    30    
+
+Earth Df/Db%: 24
+Earth Dd/Db%: 76
+============================================================================
+Total Alien Army Units Alive: 
+AS    AM    AD    
+237   32    26    
+5     0     1     
+
+Percentage Of Destructed Alien Units Relative To Their Total: 
+2     0     4     
+
+Percentage Of Total Destructed Alien units Relative To Total Alien Units: 2
+
+Average of Df,Dd & Db for Alien Units: 
+DfAVG DdAVG DbAVG 
+1     30    31    
+
+Alien Df/Db%: 3
+Alien Dd/Db%: 97
+============================================================================

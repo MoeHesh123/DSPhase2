@@ -18,9 +18,10 @@ void AlienSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
 
     for (int i = 0; i < attackCapacity; i++)
     {
-        eartharmy->removeES(ESp);
-        if (ESp)
+        
+        if (!eartharmy->isEmpty_ES()) 
         {
+            eartharmy->removeES(ESp); 
             double oghealth = ESp->GetHealth();
             ESp->SetHealth(ESp->GetHealth() - (ASp->GetPower() * ((ASp->GetHealth()) / 100)) / sqrt(ESp->GetHealth()));
             if (ESp->GetTa() == 0)
