@@ -65,6 +65,22 @@ public:
 	{
 		return top;
 	}
+	void PrintStackList() {
+		Node<T*>* Traversal = top;
+		StackList<T> S;
+		while (Traversal)
+		{
+			S.push(Traversal->getItem());
+			Traversal = Traversal->getNext();
+		}
+		Node<T>* Current = S.gettop();
+		while (Current->getNext())
+		{
+			cout << Current->getItem() << ", ";
+			Current = Current->getNext();
+		}
+		cout << Current->getItem();
+	}
 
 	~StackList()
 	{

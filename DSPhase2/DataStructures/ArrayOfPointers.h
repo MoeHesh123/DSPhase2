@@ -78,6 +78,14 @@ public:
     {
         return *arr[i];
     }
+    void PrintArrayOfPointers() 
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (i == count - 1) cout << getitem(i);
+            else cout <<getitem(i) << ", ";
+        }
+    }
 
     ~bag()
     {

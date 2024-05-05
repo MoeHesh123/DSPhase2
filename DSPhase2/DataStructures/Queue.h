@@ -66,6 +66,16 @@ public:
 	{
 		return frontPtr;
 	}
+	void PrintQueue() 
+	{
+		Node<T*>* Traversal = frontPtr;
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()<< ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem();
+	}
 
 	~LinkedQueue()
 	{
@@ -83,6 +93,7 @@ public:
 			NodePtr = NodePtr->getNext();
 		}
 	}
+
 
 };
 #endif

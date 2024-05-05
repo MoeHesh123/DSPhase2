@@ -71,6 +71,16 @@ public:
     {
         return head;
     }
+    void PrintPriQueue()
+    {
+        Node<T*>* Traversal = head;
+        while (Traversal->getNext())
+        {
+            cout << Traversal->getItem() << ", ";
+            Traversal = Traversal->getNext();
+        }
+        cout << Traversal->getItem();
+    }
 
     ~priQueue()
     {

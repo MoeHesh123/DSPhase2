@@ -107,6 +107,16 @@ public:
 	{
 		return frontPtr;
 	}
+	void PrintDoubledEndedQueue()
+	{
+		Node<T*>* Traversal = frontPtr;
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem();
+	}
 
 	~DoubleEndedQueueList()
 	{
