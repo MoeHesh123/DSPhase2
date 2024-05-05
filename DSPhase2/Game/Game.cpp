@@ -38,7 +38,7 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "Tj"
 	<< setw(6) << left << "Df"
 	<< setw(6) << left << "Dd"
-	<< setw(6) << left << "Ta"
+	//<< setw(6) << left << "Ta"
 	<< setw(6) << left << "Db" << endl; 
 
 	float ESumDd = 0, ESumDb = 0, ESumDf = 0, ASumDd = 0, ASumDb = 0, ASumDf = 0, EarthKilled = 0, AlienKilled = 0;
@@ -65,7 +65,7 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 		<< setw(6) << left << Current->getItem()->GetJoinTime()
 		<< setw(6) << left << Current->getItem()->GetDf()
 		<< setw(6) << left << Current->getItem()->GetDd()
-		<< setw(6) << left << Current->getItem()->GetTa()
+		//<< setw(6) << left << Current->getItem()->GetTa()
 		<< setw(6) << left << Current->getItem()->GetDb() <<endl;
 		Current = Current->getNext();
 	}
@@ -74,7 +74,7 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 
 	OutputFile << "Battle result: ";
 	if (game->GetEndGameCondition() == 2) OutputFile << "Earth Army Won!";
-	else if (game->GetEndGameCondition() == 1) OutputFile << "Alien Army Won!";
+	else if (game->GetEndGameCondition() == 1) OutputFile << "Earth Army Lost!";
 	else OutputFile << "Draw!";
 
 	OutputFile << endl << "============================================================================" << endl;
@@ -83,19 +83,15 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 	<< "Total Earth Army Units Alive: " << endl
 	<< setw(6) << left << "ES"
 	<< setw(6) << left << "ET"
-	<< setw(6) << left << "EG" 
-	<< setw(6) << left << "ESUML"
-	<< setw(6) << left << "ETUML" << endl;
+	<< setw(6) << left << "EG" << endl;
 	OutputFile 
 	<< setw(6) << left << earmy->getEScount()
 	<< setw(6) << left << earmy->getETcount()
-	<< setw(6) << left << earmy->getEGcount()
-	<< setw(6) << left << ESUMLcount
-	<< setw(6) << left << ETUMLcount << endl;
-	OutputFile
-	<< setw(6) << left << ESKilledcount
-	<< setw(6) << left << ETKilledcount
-	<< setw(6) << left << EGKilledcount;
+	<< setw(6) << left << earmy->getEGcount() << endl;
+	//OutputFile
+	//<< setw(6) << left << ESKilledcount
+	//<< setw(6) << left << ETKilledcount
+	//<< setw(6) << left << EGKilledcount;
 
 	OutputFile << endl << endl << "Percentage Of Destructed Earth Units Relative To Their Total: " << endl
 	<< setw(6) << left << "ES"
@@ -156,10 +152,11 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << aarmy->getAScount()
 	<< setw(6) << left << aarmy->getAMcount()
 	<< setw(6) << left << aarmy->getADcount() << endl;
-	OutputFile
-	<< setw(6) << left << ASKilledcount
-	<< setw(6) << left << AMKilledcount
-	<< setw(6) << left << ADKilledcount;
+	//OutputFile
+	//<< setw(6) << left << ASKilledcount
+	//<< setw(6) << left << AMKilledcount
+	//<< setw(6) << left << ADKilledcount;
+
 	OutputFile << endl << endl << "Percentage Of Destructed Alien Units Relative To Their Total: " << endl
 	<< setw(6) << left << "AS"
 	<< setw(6) << left << "AM"
