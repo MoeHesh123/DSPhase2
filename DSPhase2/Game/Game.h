@@ -55,6 +55,7 @@ public:
 	bool isEmpty_HL();
 	bool addHU(int jt, double H, int P, int AttC, EarthArmy*& earmy);
 	bool removeHU(HealUnit*& hu);
+    void ReAddHealUnit(HealUnit* hu);
 	void printHL();
 
 	bool isEmpty_ESUML();

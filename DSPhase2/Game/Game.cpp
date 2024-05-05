@@ -381,6 +381,11 @@ bool Game::removeHU(HealUnit*& hu)
 		return true;
 	}
 }
+void Game::ReAddHealUnit(HealUnit* hu)
+{
+	HL.push(hu);
+	HUcount++;
+}
 void Game::printHL()
 {
 	if (HL.isEmpty())

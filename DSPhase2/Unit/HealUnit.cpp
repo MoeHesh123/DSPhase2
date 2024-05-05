@@ -11,8 +11,10 @@ string HealUnit::GetType()
 
 void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
-	LinkedQueue<Unit*> Temp;
+	LinkedQueue<EarthSoldier*> TempES;
+	LinkedQueue<EarthTank*> TempET;
 	HealUnit* HU = nullptr;
+	bool HealCheck = false;
 	game->removeHU(HU);
 	if (HU)
 	{
@@ -25,9 +27,43 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 				game->removeESFromUML(ES, PRI);
 				if (ES)
 				{
-					double OGH = ES->GetHealth();
+					if ((game->GetTimeStep() - ES->GetJTUML()) >= 10) game->AddToKilled(ES);
+					else
+					{
+						double OGH = ES->GetHealth();
+						double HealthImprovement = (((HU->GetPower() * HU->GetHealth()) / 100) / sqrt(ES->GetHealth()));
+						ES->SetHealth(ES->GetHealth() + HealthImprovement);
+						if (ES->GetHealth() >= 0.2 * OGH) eartharmy->ReAddEarthUnit(ES);
+						else TempES.enqueue(ES);
+					}
 				}
+				HealCheck = true;
 			}
+			else if (!(game->isEmpty_ETUML()))
+			{
+				EarthTank* ET = nullptr;
+				game->removeETFromUML(ET);
+				if (ET)
+				{
+					if ((game->GetTimeStep() - ET->GetJTUML()) >= 10) game->AddToKilled(ET);
+					else
+					{
+						double OGH = ET->GetHealth();
+						double HealthImprovement = (((power * health) / 100) / sqrt(ET->GetHealth()));
+						ET->SetHealth(ET->GetHealth() + HealthImprovement);
+						if (ET->GetHealth() >= 0.2 * OGH) eartharmy->ReAddEarthUnit(ET);
+						else TempET.enqueue(ET);
+					}
+				}
+				HealCheck = true;
+			}
+			else break;
 		}
+		if (HealCheck) game->AddToKilled(HU);
+		else game->ReAddHealUnit(HU);
+		EarthSoldier* es = nullptr;
+		while (TempES.dequeue(es)) game->addESToUML(es);
+		EarthTank* et = nullptr;
+		while (TempET.dequeue(et)) game->addETToUML(et);
 	}
 }
