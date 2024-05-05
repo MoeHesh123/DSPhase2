@@ -29,6 +29,8 @@ class Game
 	LinkedQueue <EarthTank*> ETUML;
 	int ETUMLcount = 0;
 
+	int HealedCount = 0;
+
 	float KilledCount = 0;
 	float ESKilledcount = 0;
 	float ETKilledcount = 0;
@@ -70,6 +72,9 @@ public:
 	//bool CheckETUMLKilled();
 
 	void printUML();
+
+	int GetHealedCount();
+	void IncrementHealedCount();
 
 	void StartGame();
 	int GetTimeStep();

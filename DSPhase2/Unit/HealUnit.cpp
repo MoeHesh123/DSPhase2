@@ -33,6 +33,7 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						double OGH = ES->GetHealth();
 						double HealthImprovement = (((HU->GetPower() * HU->GetHealth()) / 100) / sqrt(ES->GetHealth()));
 						ES->SetHealth(ES->GetHealth() + HealthImprovement);
+						game->IncrementHealedCount();
 						if (ES->GetHealth() >= 0.2 * OGH) eartharmy->ReAddEarthUnit(ES);
 						else TempES.enqueue(ES);
 					}
@@ -51,6 +52,7 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						double OGH = ET->GetHealth();
 						double HealthImprovement = (((power * health) / 100) / sqrt(ET->GetHealth()));
 						ET->SetHealth(ET->GetHealth() + HealthImprovement);
+						game->IncrementHealedCount();
 						if (ET->GetHealth() >= 0.2 * OGH) eartharmy->ReAddEarthUnit(ET);
 						else TempET.enqueue(ET);
 					}

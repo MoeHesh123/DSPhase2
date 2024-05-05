@@ -45,7 +45,7 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 
 	while (Current) 
 	{
-		if ((Current->getItem()->GetType() == "ES") || (Current->getItem()->GetType() == "ET") || (Current->getItem()->GetType() == "EG") || (Current->getItem()->GetType() == "HU"))
+		if ((Current->getItem()->GetType() == "ES") || (Current->getItem()->GetType() == "ET") || (Current->getItem()->GetType() == "EG"))
 		{
 			EarthKilled++;
 			ESumDd += Current->getItem()->GetDd();
@@ -84,27 +84,23 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "ES"
 	<< setw(6) << left << "ET"
 	<< setw(6) << left << "EG" 
-	<< setw(6) << left << "HU"
 	<< setw(6) << left << "ESUML"
 	<< setw(6) << left << "ETUML" << endl;
 	OutputFile 
 	<< setw(6) << left << earmy->getEScount()
 	<< setw(6) << left << earmy->getETcount()
 	<< setw(6) << left << earmy->getEGcount()
-	<< setw(6) << left << HUcount 
 	<< setw(6) << left << ESUMLcount
 	<< setw(6) << left << ETUMLcount << endl;
 	OutputFile
 	<< setw(6) << left << ESKilledcount
 	<< setw(6) << left << ETKilledcount
-	<< setw(6) << left << EGKilledcount
-	<< setw(6) << left << HUKilledcount;
+	<< setw(6) << left << EGKilledcount;
 
 	OutputFile << endl << endl << "Percentage Of Destructed Earth Units Relative To Their Total: " << endl
 	<< setw(6) << left << "ES"
 	<< setw(6) << left << "ET"
-	<< setw(6) << left << "EG"
-	<< setw(6) << left << "HU" << endl;
+	<< setw(6) << left << "EG" << endl;
 
 	if ((earmy->getEScount() + ESKilledcount + ESUMLcount) == 0) OutputFile << setw(6) << left << "0";
 	else OutputFile << setw(6) << left << round((ESKilledcount / (earmy->getEScount() + ESKilledcount + ESUMLcount)) * 100);
@@ -115,12 +111,13 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 	if ((earmy->getEGcount() + EGKilledcount) == 0) OutputFile << setw(6) << left << "0";
 	else OutputFile << setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100);
 
-	if ((HUcount + HUKilledcount) == 0) OutputFile << setw(6) << left << "0";
-	else OutputFile << setw(6) << left << round((HUKilledcount / (HUcount + HUKilledcount)) * 100);
+	OutputFile << endl << endl << "Percentage Of Earth Units Healed Relative To Their Total: ";
+	if ((earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) == 0) OutputFile << "0";
+	else OutputFile << round(game->GetHealedCount() / (earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) * 100);
 
 	OutputFile << endl << endl << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: ";
-	if((earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + HUcount + ESUMLcount + ETUMLcount) == 0) OutputFile <<"0";
-	else OutputFile << round(EarthKilled / (earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + HUcount + ESUMLcount + ETUMLcount) * 100);
+	if((earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) == 0) OutputFile <<"0";
+	else OutputFile << round(EarthKilled / (earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) * 100);
 
 	OutputFile << endl << endl << "Average of Df,Dd & Db for Earth Units:" <<endl
 	<< setw(6) << left << "DfAVG"
@@ -202,7 +199,7 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 
 	OutputFile << endl << endl << "Alien Df/Db%: ";
 	if (ASumDb == 0) OutputFile << "0";
-	else OutputFile << round((ASumDf / ASumDb) * 100) << endl;
+	else OutputFile << round((ASumDf / ASumDb) * 100);
 	OutputFile << endl << "Alien Dd/Db%: ";
 	if (ASumDb == 0) OutputFile << "0";
 	else OutputFile << round((ASumDd / ASumDb) * 100);
@@ -351,6 +348,16 @@ void Game::printUML()
 		cout << Traversal2->getItem()->GetId();
 	}
 	cout << "]" << endl;
+}
+
+int Game::GetHealedCount()
+{
+	return HealedCount;
+}
+
+void Game::IncrementHealedCount()
+{
+	HealedCount++;
 }
 
 bool Game::isEmpty_HL()
