@@ -87,7 +87,7 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 	OutputFile 
 	<< setw(6) << left << earmy->getEScount()
 	<< setw(6) << left << earmy->getETcount()
-	<< setw(6) << left << earmy->getEGcount() << endl;
+	<< setw(6) << left << earmy->getEGcount();
 	//OutputFile
 	//<< setw(6) << left << ESKilledcount
 	//<< setw(6) << left << ETKilledcount
@@ -151,7 +151,7 @@ void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 	OutputFile
 	<< setw(6) << left << aarmy->getAScount()
 	<< setw(6) << left << aarmy->getAMcount()
-	<< setw(6) << left << aarmy->getADcount() << endl;
+	<< setw(6) << left << aarmy->getADcount();
 	//OutputFile
 	//<< setw(6) << left << ASKilledcount
 	//<< setw(6) << left << AMKilledcount
