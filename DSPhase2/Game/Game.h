@@ -45,11 +45,6 @@ public:
 	input in;
 
 	void AddToKilled(Unit* Unit);
-
-	void AddToTempList(Unit* Unit);
-
-	void RemoveFromTempList(Unit* Unit);
-
 	void PrintKilledList();
 
 	void Readinput();
@@ -59,17 +54,15 @@ public:
 	bool addHU(int jt, double H, int P, int AttC, EarthArmy*& earmy);
 	bool removeHU(HealUnit*& hu);
 	void printHL();
-	StackList <HealUnit*> getHL();
 
 	bool isEmpty_ESUML();
 	bool addESToUML(EarthSoldier* esptr);
 	bool removeESFromUML(EarthSoldier*& esptr, int& pri);
+	bool CheckESUMLKilled();
 
 	bool isEmpty_ETUML();
 	bool addETToUML(EarthTank* etptr);
 	bool removeETFromUML(EarthTank*& etptr);
-
-	bool CheckESUMLKilled();
 	bool CheckETUMLKilled();
 
 	void printUML();

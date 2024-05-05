@@ -365,11 +365,6 @@ void Game::printHL()
 	cout << "]" << endl;
 }
 
-StackList<HealUnit*> Game::getHL()
-{
-	return HL;
-}
-
 void Game::AddToKilled(Unit* unit)
 {
 	if (unit)
@@ -437,15 +432,6 @@ void Game::PrintKilledList()
 	cout << "]" << endl;
 }
 
-void Game::AddToTempList(Unit* unit)
-{
-	if (unit != nullptr) TL.enqueue(unit);
-}
-
-void Game::RemoveFromTempList(Unit* unit)
-{
-	TL.dequeue(unit);
-}
 int Game::GetTimeStep()
 {
 	return TimeStep;
@@ -514,7 +500,6 @@ void Game::StartGame()
 				ET->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
-
 		EarthGunnery* EG;
 		int p = 0;
 		if (!earthArmy.isEmpty_EG())
@@ -540,8 +525,6 @@ void Game::StartGame()
 			alienArmy.peekADfront(AD);
 			if (AD)
 			{
-
-
 				AD->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 
@@ -552,7 +535,6 @@ void Game::StartGame()
 			alienArmy.peekAM(AM); 
 			if (AM) 
 			{
-
 				AM->Attack(&gameManager, &earthArmy, &alienArmy); 
 			}
 		}
@@ -566,96 +548,6 @@ void Game::StartGame()
 		//while (gameManager.CheckESUMLKilled());
 		//while (gameManager.CheckETUMLKilled());
 
-		//if (X > 0 && X <= 10)
-		//{
-		//	EarthSoldier* esptr = nullptr;
-		//	earthArmy.removeES(esptr);
-		//	if (esptr)
-		//	{
-		//		double h = esptr->GetHealth();
-		//		esptr->SetHealth(esptr->GetHealth() - 50);
-		//		if (esptr->GetHealth() <= 0) gameManager.AddToKilled(esptr);
-		//		else if ((esptr->GetHealth()) <= (0.5 * h)) gameManager.addESToUML(esptr);
-		//		else earthArmy.ReAddEarthUnit(esptr);
-		//	}
-		//}
-		//else if (X > 10 && X <= 20)
-		//{
-		//	EarthTank* etptr = nullptr;
-		//	earthArmy.peekET(etptr);
-		//	if (etptr)
-		//	{
-		//		double h = etptr->GetHealth();
-		//		etptr->SetHealth(etptr->GetHealth() - 50);
-		//		if (etptr->GetHealth() <= 0) gameManager.AddToKilled(etptr);
-		//		else if ((etptr->GetHealth()) <= (0.5 * h)) gameManager.addETToUML(etptr);
-		//		else earthArmy.ReAddEarthUnit(etptr);
-		//	}
-		//}
-		//else if (X > 20 && X <= 30)
-		//{
-			//EarthGunnery* egptr = nullptr;
-			//int Priority = 0;
-			//earthArmy.removeEG(egptr, Priority);
-			//if (egptr)
-			//{
-			//	double h = egptr->GetHealth();
-			//	egptr->SetHealth(egptr->GetHealth() - 50);
-			//	if (egptr->GetHealth() <= 0) gameManager.AddToKilled(egptr);
-			//	else earthArmy.ReAddEarthUnit(egptr);
-			//}
-		//}
-		//else if (X > 30 && X <= 40)
-		//{
-		//	AlienSoldier* asptr = nullptr;
-		//	alienArmy.removeAS(asptr);
-		//	if (asptr)
-		//	{
-		//		double h = asptr->GetHealth();
-		//		asptr->SetHealth(asptr->GetHealth() - 50);
-		//		if (asptr->GetHealth() <= 0) gameManager.AddToKilled(asptr);
-		//		else alienArmy.ReAddAlienUnit(asptr);
-		//	}
-		//}
-		//else if (X > 40 && X <= 50)
-		//{
-		//	AlienMonster* amptr = nullptr;
-		//	alienArmy.removeAM(amptr);
-		//	if (amptr)
-		//	{
-		//		double h = amptr->GetHealth();
-		//		amptr->SetHealth(amptr->GetHealth() - 50);
-		//		if (amptr->GetHealth() <= 0) gameManager.AddToKilled(amptr);
-		//		else alienArmy.ReAddAlienUnit(amptr);
-		//	}
-		//}
-		//else if (X > 50 && X <= 60)
-		//{
-		//	AlienDrone* adptr1 = nullptr;
-		//	AlienDrone* adptr2 = nullptr;
-		//	alienArmy.removeAD(adptr1, adptr2);
-		//	if (adptr1)
-		//	{
-		//		double h = adptr1->GetHealth();
-		//		adptr1->SetHealth(adptr1->GetHealth() - 50);
-		//		if (adptr1->GetHealth() <= 0) gameManager.AddToKilled(adptr1);
-		//		else alienArmy.ReAddAlienUnit(adptr1);
-		//	}
-		//	if (adptr2)
-		//	{
-		//		double h = adptr2->GetHealth();
-		//		adptr2->SetHealth(adptr2->GetHealth() - 50);
-		//		if (adptr2->GetHealth() <= 0) gameManager.AddToKilled(adptr2);
-		//		else alienArmy.ReAddAlienUnit(adptr2);
-		//	}
-		//}
-		//else if (X > 60 && X <= 70)
-		//{
-		//	HealUnit* huptr = nullptr;
-		//	gameManager.removeHU(huptr);
-		//	if (huptr) gameManager.AddToKilled(huptr);
-		//}
-	
 		if (x == 1)
 		{
 			cout << "==============  Earth Army Alive Units ========" << endl;
