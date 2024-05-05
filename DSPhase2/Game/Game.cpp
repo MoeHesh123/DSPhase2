@@ -496,8 +496,8 @@ void Game::StartGame()
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
 
-		EarthSoldier* ES;  
-		if (!(earthArmy.isEmpty_ES()))  
+		EarthSoldier* ES;
+		if (!(earthArmy.isEmpty_ES()))
 		{
 			earthArmy.peekES(ES);
 			if (ES)
@@ -505,44 +505,66 @@ void Game::StartGame()
 				ES->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
-		EarthTank* ET; 
-		if (!(earthArmy.isEmpty_ET())) 
+		EarthTank* ET;
+		if (!(earthArmy.isEmpty_ET()))
 		{
 			earthArmy.peekET(ET);
-			if (ET) 
+			if (ET)
 			{
-				ET->Attack(&gameManager, &earthArmy, &alienArmy); 
-			}
-		}
-		AlienSoldier* AS;  
-		if (!(alienArmy.isEmpty_AS()))  
-		{
-			alienArmy.peekAS(AS);  
-			if (AS)  
-			{
-				AS->Attack(&gameManager, &earthArmy, &alienArmy);  
-			}
-		}
-		EarthGunnery* EG; 
-		int p = 0;
-		if (!earthArmy.isEmpty_EG() 
-			)
-		{
-			earthArmy.peekEG(EG, p); 
-			if (EG) 
-			{
-				EG->Attack(&gameManager, &earthArmy, &alienArmy); 
+				ET->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
 
-		EarthSoldier* es1 = nullptr;
-		earthArmy.removeES(es1);
-		gameManager.addESToUML(es1);
-		EarthTank* et1 = nullptr;
-		earthArmy.removeET(et1);
-		gameManager.addETToUML(et1);
-		while (gameManager.CheckESUMLKilled());
-		while (gameManager.CheckETUMLKilled());
+		EarthGunnery* EG;
+		int p = 0;
+		if (!earthArmy.isEmpty_EG())
+		{
+			earthArmy.peekEG(EG, p);
+			if (EG)
+			{
+				EG->Attack(&gameManager, &earthArmy, &alienArmy);
+			}
+		}
+		AlienSoldier* AS;
+		if (!(alienArmy.isEmpty_AS()))
+		{
+			alienArmy.peekAS(AS);
+			if (AS)
+			{
+				AS->Attack(&gameManager, &earthArmy, &alienArmy);
+			}
+		}
+		AlienDrone* AD;
+		if (!alienArmy.isEmpty_AD())
+		{
+			alienArmy.peekADfront(AD);
+			if (AD)
+			{
+
+
+				AD->Attack(&gameManager, &earthArmy, &alienArmy);
+			}
+
+		}
+		AlienMonster* AM;
+		if (!alienArmy.isEmpty_AM()) 
+		{
+			alienArmy.peekAM(AM); 
+			if (AM) 
+			{
+
+				AM->Attack(&gameManager, &earthArmy, &alienArmy); 
+			}
+		}
+
+		//EarthSoldier* es1 = nullptr;
+		//earthArmy.removeES(es1);
+		//gameManager.addESToUML(es1);
+		//EarthTank* et1 = nullptr;
+		//earthArmy.removeET(et1);
+		//gameManager.addETToUML(et1);
+		//while (gameManager.CheckESUMLKilled());
+		//while (gameManager.CheckETUMLKilled());
 
 		//if (X > 0 && X <= 10)
 		//{
