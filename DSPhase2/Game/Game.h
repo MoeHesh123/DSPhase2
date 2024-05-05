@@ -62,12 +62,12 @@ public:
 	bool isEmpty_ESUML();
 	bool addESToUML(EarthSoldier* esptr);
 	bool removeESFromUML(EarthSoldier*& esptr, int& pri);
-	bool CheckESUMLKilled();
+	//bool CheckESUMLKilled();
 
 	bool isEmpty_ETUML();
 	bool addETToUML(EarthTank* etptr);
 	bool removeETFromUML(EarthTank*& etptr);
-	bool CheckETUMLKilled();
+	//bool CheckETUMLKilled();
 
 	void printUML();
 

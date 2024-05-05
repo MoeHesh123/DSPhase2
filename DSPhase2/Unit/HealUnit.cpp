@@ -59,7 +59,11 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 			}
 			else break;
 		}
-		if (HealCheck) game->AddToKilled(HU);
+		if (HealCheck) 
+		{
+			delete HU;
+			HU = nullptr;
+		}
 		else game->ReAddHealUnit(HU);
 		EarthSoldier* es = nullptr;
 		while (TempES.dequeue(es)) game->addESToUML(es);
