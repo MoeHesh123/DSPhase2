@@ -544,6 +544,7 @@ void Game::StartGame()
 				ES->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
+
 		EarthTank* ET;
 		if (!(earthArmy.isEmpty_ET()))
 		{
@@ -553,6 +554,7 @@ void Game::StartGame()
 				ET->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
+
 		EarthGunnery* EG;
 		int p = 0;
 		if (!earthArmy.isEmpty_EG())
@@ -563,6 +565,7 @@ void Game::StartGame()
 				EG->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
+
 		AlienSoldier* AS;
 		if (!(alienArmy.isEmpty_AS()))
 		{
@@ -572,16 +575,17 @@ void Game::StartGame()
 				AS->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
 		}
-		AlienDrone* AD;
-		if (!alienArmy.isEmpty_AD())
-		{
-			alienArmy.peekADfront(AD);
-			if (AD)
-			{
-				AD->Attack(&gameManager, &earthArmy, &alienArmy);
-			}
 
-		}
+		//AlienDrone* AD;
+		//if (!alienArmy.isEmpty_AD())
+		//{
+		//	alienArmy.peekADfront(AD);
+		//	if (AD)
+		//	{
+		//		AD->Attack(&gameManager, &earthArmy, &alienArmy);
+		//	}
+		//}
+
 		AlienMonster* AM;
 		if (!alienArmy.isEmpty_AM()) 
 		{
@@ -600,7 +604,6 @@ void Game::StartGame()
 			{
 				HU->Attack(&gameManager, &earthArmy, &alienArmy);
 			}
-				
 		}
 
 		if (x == 1)
