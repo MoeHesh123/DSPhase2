@@ -12,8 +12,8 @@ string EarthSoldier::GetType()
 void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
     LinkedQueue<AlienSoldier*> tempList;
-    EarthSoldier* ES;
-    AlienSoldier* AS;
+    EarthSoldier* ES = nullptr;
+    AlienSoldier* AS = nullptr;
     eartharmy->peekES(ES);
 
     for (int i = 0; i < ES->GetAttackCapacity(); i++)

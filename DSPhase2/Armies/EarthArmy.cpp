@@ -1,5 +1,10 @@
 #include "EarthArmy.h"
 
+int EarthArmy::GetEarthCount()
+{
+	return (EScount + ETcount + EGcount);
+}
+
 bool EarthArmy::isEmpty_ES()
 {
 	if (EScount == 0) return true;

@@ -18,7 +18,11 @@ class EarthArmy
 	priQueue <EarthGunnery*> EG;
 	int EGcount = 0;
 
+	int EarthCount = 0;
+
 public:
+
+	int GetEarthCount();
 
 	bool isEmpty_ES();
 	bool addES(int jt, double H, int P, int AttC);

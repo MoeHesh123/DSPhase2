@@ -21,14 +21,12 @@ void Game::Readinput()
 	}
 }
 
-void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
+void Game::ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* aarmy)
 {
 	cout << "Please Enter The Output File Name: ";
 	string file;
 	cin >> file;
 	ofstream OutputFile(file + ".txt");
-
-	OutputFile << "File Name: " << file << endl << endl;
 
 	OutputFile << "============================================================================" << endl;
 
@@ -68,63 +66,89 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 		<< setw(6) << left << Current->getItem()->GetDf()
 		<< setw(6) << left << Current->getItem()->GetDd()
 		<< setw(6) << left << Current->getItem()->GetTa()
-		<< setw(6) << left << Current->getItem()->GetDb() << endl;
+		<< setw(6) << left << Current->getItem()->GetDb() <<endl;
 		Current = Current->getNext();
 	}
 
 	OutputFile << "============================================================================" << endl;
 
-	//Output File win/loss/draw
+	OutputFile << "Battle result: ";
+	if (game->GetEndGameCondition() == 2) OutputFile << "Earth Army Won!";
+	else if (game->GetEndGameCondition() == 1) OutputFile << "Alien Army Won!";
+	else OutputFile << "Draw!";
 
-	OutputFile << "============================================================================" << endl;
+	OutputFile << endl << "============================================================================" << endl;
 
 	OutputFile
 	<< "Total Earth Army Units Alive: " << endl
 	<< setw(6) << left << "ES"
 	<< setw(6) << left << "ET"
-	<< setw(6) << left << "EG"
+	<< setw(6) << left << "EG" 
 	<< setw(6) << left << "HU"
 	<< setw(6) << left << "ESUML"
 	<< setw(6) << left << "ETUML" << endl;
 	OutputFile 
 	<< setw(6) << left << earmy->getEScount()
 	<< setw(6) << left << earmy->getETcount()
-	<< setw(6) << left << earmy->getEGcount() 
+	<< setw(6) << left << earmy->getEGcount()
 	<< setw(6) << left << HUcount 
 	<< setw(6) << left << ESUMLcount
 	<< setw(6) << left << ETUMLcount << endl;
 	OutputFile
 	<< setw(6) << left << ESKilledcount
 	<< setw(6) << left << ETKilledcount
-	<< setw(6) << left << EGKilledcount 
-	<< setw(6) << left << HUKilledcount << endl << endl;
-	OutputFile
-	<< "Percentage Of Destructed Earth Units Relative To Their Total: " << endl
-	<< setw(6) << left << round((ESKilledcount / (earmy->getEScount() + ESKilledcount + ESUMLcount)) * 100)
-	<< setw(6) << left << round((ETKilledcount / (earmy->getETcount() + ETKilledcount + ETUMLcount)) * 100)
-	<< setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100)
-	<< setw(6) << left << round((HUKilledcount / (HUcount + HUKilledcount)) * 100) << endl << endl;
-	OutputFile << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: "
-	<< round(EarthKilled / (earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + HUcount + ESUMLcount + ETUMLcount) * 100) << endl << endl;
-	OutputFile << "Average of Df,Dd & Db for Earth Units:" <<endl
+	<< setw(6) << left << EGKilledcount
+	<< setw(6) << left << HUKilledcount;
+
+	OutputFile << endl << endl << "Percentage Of Destructed Earth Units Relative To Their Total: " << endl
+	<< setw(6) << left << "ES"
+	<< setw(6) << left << "ET"
+	<< setw(6) << left << "EG"
+	<< setw(6) << left << "HU" << endl;
+
+	if ((earmy->getEScount() + ESKilledcount + ESUMLcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((ESKilledcount / (earmy->getEScount() + ESKilledcount + ESUMLcount)) * 100);
+
+	if ((earmy->getETcount() + ETKilledcount + ETUMLcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((ETKilledcount / (earmy->getETcount() + ETKilledcount + ETUMLcount)) * 100);
+
+	if ((earmy->getEGcount() + EGKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100);
+
+	if ((HUcount + HUKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((HUKilledcount / (HUcount + HUKilledcount)) * 100);
+
+	OutputFile << endl << endl << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: ";
+	if((earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + HUcount + ESUMLcount + ETUMLcount) == 0) OutputFile <<"0";
+	else OutputFile << round(EarthKilled / (earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + HUcount + ESUMLcount + ETUMLcount) * 100);
+
+	OutputFile << endl << endl << "Average of Df,Dd & Db for Earth Units:" <<endl
 	<< setw(6) << left << "DfAVG"
 	<< setw(6) << left << "DdAVG"
 	<< setw(6) << left << "DbAVG" << endl;
-	OutputFile
-	<< setw(6) << left << round(ESumDf / EarthKilled) 
-	<< setw(6) << left << round(ESumDd / EarthKilled)
-	<< setw(6) << left << round(ESumDb / EarthKilled) << endl << endl;
-	if (ESumDb == 0)
+	if (EarthKilled == 0)
 	{
-		OutputFile << "Db Of Earth is 0 cant generate Earth Dd/Db% or Earth Df/Db%" << endl;
+		OutputFile
+	    << setw(6) << left << "0"
+		<< setw(6) << left << "0"
+		<< setw(6) << left << "0";
 	}
 	else 
 	{
-		OutputFile << "Earth Df/Db%: " << round((ESumDf / ESumDb) * 100) << endl;
-		OutputFile << "Earth Dd/Db%: " << round((ESumDd / ESumDb) * 100) << endl;
+		OutputFile
+		<< setw(6) << left << round(ESumDf / EarthKilled)
+		<< setw(6) << left << round(ESumDd / EarthKilled)
+		<< setw(6) << left << round(ESumDb / EarthKilled);
 	}
 
-	OutputFile << "============================================================================" << endl;
+	OutputFile << endl << endl << "Earth Df/Db%: ";
+	if (ESumDb == 0) OutputFile << "0";
+	else OutputFile << round((ESumDf / ESumDb) * 100);
+	OutputFile << endl <<"Earth Dd/Db%: ";
+	if (ESumDb == 0) OutputFile << "0";
+	else OutputFile << round((ESumDd / ESumDb) * 100);
+
+	OutputFile << endl << "============================================================================" << endl;
 
 	OutputFile
 	<< "Total Alien Army Units Alive: " << endl
@@ -138,35 +162,52 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	OutputFile
 	<< setw(6) << left << ASKilledcount
 	<< setw(6) << left << AMKilledcount
-	<< setw(6) << left << ADKilledcount << endl << endl;
-	OutputFile
-	<< "Percentage Of Destructed Alien Units Relative To Their Total: " << endl
-	<< setw(6) << left << round((ASKilledcount / (aarmy->getAScount() + ASKilledcount)) * 100)
-	<< setw(6) << left << round((AMKilledcount / (aarmy->getAMcount() + AMKilledcount)) * 100)
-	<< setw(6) << left << round((ADKilledcount / (aarmy->getADcount() + ADKilledcount)) * 100) << endl<<endl;
-	OutputFile << "Percentage Of Total Destructed Alien units Relative To Total Alien Units: "
-	<< round((ASKilledcount + AMKilledcount + ADKilledcount) / ((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) * 100) << endl <<endl;
-	OutputFile
-	<< "Average of Df,Dd & Db for Alien Units: " << endl
+	<< setw(6) << left << ADKilledcount;
+	OutputFile << endl << endl << "Percentage Of Destructed Alien Units Relative To Their Total: " << endl
+	<< setw(6) << left << "AS"
+	<< setw(6) << left << "AM"
+	<< setw(6) << left << "AD" << endl;
+
+	if ((aarmy->getAScount() + ASKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((ASKilledcount / (aarmy->getAScount() + ASKilledcount)) * 100);
+
+	if ((aarmy->getAMcount() + AMKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((AMKilledcount / (aarmy->getAMcount() + AMKilledcount)) * 100);
+
+	if ((aarmy->getADcount() + ADKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((ADKilledcount / (aarmy->getADcount() + ADKilledcount)) * 100);
+
+	OutputFile << endl << endl << "Percentage Of Total Destructed Alien units Relative To Total Alien Units: ";
+	if (((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) == 0) OutputFile << "0";
+    else OutputFile << round((ASKilledcount + AMKilledcount + ADKilledcount) / ((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) * 100);
+
+	OutputFile << endl << endl << "Average of Df,Dd & Db for Alien Units: " << endl
 	<< setw(6) << left << "DfAVG"
 	<< setw(6) << left << "DdAVG"
 	<< setw(6) << left << "DbAVG" << endl;
-	OutputFile
-	<< setw(6) << left << round(ASumDf / AlienKilled)
-	<< setw(6) << left << round(ASumDd / AlienKilled)
-	<< setw(6) << left << round(ASumDb / AlienKilled) << endl <<endl;
-	if (ASumDb == 0)
+	if (AlienKilled == 0)
 	{
-		OutputFile << "Db Of Alien is 0 cant generate Alien Dd/Db% or Earth Df/Db%" << endl;
+		OutputFile
+		<< setw(6) << left << "0"
+		<< setw(6) << left << "0"
+		<< setw(6) << left << "0";
 	}
-	else 
+	else
 	{
-		OutputFile << "Alien Df/Db%: " << round((ASumDf / ASumDb) * 100) << endl;
-		OutputFile << "Alien Dd/Db%: " << round((ASumDd / ASumDb) * 100) << endl;
+		OutputFile
+		<< setw(6) << left << round(ASumDf / AlienKilled)
+		<< setw(6) << left << round(ASumDd / AlienKilled)
+		<< setw(6) << left << round(ASumDb / AlienKilled);
 	}
 
-	OutputFile << "============================================================================" << endl;
+	OutputFile << endl << endl << "Alien Df/Db%: ";
+	if (ASumDb == 0) OutputFile << "0";
+	else OutputFile << round((ASumDf / ASumDb) * 100) << endl;
+	OutputFile << endl << "Alien Dd/Db%: ";
+	if (ASumDb == 0) OutputFile << "0";
+	else OutputFile << round((ASumDd / ASumDb) * 100);
 
+	OutputFile << endl << "============================================================================";
 	OutputFile.close();
 }
 
@@ -458,7 +499,6 @@ void Game::StartGame()
 		cin >> x;
 	}
     cin.ignore();
-
 	Game gameManager;
 	RandGen generator;
 	EarthArmy earthArmy;
@@ -568,15 +608,46 @@ void Game::StartGame()
 			gameManager.PrintKilledList();
 
 			cout << "Press any key to move to next timestep" << endl;
+			gameManager.ContinueGame(&gameManager, &earthArmy, &alienArmy);
 			cin.get();
 		}
 	}
 	if (x == 2)
 	{
-		gameManager.ProduceOutput(&earthArmy, &alienArmy);
+		gameManager.ProduceOutput(&gameManager, &earthArmy, &alienArmy);
 		cout << "Silent Mode" << endl;
 		cout << "Simulation Starts..." << endl;
 		cout << "Simulation ends, Output file is created" << endl;
 	}
-	else gameManager.ProduceOutput(&earthArmy, &alienArmy);
+	else gameManager.ProduceOutput(&gameManager, &earthArmy, &alienArmy);
+}
+
+bool Game::ContinueGame(Game* game,EarthArmy* earmy, AlienArmy* aarmy)
+{
+	if (aarmy->GetAlienCount() == 0)
+	{
+		game->SetEndGameCondition(2);
+		return false;
+	}
+	else if (earmy->GetEarthCount() == 0)
+	{
+		game->SetEndGameCondition(1);
+		return false;
+	}
+	else
+	{
+		game->SetEndGameCondition(0);
+		return false;
+	}
+	return true;
+}
+
+void Game::SetEndGameCondition(int flag)
+{
+	EndGame = flag;
+}
+
+int Game::GetEndGameCondition()
+{
+	return EndGame;
 }

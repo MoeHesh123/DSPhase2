@@ -13,10 +13,10 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 {
 	LinkedQueue<AlienSoldier*>tempAS;
 	LinkedQueue<AlienMonster*>tempAM;
-	AlienSoldier* AS;
-	AlienMonster* AM;
-	EarthTank* ET;
-	EarthSoldier* ES;
+	AlienSoldier* AS = nullptr;
+	AlienMonster* AM = nullptr;
+	EarthTank* ET = nullptr;
+	EarthSoldier* ES = nullptr;
 	int attackCount = 0;
 	int attackCountAM = 0;
 	int attackCountAS = 0;

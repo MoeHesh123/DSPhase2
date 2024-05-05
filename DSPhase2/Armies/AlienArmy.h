@@ -20,7 +20,12 @@ class AlienArmy
 	bag<AlienMonster*>AM;
 	int AMcount = 0;
 	int alternating = 0;
+
+	int AlienCount = 0;
+
 public:
+
+	int GetAlienCount();
 
 	bool isEmpty_AS();
 	bool addAS(int jt, double H, int P, int AttC);

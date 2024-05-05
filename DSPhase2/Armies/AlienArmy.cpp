@@ -1,5 +1,10 @@
 #include "AlienArmy.h"
 
+int AlienArmy::GetAlienCount()
+{
+	return (AScount + ADcount + AMcount);
+}
+
 bool AlienArmy::isEmpty_AS()
 {
 	if (AScount == 0) return true;
