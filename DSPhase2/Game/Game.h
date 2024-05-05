@@ -57,6 +57,7 @@ public:
 	bool removeHU(HealUnit*& hu);
     void ReAddHealUnit(HealUnit* hu);
 	void printHL();
+	bool PeekHU(HealUnit*& HU);
 
 	bool isEmpty_ESUML();
 	bool addESToUML(EarthSoldier* esptr);

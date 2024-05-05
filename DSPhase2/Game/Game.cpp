@@ -411,6 +411,13 @@ void Game::printHL()
 	cout << "]" << endl;
 }
 
+bool Game::PeekHU(HealUnit*& HU)
+{
+	if (isEmpty_HL()) return false;
+	HL.peek(HU);
+	return true;
+}
+
 void Game::AddToKilled(Unit* unit)
 {
 	if (unit)
@@ -512,17 +519,14 @@ void Game::StartGame()
 	gameManager.Readinput();
 
 	srand((unsigned)time(0));
-	int X = 0;
 
 	for (int Timestep = 1; Timestep <= 200; Timestep++)
 	{
 		gameManager.SetTimeStep(Timestep);
-		X = 1 + (rand() % 100);
 
 		if (x == 1)
 		{
 			cout << endl << "Current TimeStep " << Timestep << endl;
-			cout << "X= " << X << endl;
 		}
 
 		generator.Generate(&gameManager,&earthArmy, &alienArmy, Timestep);
@@ -582,6 +586,17 @@ void Game::StartGame()
 			{
 				AM->Attack(&gameManager, &earthArmy, &alienArmy); 
 			}
+		}
+
+		HealUnit* HU;
+		if (!gameManager.isEmpty_HL())
+		{
+			gameManager.PeekHU(HU);
+			if (HU) 
+			{
+				HU->Attack(&gameManager, &earthArmy, &alienArmy);
+			}
+				
 		}
 
 		//EarthSoldier* es1 = nullptr;
