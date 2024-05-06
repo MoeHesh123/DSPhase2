@@ -347,11 +347,43 @@ void Game::printUML()
 	cout << "]" << endl;
 }
 
+bool Game::addESAttack(Unit* unit)
+{
+	return false;
+}
+
+bool Game::addETAttack(Unit* unit)
+{
+	return false;
+}
+
+bool Game::addEGAttack(Unit* unit)
+{
+	return false;
+}
+
+bool Game::addASAttack(Unit* unit)
+{
+	return false;
+}
+
+bool Game::addAMAttack(Unit* unit)
+{
+	return false;
+}
+
+bool Game::addADAttack(Unit* unit)
+{
+	return false;
+}
+
 void Game::printAttacking()
 {
 	if (ESAttack.isEmpty()) cout << "No Earth Soldiers Attacking" << endl;
 	else
 	{
+		Unit* 
+		cout << "ES" << ESAttack.dequeue
 	}
 	if (ETAttack.isEmpty()) cout << "No Earth Tanks Attacking" << endl;
 	else

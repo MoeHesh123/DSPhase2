@@ -80,6 +80,14 @@ public:
 
 	void printUML();
 
+
+	bool addESAttack(Unit* unit);
+	bool addETAttack(Unit* unit);
+	bool addEGAttack(Unit* unit);
+	bool addASAttack(Unit* unit);
+	bool addAMAttack(Unit* unit);
+	bool addADAttack(Unit* unit);
+
 	void printAttacking();
 
 	int GetHealedCount();
