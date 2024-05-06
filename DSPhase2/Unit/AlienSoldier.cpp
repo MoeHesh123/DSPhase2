@@ -52,9 +52,10 @@ void AlienSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
                 templistES.enqueue(ESp);
             }
         }
-        while (templistES.dequeue(ESp))
-        {
-            eartharmy->ReAddEarthUnit(ESp);
-        }
+        
+    }
+    while (templistES.dequeue(ESp)) 
+    {
+        eartharmy->ReAddEarthUnit(ESp); 
     }
 }
