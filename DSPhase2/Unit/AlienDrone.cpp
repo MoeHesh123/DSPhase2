@@ -34,10 +34,7 @@ void AlienDrone::Attack(Game* game)
         game->addADAttack(ADFront); 
         attackEGB = ADBack->GetAttackCapacity() / 2;  
         attackETB = ADBack->GetAttackCapacity() - attackEGB;
-        if (attackEGB == 0)
-        {
-            attackEGB = 1;
-        }
+
         for (int i = 0; i < attackEGB; i++)
         {
             if (!game->GetEA()->isEmpty_EG())
@@ -61,6 +58,42 @@ void AlienDrone::Attack(Game* game)
                 else
                 {
                     tempEG.enqueue(EG); 
+                }
+            }
+            else
+            {
+                if (!game->GetEA()->isEmpty_ET()) 
+                {
+                    game->GetEA()->peekET(ET); 
+                    if (ET) 
+                    {
+                        game->addADAttack(ET); 
+                    }
+
+                    game->GetEA()->removeET(ET);
+                    oghealthB = ET->GetHealth();
+
+                    ET->SetHealth(ET->GetHealth() - (ADBack->GetPower() * ((ADBack->GetHealth()) / 100)) / sqrt(ET->GetHealth()));
+
+                    if (ET->GetTa() == 0) 
+                    {
+                        ET->SetTa(game->GetTimeStep()); 
+                    }
+
+                    if (ET->GetHealth() <= 0) 
+                    {
+                        game->AddToKilled(ET); 
+                        ET->SetTd(game->GetTimeStep()); 
+                    }
+                    else if (ET->GetHealth() > 0 && ET->GetHealth() < 0.2 * oghealthB) 
+                    {
+                        game->addETToUML(ET); 
+                    }
+                    else
+                    {
+                        tempET.enqueue(ET);
+                    }
+
                 }
             }
         }
@@ -93,14 +126,43 @@ void AlienDrone::Attack(Game* game)
                 {
                     tempET.enqueue(ET);
                 }
+
+            }
+            else
+            {
+                if(!game->GetEA()->isEmpty_EG())
+                {
+                    game->GetEA()->peekEG(EG, pri); 
+                    if (EG) 
+                    {
+                        game->addADAttack(EG); 
+                    }
+
+                    game->GetEA()->removeEG(EG, pri);
+
+                    EG->SetHealth(EG->GetHealth() - (ADBack->GetPower() * ((ADBack->GetHealth()) / 100)) / sqrt(EG->GetHealth()));
+
+                    if (EG->GetTa() == 0) 
+                    {
+                        EG->SetTa(game->GetTimeStep()); 
+                    }
+
+                    if (EG->GetHealth() <= 0) 
+                    {
+                        game->AddToKilled(EG); 
+                        EG->SetTd(game->GetTimeStep()); 
+                    }
+                    else
+                    {
+                        tempEG.enqueue(EG); 
+                    }
+
+                }
             }
         }
         attackEGF = (ADFront->GetAttackCapacity() / 2); 
         attackETF = (ADFront->GetAttackCapacity() - attackEGF); 
-        if (attackEGF==0)
-        {
-            attackEGF = 1;
-        }
+        
         for (int i = 0; i < attackETF; i++) 
         {
             if (!game->GetEA()->isEmpty_ET())
@@ -131,6 +193,36 @@ void AlienDrone::Attack(Game* game)
                     tempET.enqueue(ET);
                 }
             }
+            else
+            {
+                if (!game->GetEA()->isEmpty_EG())
+                {
+                    game->GetEA()->peekEG(EG, pri);
+                    if (EG)
+                    {
+                        game->addADAttack(EG);
+                    }
+
+                    game->GetEA()->removeEG(EG, pri);
+
+                    EG->SetHealth(EG->GetHealth() - (ADBack->GetPower() * ((ADBack->GetHealth()) / 100)) / sqrt(EG->GetHealth()));
+
+                    if (EG->GetTa() == 0)
+                    {
+                        EG->SetTa(game->GetTimeStep());
+                    }
+
+                    if (EG->GetHealth() <= 0)
+                    {
+                        game->AddToKilled(EG);
+                        EG->SetTd(game->GetTimeStep());
+                    }
+                    else
+                    {
+                        tempEG.enqueue(EG);
+                    }
+                }
+            }
         }
         for (int i = 0; i < attackEGF; i++)
         {
@@ -155,6 +247,42 @@ void AlienDrone::Attack(Game* game)
                 else
                 {
                     tempEG.enqueue(EG);
+                }
+            }
+            else
+            {
+                if (!game->GetEA()->isEmpty_ET()) 
+                {
+                    game->GetEA()->peekET(ET); 
+                    if (ET) 
+                    {
+                        game->addADAttack(ET); 
+                    }
+
+                    game->GetEA()->removeET(ET); 
+
+                    double oghealth = ET->GetHealth(); 
+                    ET->SetHealth(ET->GetHealth() - (ADFront->GetPower() * ((ADFront->GetHealth()) / 100)) / sqrt(ET->GetHealth())); 
+
+                    if (ET->GetTa() == 0) 
+                    {
+                        ET->SetTa(game->GetTimeStep()); 
+                    }
+
+                    if (ET->GetHealth() <= 0) 
+                    {
+                        game->AddToKilled(ET); 
+                        ET->SetTd(game->GetTimeStep()); 
+                    }
+                    else if (ET->GetHealth() > 0 && ET->GetHealth() < 0.2 * oghealth) 
+                    {
+                        game->addETToUML(ET); 
+                    }
+                    else
+                    {
+                        tempET.enqueue(ET);
+                    }
+
                 }
             }
         }
