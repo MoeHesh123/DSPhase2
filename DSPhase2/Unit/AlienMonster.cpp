@@ -24,12 +24,21 @@ void AlienMonster::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
     //Don't forget og heatlth of ET and ES ibnside the for loop
     alienarmy->peekAM(AM);
     {
+        if (AM)
+        {
+            game->addAMAttack(AM);
+        }
         attackCes = (AM->GetAttackCapacity() / 2);
         attackCet = (AM->GetAttackCapacity() - attackCes);
         for (int i = 0; i < attackCes; i++)
         {
             if (!eartharmy->isEmpty_ES())
             {
+                eartharmy->peekES(ES); 
+                if (ES)
+                {
+                    game->addAMAttack(ES); 
+                }
                 eartharmy->removeES(ES);
                 oghealthES = ES->GetHealth();
                 ES->SetHealth(ES->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ES->GetHealth()));
@@ -57,6 +66,11 @@ void AlienMonster::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
         {
             if (!eartharmy->isEmpty_ET())
             {
+                eartharmy->peekET(ET); 
+                if (ET) 
+                {
+                    game->addADAttack(ET); 
+                }
                 eartharmy->removeET(ET);
                 oghealthET = ET->GetHealth();
                 ET->SetHealth(ET->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ET->GetHealth()));

@@ -27,8 +27,10 @@ void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
     {
         alienarmy->peekADback(ADBack);
         alienarmy->peekADfront(ADFront); 
+        game->addADAttack(ADBack);
+        game->addADAttack(ADFront); 
 
-        attackEGB = ADBack->GetAttackCapacity() / 2; 
+        attackEGB = ADBack->GetAttackCapacity() / 2;  
         attackETB = ADBack->GetAttackCapacity() - attackEGB;
         if (attackEGB == 0)
         {
@@ -38,6 +40,11 @@ void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
         {
             if (!eartharmy->isEmpty_EG())
             {
+                eartharmy->peekEG(EG,pri);
+                if (EG)
+                {
+                    game->addADAttack(EG);
+                } 
                 eartharmy->removeEG(EG,pri);
                 EG->SetHealth(EG->GetHealth() - (ADBack->GetPower() * ((ADBack->GetHealth()) / 100)) / sqrt(EG->GetHealth()));
                 if (EG->GetTa() == 0)
@@ -62,6 +69,11 @@ void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
         {
             if (!eartharmy->isEmpty_ET())
             {
+                eartharmy->peekET(ET); 
+                if (ET)
+                {
+                    game->addADAttack(ET);
+                } 
                 eartharmy->removeET(ET);
                 oghealthB = ET->GetHealth();
                 ET->SetHealth(ET->GetHealth() - (ADBack->GetPower() * ((ADBack->GetHealth()) / 100)) / sqrt(ET->GetHealth()));
@@ -98,6 +110,11 @@ void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
         {
             if (!eartharmy->isEmpty_ET())
             {
+                eartharmy->peekET(ET); 
+                if (ET) 
+                {
+                    game->addADAttack(ET); 
+                }
                 eartharmy->removeET(ET);
                 double oghealth = ET->GetHealth();
                 ET->SetHealth(ET->GetHealth() - (ADFront->GetPower() * ((ADFront->GetHealth()) / 100)) / sqrt(ET->GetHealth())); 
@@ -125,6 +142,11 @@ void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
         {
             if (!eartharmy->isEmpty_EG())
             {
+                eartharmy->peekEG(EG, pri); 
+                if (EG) 
+                {
+                    game->addADAttack(EG); 
+                }
                 eartharmy->removeEG(EG, pri); 
                 EG->SetHealth(EG->GetHealth() - (ADFront->GetPower() * ((ADFront->GetHealth()) / 100)) / sqrt(EG->GetHealth()));
                 if (EG->GetTa() == 0)
