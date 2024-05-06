@@ -27,6 +27,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 		if (!(eartharmy->isEmpty_ET())) {
 			if ((eartharmy->getEScount()) < (0.3 * (alienarmy->getAScount())))
 			{
+
 				while ((eartharmy->getEScount()) < (0.8 * alienarmy->getAScount()))
 				{
 					if (ET->GetAttackCapacity() % 2 == 0) 
@@ -127,6 +128,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						}
 
 					}
+					break;
 
 				}
 			}
