@@ -545,15 +545,15 @@ void Game::StartGame()
 			}
 		}
 
-		//EarthTank* ET;
-		//if (!(earthArmy.isEmpty_ET()))
-		//{
-		//	earthArmy.peekET(ET);
-		//	if (ET)
-		//	{
-		//		ET->Attack(&gameManager, &earthArmy, &alienArmy);
-		//	}
-		//}
+		EarthTank* ET;
+		if (!(earthArmy.isEmpty_ET()))
+		{
+			earthArmy.peekET(ET);
+			if (ET)
+			{
+				ET->Attack(&gameManager, &earthArmy, &alienArmy);
+			}
+		}
 
 		EarthGunnery* EG;
 		int p = 0;
