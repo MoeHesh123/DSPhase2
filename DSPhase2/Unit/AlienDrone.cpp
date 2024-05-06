@@ -26,6 +26,7 @@ void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
     if (alienarmy->getADcount() > 1)
     {
         alienarmy->peekADback(ADBack);
+        alienarmy->peekADfront(ADFront); 
 
         attackEGB = ADBack->GetAttackCapacity() / 2; 
         attackETB = ADBack->GetAttackCapacity() - attackEGB;
@@ -86,7 +87,7 @@ void AlienDrone::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 
             }
         }
-        alienarmy->peekADfront(ADFront);
+        
         attackEGF = (ADFront->GetAttackCapacity() / 2); 
         attackETF = (ADFront->GetAttackCapacity() - attackEGF); 
         if (attackEGF==0)

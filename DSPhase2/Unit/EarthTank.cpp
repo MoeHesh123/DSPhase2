@@ -24,7 +24,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 	eartharmy->peekET(ET);
 	
 
-		if (!eartharmy->isEmpty_ET()) {
+		if (!(eartharmy->isEmpty_ET())) {
 			if ((eartharmy->getEScount()) < (0.3 * (alienarmy->getAScount())))
 			{
 				while ((eartharmy->getEScount()) < (0.8 * alienarmy->getAScount()))
@@ -37,8 +37,6 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 							if (!(alienarmy->isEmpty_AS())) 
 							{
 								alienarmy->removeAS(AS); 
-
-
 								AS->SetHealth(AS->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AS->GetHealth())); 
 								if (AS->GetTa() == 0) 
 								{
