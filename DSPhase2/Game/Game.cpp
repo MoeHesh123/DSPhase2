@@ -347,6 +347,34 @@ void Game::printUML()
 	cout << "]" << endl;
 }
 
+void Game::printAttacking()
+{
+	if (ESAttack.isEmpty()) cout << "No Earth Soldiers Attacking" << endl;
+	else
+	{
+	}
+	if (ETAttack.isEmpty()) cout << "No Earth Tanks Attacking" << endl;
+	else
+	{
+	}
+	if (EGAttack.isEmpty()) cout << "No Earth Gunneries Attacking" << endl;
+	else
+	{
+	}
+	if (ASAttack.isEmpty()) cout << "No Alien Soldiers Attacking" << endl;
+	else
+	{
+	}
+	if (AMAttack.isEmpty()) cout << "No Alien Monsters Attacking" << endl;
+	else
+	{
+	}
+	if (ADAttack.isEmpty()) cout << "No Alien Drones Attacking" << endl;
+	else
+	{
+	}
+}
+
 int Game::GetHealedCount()
 {
 	return HealedCount;

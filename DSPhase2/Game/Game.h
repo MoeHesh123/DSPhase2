@@ -80,6 +80,8 @@ public:
 
 	void printUML();
 
+	void printAttacking();
+
 	int GetHealedCount();
 	void IncrementHealedCount();
 
