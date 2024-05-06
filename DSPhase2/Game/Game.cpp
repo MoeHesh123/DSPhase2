@@ -661,48 +661,8 @@ void Game::StartGame()
 
 		randgen->Generate(this);
 
-		EarthSoldier* ES;
-		if (!(EA->isEmpty_ES()))
-		{
-			EA->peekES(ES);
-			if (ES) ES->Attack(this);
-		}
-
-	    EarthTank* ET; 
-		if (!(EA->isEmpty_ET())) 
-		{
-			EA->peekET(ET); 
-			if (ET) ET->Attack(this); 
-		}
-
-		EarthGunnery* EG;
-		int p = 0;
-		if (!(EA->isEmpty_EG()))
-		{
-			EA->peekEG(EG, p);
-			if (EG) EG->Attack(this);
-		}
-
-		AlienSoldier* AS;
-		if (!(AA->isEmpty_AS()))
-		{
-			AA->peekAS(AS);
-			if (AS) AS->Attack(this);
-		}
-
-		AlienDrone* AD;
-		if (!(AA->isEmpty_AD()))
-		{
-			AA->peekADfront(AD);
-			if (AD) AD->Attack(this);
-		}
-
-		AlienMonster* AM;
-		if (!(AA->isEmpty_AM()))
-		{
-			AA->peekAM(AM);
-			if (AM) AM->Attack(this);
-		}
+		EA->EarthArmyAttack(this);
+		AA->AlienArmyAttack(this);
 
 		HealUnit* HU;
 		if (!isEmpty_HL())

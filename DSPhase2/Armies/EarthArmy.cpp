@@ -249,3 +249,28 @@ void EarthArmy::ReAddEarthUnit(Unit* unit)
 		EGcount++;
 	}
 }
+
+void EarthArmy::EarthArmyAttack(Game * game)
+{
+	EarthSoldier* ES;
+	if (!(isEmpty_ES()))
+	{
+		peekES(ES);
+		if (ES) ES->Attack(game);
+	}
+
+	EarthTank* ET;
+	if (!(isEmpty_ET()))
+	{
+		peekET(ET);
+		if (ET) ET->Attack(game);
+	}
+
+	EarthGunnery* EG;
+	int p = 0;
+	if (!(isEmpty_EG()))
+	{
+		peekEG(EG, p);
+		if (EG) EG->Attack(game);
+	}
+}
