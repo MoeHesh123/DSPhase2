@@ -44,7 +44,6 @@ void Game::ProduceOutput()
 	<< setw(6) << left << "Tj"
 	<< setw(6) << left << "Df"
 	<< setw(6) << left << "Dd"
-	//<< setw(6) << left << "Ta"
 	<< setw(6) << left << "Db" << endl; 
 
 	float ESumDd = 0, ESumDb = 0, ESumDf = 0, ASumDd = 0, ASumDb = 0, ASumDf = 0, EarthKilled = 0, AlienKilled = 0;
@@ -71,7 +70,6 @@ void Game::ProduceOutput()
 		<< setw(6) << left << Current->getItem()->GetJoinTime()
 		<< setw(6) << left << Current->getItem()->GetDf()
 		<< setw(6) << left << Current->getItem()->GetDd()
-		//<< setw(6) << left << Current->getItem()->GetTa()
 		<< setw(6) << left << Current->getItem()->GetDb() <<endl;
 		Current = Current->getNext();
 	}
@@ -89,15 +87,15 @@ void Game::ProduceOutput()
 	<< "Total Earth Army Units Alive: " << endl
 	<< setw(6) << left << "ES"
 	<< setw(6) << left << "ET"
-	<< setw(6) << left << "EG" << endl;
+	<< setw(6) << left << "EG"
+	<< setw(6) << left << "ESUML" 
+	<< setw(6) << left << "ETUML" << endl;
 	OutputFile 
-	<< setw(6) << left << EA->getEScount()
-	<< setw(6) << left << EA->getETcount()
-	<< setw(6) << left << EA->getEGcount();
-	//OutputFile
-	//<< setw(6) << left << ESKilledcount
-	//<< setw(6) << left << ETKilledcount
-	//<< setw(6) << left << EGKilledcount;
+	<< setw(6) << left << EA->getEScount()  
+	<< setw(6) << left << EA->getETcount() 
+	<< setw(6) << left << EA->getEGcount()
+	<< setw(6) << left << ESUMLcount
+	<< setw(6) << left << ETUMLcount;
 
 	OutputFile << endl << endl << "Percentage Of Destructed Earth Units Relative To Their Total: " << endl
 	<< setw(6) << left << "ES"
@@ -158,10 +156,6 @@ void Game::ProduceOutput()
 	<< setw(6) << left << AA->getAScount()
 	<< setw(6) << left << AA->getAMcount()
 	<< setw(6) << left << AA->getADcount();
-	//OutputFile
-	//<< setw(6) << left << ASKilledcount
-	//<< setw(6) << left << AMKilledcount
-	//<< setw(6) << left << ADKilledcount;
 
 	OutputFile << endl << endl << "Percentage Of Destructed Alien Units Relative To Their Total: " << endl
 	<< setw(6) << left << "AS"
@@ -366,104 +360,123 @@ bool Game::addADAttack(Unit* unit)
 
 void Game::printAttacking()
 {
-	//if (ESAttack.isEmpty()) cout << "No Earth Soldiers Attacking" << endl;
-	//else
-	//{
-	//	Unit* unit = nullptr;
-	//	ESAttack.dequeue(unit);
-	//	cout << "ES " << unit->GetId() <<" Shoots [";
-	//	Node<Unit*>* Traversal = ESAttack.getfrontPtr();
-	//	while (Traversal->getNext())
-	//	{
-	//		cout << Traversal->getItem()->GetId() << ", ";
-	//		Traversal = Traversal->getNext();
-	//	}
-	//	cout << Traversal->getItem()->GetId();
-	//	cout << "]" << endl;
-	//	while (ESAttack.dequeue(unit));
-	//}
-	//if (ETAttack.isEmpty()) cout << "No Earth Tanks Attacking" << endl;
-	//else
-	//{
-	//	Unit* unit = nullptr;
-	//	ETAttack.dequeue(unit);
-	//	cout << "ET " << unit->GetId() << " Shoots [";
-	//	Node<Unit*>* Traversal = ETAttack.getfrontPtr();
-	//	while (Traversal->getNext())
-	//	{
-	//		cout << Traversal->getItem()->GetId() << ", ";
-	//		Traversal = Traversal->getNext();
-	//	}
-	//	cout << Traversal->getItem()->GetId();
-	//	cout << "]" << endl;
-	//	while (ETAttack.dequeue(unit));
-	//}
-	//if (EGAttack.isEmpty()) cout << "No Earth Gunneries Attacking" << endl;
-	//else
-	//{
-	//	Unit* unit = nullptr;
-	//	EGAttack.dequeue(unit);
-	//	cout << "EG " << unit->GetId() << " Shoots [";
-	//	Node<Unit*>* Traversal = EGAttack.getfrontPtr();
-	//	while (Traversal->getNext())
-	//	{
-	//		cout << Traversal->getItem()->GetId() << ", ";
-	//		Traversal = Traversal->getNext();
-	//	}
-	//	cout << Traversal->getItem()->GetId();
-	//	cout << "]" << endl;
-	//	while (EGAttack.dequeue(unit));
-	//}
-	//if (ASAttack.isEmpty()) cout << "No Alien Soldiers Attacking" << endl;
-	//else
-	//{
-	//	Unit* unit = nullptr;
-	//	ASAttack.dequeue(unit);
-	//	cout << "AS " << unit->GetId() << " Shoots [";
-	//	Node<Unit*>* Traversal = ASAttack.getfrontPtr();
-	//	while (Traversal->getNext())
-	//	{
-	//		cout << Traversal->getItem()->GetId() << ", ";
-	//		Traversal = Traversal->getNext();
-	//	}
-	//	cout << Traversal->getItem()->GetId();
-	//	cout << "]" << endl;
-	//	while (ASAttack.dequeue(unit));
-	//}
-	//if (AMAttack.isEmpty()) cout << "No Alien Monsters Attacking" << endl;
-	//else
-	//{
-	//	Unit* unit = nullptr;
-	//	AMAttack.dequeue(unit);
-	//	cout << "AM " << unit->GetId() << " Shoots [";
-	//	Node<Unit*>* Traversal = AMAttack.getfrontPtr();
-	//	while (Traversal->getNext())
-	//	{
-	//		cout << Traversal->getItem()->GetId() << ", ";
-	//		Traversal = Traversal->getNext();
-	//	}
-	//	cout << Traversal->getItem()->GetId();
-	//	cout << "]" << endl;
-	//	while (AMAttack.dequeue(unit));
-	//}
-	//if (ADAttack.isEmpty()) cout << "No Alien Drones Attacking" << endl;
-	//else
-	//{
-	//	Unit* unit = nullptr;
-	//	ADAttack.dequeue(unit);
-	//	cout << "AD " << unit->GetId() << " & AD ";
-	//	ADAttack.dequeue(unit);
-	//	cout << unit->GetId() << " Shoots [";
-	//	Node<Unit*>* Traversal = ADAttack.getfrontPtr();
-	//	while (Traversal->getNext())
-	//	{
-	//		cout << Traversal->getItem()->GetId() << ", ";
-	//		Traversal = Traversal->getNext();
-	//	}
-	//	cout << Traversal->getItem()->GetId();
-	//	cout << "]" << endl;
-	//	while (ADAttack.dequeue(unit));
-	//}
+	Unit* unit = nullptr;
+	if (ESAttack.isEmpty() || ESAttack.getCount() == 1)
+	{
+		cout << "No Earth Soldiers Attacking" << endl;
+		ESAttack.dequeue(unit);
+	}
+	else
+	{
+		ESAttack.dequeue(unit);
+		Node<Unit*>* Traversal = ESAttack.getfrontPtr();
+		cout << "ES " << unit->GetId() << " Shoots [";
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()->GetId() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem()->GetId();
+		cout << "]" << endl;
+		while (ESAttack.dequeue(unit));
+	}
+	if (ETAttack.isEmpty() || ETAttack.getCount() == 1)
+	{
+		cout << "No Earth Tanks Attacking" << endl;
+		ETAttack.dequeue(unit);
+	}
+	else
+	{
+		ETAttack.dequeue(unit);
+		Node<Unit*>* Traversal = ETAttack.getfrontPtr();
+		cout << "ET " << unit->GetId() << " Shoots [";
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()->GetId() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem()->GetId();
+		cout << "]" << endl;
+		while (ETAttack.dequeue(unit));
+	}
+	if (EGAttack.isEmpty() || EGAttack.getCount() == 1)
+	{
+		cout << "No Earth Gunneries Attacking" << endl;
+		EGAttack.dequeue(unit);
+	}
+	else
+	{
+		EGAttack.dequeue(unit);
+		Node<Unit*>* Traversal = EGAttack.getfrontPtr();
+		cout << "EG " << unit->GetId() << " Shoots [";
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()->GetId() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem()->GetId();
+		cout << "]" << endl;
+		while (EGAttack.dequeue(unit));
+	}
+	if (ASAttack.isEmpty() || ASAttack.getCount() == 1)
+	{
+		cout << "No Alien Soldiers Attacking" << endl;
+		ASAttack.dequeue(unit);
+	}
+	else
+	{
+		ASAttack.dequeue(unit);
+		Node<Unit*>* Traversal = ASAttack.getfrontPtr();
+		cout << "AS " << unit->GetId() << " Shoots [";
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()->GetId() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem()->GetId();
+		cout << "]" << endl;
+		while (ASAttack.dequeue(unit));
+	}
+	if (AMAttack.isEmpty() || AMAttack.getCount() == 1)
+	{
+		cout << "No Alien Monsters Attacking" << endl;
+		AMAttack.dequeue(unit);
+	}
+	else
+	{
+		AMAttack.dequeue(unit);
+		Node<Unit*>* Traversal = AMAttack.getfrontPtr();
+		cout << "AM " << unit->GetId() << " Shoots [";
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()->GetId() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem()->GetId();
+		cout << "]" << endl;
+		while (AMAttack.dequeue(unit));
+	}
+	if (ADAttack.isEmpty() || ADAttack.getCount() == 2)
+	{
+		cout << "No Alien Drones Attacking" << endl;
+		while (ADAttack.dequeue(unit));
+	}
+	else
+	{
+		ADAttack.dequeue(unit);
+		cout << "AD " << unit->GetId() << " & AD ";
+		ADAttack.dequeue(unit);
+		cout << unit->GetId() << " Shoots [";
+		Node<Unit*>* Traversal = ADAttack.getfrontPtr();
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()->GetId() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem()->GetId();
+		cout << "]" << endl;
+		while (ADAttack.dequeue(unit));
+	}
 }
 
 void Game::IncrementHealedCount()
@@ -652,14 +665,14 @@ void Game::StartGame()
 		if (!(EA->isEmpty_ES()))
 		{
 			EA->peekES(ES);
-			if (ES) ES->Attack(this, EA, AA);
+			if (ES) ES->Attack(this);
 		}
 
 	    EarthTank* ET; 
 		if (!(EA->isEmpty_ET())) 
 		{
 			EA->peekET(ET); 
-			if (ET) ET->Attack(this, EA,AA); 
+			if (ET) ET->Attack(this); 
 		}
 
 		EarthGunnery* EG;
@@ -667,35 +680,35 @@ void Game::StartGame()
 		if (!(EA->isEmpty_EG()))
 		{
 			EA->peekEG(EG, p);
-			if (EG) EG->Attack(this,EA, AA);
+			if (EG) EG->Attack(this);
 		}
 
 		AlienSoldier* AS;
 		if (!(AA->isEmpty_AS()))
 		{
 			AA->peekAS(AS);
-			if (AS) AS->Attack(this, EA, AA);
+			if (AS) AS->Attack(this);
 		}
 
 		AlienDrone* AD;
 		if (!(AA->isEmpty_AD()))
 		{
 			AA->peekADfront(AD);
-			if (AD) AD->Attack(this,EA,AA);
+			if (AD) AD->Attack(this);
 		}
 
 		AlienMonster* AM;
 		if (!(AA->isEmpty_AM()))
 		{
 			AA->peekAM(AM);
-			if (AM) AM->Attack(this,EA,AA);
+			if (AM) AM->Attack(this);
 		}
 
 		HealUnit* HU;
 		if (!isEmpty_HL())
 		{
 			PeekHU(HU);
-			if (HU)	HU->Attack(this,EA,AA);
+			if (HU)	HU->Attack(this);
 		}
 
 		if (x == 1)

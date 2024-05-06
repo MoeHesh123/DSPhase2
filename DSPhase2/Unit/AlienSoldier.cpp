@@ -9,28 +9,28 @@ string AlienSoldier::GetType()
     return type;
 }
 
-void AlienSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
+void AlienSoldier::Attack(Game* game)
 {
     LinkedQueue<EarthSoldier*>templistES;
+
     AlienSoldier* ASp = nullptr;
     EarthSoldier* ESp = nullptr;
-    alienarmy->peekAS(ASp);
+
+    game->GetAA()->peekAS(ASp);
     if (ASp)
     {
         game->addASAttack(ASp); 
     }
-
     for (int i = 0; i < attackCapacity; i++)
     {
-        
-        if (!eartharmy->isEmpty_ES()) 
+        if (!game->GetEA()->isEmpty_ES())
         {
-            eartharmy->peekES(ESp); 
+            game->GetEA()->peekES(ESp);
             if (ESp) 
             {
                 game->addASAttack(ESp); 
             }
-            eartharmy->removeES(ESp); 
+            game->GetEA()->removeES(ESp);
             double oghealth = ESp->GetHealth();
             ESp->SetHealth(ESp->GetHealth() - (ASp->GetPower() * ((ASp->GetHealth()) / 100)) / sqrt(ESp->GetHealth()));
             if (ESp->GetTa() == 0)
@@ -40,7 +40,6 @@ void AlienSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
             if (ESp->GetHealth() <= 0)
             {
                 game->AddToKilled(ESp);
-
                 ESp->SetTd(game->GetTimeStep());
             }
             else if (ESp->GetHealth() > 0 && ESp->GetHealth() < 0.2 * oghealth)
@@ -52,10 +51,9 @@ void AlienSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
                 templistES.enqueue(ESp);
             }
         }
-        
     }
     while (templistES.dequeue(ESp)) 
     {
-        eartharmy->ReAddEarthUnit(ESp); 
+        game->GetEA()->ReAddEarthUnit(ESp);
     }
 }

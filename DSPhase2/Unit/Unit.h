@@ -58,5 +58,5 @@ public:
 	void SetJTUML(int jtuml);
 
 	virtual string GetType() = 0;
-	virtual void Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy) = 0;
+	virtual void Attack(Game* game) = 0;
 };

@@ -9,20 +9,21 @@ string AlienMonster::GetType()
     return type;
 }
 
-void AlienMonster::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
+void AlienMonster::Attack(Game* game)
 {
     LinkedQueue<EarthSoldier*>tempES;
     LinkedQueue<EarthTank*>tempET;
+
     AlienMonster* AM = nullptr;
     EarthSoldier* ES = nullptr;
     EarthTank* ET = nullptr;
-    //int index = 0;
+
     double oghealthES = 0;
     double oghealthET = 0;
     int attackCes = 0;
     int attackCet = 0;
-    //Don't forget og heatlth of ET and ES ibnside the for loop
-    alienarmy->peekAM(AM);
+
+    game->GetAA()->peekAM(AM);
     {
         if (AM)
         {
@@ -32,14 +33,14 @@ void AlienMonster::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
         attackCet = (AM->GetAttackCapacity() - attackCes);
         for (int i = 0; i < attackCes; i++)
         {
-            if (!eartharmy->isEmpty_ES())
+            if (!game->GetEA()->isEmpty_ES())
             {
-                eartharmy->peekES(ES); 
+                game->GetEA()->peekES(ES);
                 if (ES)
                 {
                     game->addAMAttack(ES); 
                 }
-                eartharmy->removeES(ES);
+                game->GetEA()->removeES(ES);
                 oghealthES = ES->GetHealth();
                 ES->SetHealth(ES->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ES->GetHealth()));
                 if (ES->GetTa() == 0)
@@ -59,19 +60,18 @@ void AlienMonster::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
                 {
                     tempES.enqueue(ES);
                 }
-
             }
         }
         for (int i = 0; i < attackCet; i++)
         {
-            if (!eartharmy->isEmpty_ET())
+            if (!game->GetEA()->isEmpty_ET())
             {
-                eartharmy->peekET(ET); 
+                game->GetEA()->peekET(ET);
                 if (ET) 
                 {
                     game->addAMAttack(ET); 
                 }
-                eartharmy->removeET(ET);
+                game->GetEA()->removeET(ET);
                 oghealthET = ET->GetHealth();
                 ET->SetHealth(ET->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ET->GetHealth()));
                 if (ET->GetTa() == 0)
@@ -96,11 +96,10 @@ void AlienMonster::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
     }
     while (tempES.dequeue(ES))
     {
-        eartharmy->ReAddEarthUnit(ES);
+        game->GetEA()->ReAddEarthUnit(ES);
     }
     while (tempET.dequeue(ET))
     {
-        eartharmy->ReAddEarthUnit(ET);
-
+        game->GetEA()->ReAddEarthUnit(ET);
     }
 }

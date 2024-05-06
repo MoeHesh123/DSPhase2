@@ -9,27 +9,28 @@ string EarthSoldier::GetType()
     return type;
 }
 
-void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
+void EarthSoldier::Attack(Game* game)
 {
     LinkedQueue<AlienSoldier*> tempList;
+
     EarthSoldier* ES = nullptr;
     AlienSoldier* AS = nullptr;
-    eartharmy->peekES(ES);
+
+    game->GetEA()->peekES(ES);
     if (ES)
     {
         game->addESAttack(ES);
     } 
-
     for (int i = 0; i < ES->GetAttackCapacity(); i++)
     {
-        if (!alienarmy->isEmpty_AS()) 
+        if (!game->GetAA()->isEmpty_AS())
         {
-            alienarmy->peekAS(AS);
+            game->GetAA()->peekAS(AS);
             if (AS)
             {
                 game->addESAttack(AS); 
             }
-            alienarmy->removeAS(AS); 
+            game->GetAA()->removeAS(AS);
             AS->SetHealth(AS->GetHealth() - ((ES->GetPower() * (ES->GetHealth()) / 100) / sqrt(AS->GetHealth())));
             if (AS->GetTa() == 0)
             {
@@ -48,6 +49,6 @@ void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
     }
     while (tempList.dequeue(AS)) 
     {
-        alienarmy->ReAddAlienUnit(AS);
+        game->GetAA()->ReAddAlienUnit(AS);
     }
 }

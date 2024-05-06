@@ -9,12 +9,15 @@ string HealUnit::GetType()
 	return type;
 }
 
-void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
+void HealUnit::Attack(Game* game)
 {
 	LinkedQueue<EarthSoldier*> TempES;
 	LinkedQueue<EarthTank*> TempET;
+
 	HealUnit* HU = nullptr;
+
 	bool HealCheck = false;
+
 	game->removeHU(HU);
 	if (HU)
 	{
@@ -39,7 +42,7 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						ES->SetHealth(ES->GetHealth() + HealthImprovement);
 						if (ES->GetHealth() > 100) ES->SetHealth(100.0);
 						game->IncrementHealedCount();
-						if (ES->GetHealth() >= 0.2 * OGH) eartharmy->ReAddEarthUnit(ES);
+						if (ES->GetHealth() >= 0.2 * OGH) game->GetEA()->ReAddEarthUnit(ES);
 						else TempES.enqueue(ES);
 					}
 				}
@@ -63,7 +66,7 @@ void HealUnit::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						ET->SetHealth(ET->GetHealth() + HealthImprovement);
 						if (ET->GetHealth() > 100) ET->SetHealth(100.0);
 						game->IncrementHealedCount();
-						if (ET->GetHealth() >= 0.2 * OGH) eartharmy->ReAddEarthUnit(ET);
+						if (ET->GetHealth() >= 0.2 * OGH) game->GetEA()->ReAddEarthUnit(ET);
 						else TempET.enqueue(ET);
 					}
 				}
