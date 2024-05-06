@@ -36,9 +36,9 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						{
 							if (!alienarmy->isEmpty_AS())
 							{
-							    alienarmy->removeAS(AS);
-							    
-							
+								alienarmy->removeAS(AS);
+
+
 								AS->SetHealth(AS->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AS->GetHealth()));
 								if (AS->GetTa() == 0)
 								{
@@ -47,32 +47,33 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 								if (AS->GetHealth() <= 0)
 								{
 									game->AddToKilled(AS);
-									AS->SetTd(game->GetTimeStep()); 
+									AS->SetTd(game->GetTimeStep());
 								}
 								else
 								{
 									tempAS.enqueue(AS);
 								}
-								if (!alienarmy->isEmpty_AM()) 
-								{
-									alienarmy->removeAM(AM); 
+							}
+							if (!alienarmy->isEmpty_AM()) 
+							{
+								alienarmy->removeAM(AM); 
 
-									AM->SetHealth(AM->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AM->GetHealth()));
-									if (AM->GetTa() == 0)
-									{
-										AM->SetTa( game->GetTimeStep());
-									}
-									if (AM->GetHealth() <= 0)
-									{
-										game->AddToKilled(AM);
-										AM->SetTd(game->GetTimeStep());
-									}
-									else
-									{
-										tempAM.enqueue(AM);
-									}
+								AM->SetHealth(AM->GetHealth() - (ET->GetPower() * ((ET->GetHealth()) / 100)) / sqrt(AM->GetHealth()));
+								if (AM->GetTa() == 0)
+								{
+									AM->SetTa( game->GetTimeStep());
+								}
+								if (AM->GetHealth() <= 0)
+								{
+									game->AddToKilled(AM);
+									AM->SetTd(game->GetTimeStep());
+								}
+								else
+								{
+									tempAM.enqueue(AM);
 								}
 							}
+							
 						}
 
 					}
@@ -83,7 +84,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						for (int i = 0; i < attackCountAS; i++)
 						{
 							
-							if (alienarmy->isEmpty_AS());
+							if (!alienarmy->isEmpty_AS());
 							{
 								alienarmy->removeAS(AS); 
 
