@@ -15,12 +15,14 @@ void EarthSoldier::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
     EarthSoldier* ES = nullptr;
     AlienSoldier* AS = nullptr;
     eartharmy->peekES(ES);
+    //if (ES) {} TATA.enqueue(ES);
 
     for (int i = 0; i < ES->GetAttackCapacity(); i++)
     {
-        
         if (!alienarmy->isEmpty_AS()) 
         {
+            //alienarmy->peekAS(AS);
+            //if (AS) {} TATA.enqueue(AS);
             alienarmy->removeAS(AS); 
             AS->SetHealth(AS->GetHealth() - ((ES->GetPower() * (ES->GetHealth()) / 100) / sqrt(AS->GetHealth())));
             if (AS->GetTa() == 0)

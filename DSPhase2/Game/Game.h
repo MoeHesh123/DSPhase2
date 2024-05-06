@@ -16,6 +16,13 @@ struct input
 class Game
 {
 
+	LinkedQueue <Unit*> ESAttack;
+	LinkedQueue <Unit*> ETAttack;
+	LinkedQueue <Unit*> EGAttack;
+	LinkedQueue <Unit*> ASAttack;
+	LinkedQueue <Unit*> AMAttack;
+	LinkedQueue <Unit*> ADAttack;
+
 	LinkedQueue <Unit*> KL;
 
 	LinkedQueue <Unit*> TL;
