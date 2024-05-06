@@ -2,6 +2,6 @@
 
 int main()
 {
-	Game *X = nullptr;
+	Game *X = new Game();
 	X->StartGame();
 }

@@ -6,6 +6,14 @@
 
 class RandGen;
 
+enum EndGameConditions 
+{
+	Neutral = 0,
+	Lose = 1,
+	Win = 2,
+	Draw = 3
+};
+
 struct input
 {
 	int numOfUnits, ES, ET, EG, HU, AS, AM, AD, Prob;
@@ -15,6 +23,7 @@ struct input
 
 class Game
 {
+	int TimeStep;
 
 	LinkedQueue <Unit*> ESAttack;
 	LinkedQueue <Unit*> ETAttack;
@@ -22,9 +31,7 @@ class Game
 	LinkedQueue <Unit*> ASAttack;
 	LinkedQueue <Unit*> AMAttack;
 	LinkedQueue <Unit*> ADAttack;
-
 	LinkedQueue <Unit*> KL;
-
 	LinkedQueue <Unit*> TL;
 
 	StackList <HealUnit*> HL;
@@ -47,19 +54,17 @@ class Game
 	float ADKilledcount = 0;
 	float HUKilledcount = 0;
 
-	int TimeStep = 1;
-
-	int EndGameCondition = 0;
+	EndGameConditions EndGameCondition ;
 
 public:
 
+	Game();
+
 	input in;
+	void Readinput();
 
 	void AddToKilled(Unit* Unit);
 	void PrintKilledList();
-
-	void Readinput();
-	void ProduceOutput(Game* game, EarthArmy* earmy, AlienArmy* Aarmy);
 
 	bool isEmpty_HL();
 	bool addHU(int jt, double H, int P, int AttC, EarthArmy*& earmy);
@@ -67,19 +72,17 @@ public:
     void ReAddHealUnit(HealUnit* hu);
 	void printHL();
 	bool PeekHU(HealUnit*& HU);
+	void IncrementHealedCount();
 
 	bool isEmpty_ESUML();
 	bool addESToUML(EarthSoldier* esptr);
 	bool removeESFromUML(EarthSoldier*& esptr, int& pri);
-	//bool CheckESUMLKilled();
 
 	bool isEmpty_ETUML();
 	bool addETToUML(EarthTank* etptr);
 	bool removeETFromUML(EarthTank*& etptr);
-	//bool CheckETUMLKilled();
 
 	void printUML();
-
 
 	bool addESAttack(Unit* unit);
 	bool addETAttack(Unit* unit);
@@ -87,17 +90,12 @@ public:
 	bool addASAttack(Unit* unit);
 	bool addAMAttack(Unit* unit);
 	bool addADAttack(Unit* unit);
-
 	void printAttacking();
-
-	int GetHealedCount();
-	void IncrementHealedCount();
 
 	void StartGame();
 	int GetTimeStep();
-	void SetTimeStep(int TS);
 
-	bool ContinueGame(Game* game, EarthArmy* earmy, AlienArmy* aarmy);
-	void SetEndGameCondition(int flag);
-	int GetEndGameCondition();
+	bool CheckGameEnded(EarthArmy* earmy, AlienArmy* aarmy);
+
+	void ProduceOutput(EarthArmy* earmy, AlienArmy* Aarmy);
 };
