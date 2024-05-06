@@ -22,6 +22,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 	int attackCountAS = 0;
 
 	eartharmy->peekET(ET);
+	
 
 		if (!eartharmy->isEmpty_ET()) {
 			if (eartharmy->getEScount() < (0.3 * (alienarmy->getAScount())))
@@ -82,7 +83,7 @@ void EarthTank::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy)
 						for (int i = 0; i < attackCountAS; i++)
 						{
 							
-							if (alienarmy->getAS().isEmpty())
+							if (alienarmy->isEmpty_AS());
 							{
 								alienarmy->removeAS(AS); 
 
