@@ -69,7 +69,7 @@ void AlienMonster::Attack(Game* game, EarthArmy* eartharmy, AlienArmy* alienarmy
                 eartharmy->peekET(ET); 
                 if (ET) 
                 {
-                    game->addADAttack(ET); 
+                    game->addAMAttack(ET); 
                 }
                 eartharmy->removeET(ET);
                 oghealthET = ET->GetHealth();
