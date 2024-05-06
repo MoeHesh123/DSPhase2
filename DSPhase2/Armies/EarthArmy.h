@@ -7,20 +7,22 @@
 class EarthArmy
 {
 
-	int EarthID = 0;
+	int EarthID;
 
 	LinkedQueue <EarthSoldier*> ES;
-	int EScount = 0;
+	int EScount;
 
 	StackList <EarthTank*> ET;
-	int ETcount = 0;
+	int ETcount;
 
 	priQueue <EarthGunnery*> EG;
-	int EGcount = 0;
+	int EGcount;
 
-	int EarthCount = 0;
+	int EarthCount;
 
 public:
+
+	EarthArmy();
 
 	int GetEarthCount();
 

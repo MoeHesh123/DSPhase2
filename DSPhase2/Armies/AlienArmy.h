@@ -9,21 +9,23 @@
 class AlienArmy
 {
 
-	int AlienID = 2000;
+	int AlienID;
 
 	LinkedQueue <AlienSoldier*> AS;
-	int AScount = 0;
+	int AScount;
 
 	DoubleEndedQueueList<AlienDrone*>AD;
-	int ADcount = 0;
+	int ADcount;
 
 	bag<AlienMonster*>AM;
-	int AMcount = 0;
-	int alternating = 0;
+	int AMcount;
+	int alternating;
 
-	int AlienCount = 0;
+	int AlienCount;
 
 public:
+
+	AlienArmy();
 
 	int GetAlienCount();
 

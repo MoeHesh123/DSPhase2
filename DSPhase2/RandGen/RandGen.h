@@ -6,8 +6,6 @@ class RandGen
 
 public:
 
-	EarthArmy* EA;
-	AlienArmy* AM;
-	void Generate(Game*, EarthArmy*, AlienArmy*, int TJ);
+	void Generate(Game*);
 
 };

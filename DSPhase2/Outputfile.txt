@@ -1,32 +1,42 @@
 ============================================================================
-Killed Units: 26
+Killed Units: 36
 Td    ID    Tj    Df    Dd    Db    
-6     1     5     0     1     1     
-7     2     5     0     2     2     
-8     3     6     0     2     2     
-9     4     6     0     3     3     
-13    8     12    0     1     1     
-14    9     13    0     1     1     
-16    2001  5     2     9     11    
-16    12    15    0     1     1     
-17    7     12    0     5     5     
-17    10    13    0     4     4     
-18    2004  6     1     11    12    
-18    11    15    0     3     3     
-21    2014  18    0     3     3     
-21    5     7     8     6     14    
-21    13    18    0     3     3     
-22    16    20    0     2     2     
-25    14    18    0     7     7     
-27    6     7     0     20    20    
-31    17    27    0     4     4     
-37    22    36    0     1     1     
-37    15    20    0     17    17    
-37    20    32    0     5     5     
-37    19    32    0     5     5     
-40    2006  7     1     32    33    
-40    24    37    0     3     3     
-42    25    40    0     2     2     
+3     1     2     0     1     1     
+5     2     2     3     0     3     
+5     3     5     0     0     0     
+6     4     5     0     1     1     
+6     6     6     0     0     0     
+11    7     11    0     0     0     
+11    8     11    0     0     0     
+15    9     15    0     0     0     
+17    10    15    0     2     2     
+18    11    18    0     0     0     
+18    12    18    0     0     0     
+21    13    21    0     0     0     
+21    5     6     0     15    15    
+26    2002  2     13    11    24    
+26    15    26    0     0     0     
+28    2014  21    5     2     7     
+28    18    27    0     1     1     
+29    2001  2     13    14    27    
+30    20    29    0     1     1     
+31    2013  21    8     2     10    
+31    22    30    0     1     1     
+31    23    31    0     0     0     
+31    21    30    0     1     1     
+32    24    31    0     1     1     
+34    19    29    4     1     5     
+38    26    36    0     2     2     
+40    29    39    0     1     1     
+41    30    39    0     2     2     
+41    28    37    0     4     4     
+45    31    44    0     1     1     
+45    25    36    6     3     9     
+47    17    27    0     20    20    
+47    34    46    0     1     1     
+48    16    26    0     22    22    
+48    36    47    0     1     1     
+48    35    47    0     1     1     
 ============================================================================
 Battle result: Earth Army Lost!
 ============================================================================
@@ -36,33 +46,33 @@ ES    ET    EG
 
 Percentage Of Destructed Earth Units Relative To Their Total: 
 ES    ET    EG    
-100   88    100   
+90    95    100   
 
-Percentage Of Earth Units Healed Relative To Their Total: 22
+Percentage Of Earth Units Healed Relative To Their Total: 6
 
-Percentage Of Total Destructed Earth units Relative To Total Earth Units: 96
+Percentage Of Total Destructed Earth units Relative To Total Earth Units: 94
 
 Average of Df,Dd & Db for Earth Units:
 DfAVG DdAVG DbAVG 
-0     4     5     
+0     3     3     
 
-Earth Df/Db%: 8
-Earth Dd/Db%: 92
+Earth Df/Db%: 14
+Earth Dd/Db%: 86
 ============================================================================
 Total Alien Army Units Alive: 
 AS    AM    AD    
-12    3     7     
+19    11    2     
 
 Percentage Of Destructed Alien Units Relative To Their Total: 
 AS    AM    AD    
-0     40    22    
+0     0     67    
 
-Percentage Of Total Destructed Alien units Relative To Total Alien Units: 15
+Percentage Of Total Destructed Alien units Relative To Total Alien Units: 11
 
 Average of Df,Dd & Db for Alien Units: 
 DfAVG DdAVG DbAVG 
-1     14    15    
+10    7     17    
 
-Alien Df/Db%: 7
-Alien Dd/Db%: 93
+Alien Df/Db%: 57
+Alien Dd/Db%: 43
 ============================================================================

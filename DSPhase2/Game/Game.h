@@ -23,6 +23,13 @@ struct input
 
 class Game
 {
+
+	EarthArmy* EA= new EarthArmy();
+	AlienArmy* AA= new AlienArmy();
+	RandGen* randgen;
+
+
+
 	int TimeStep;
 
 	LinkedQueue <Unit*> ESAttack;
@@ -63,11 +70,14 @@ public:
 	input in;
 	void Readinput();
 
+	EarthArmy* GetEA();
+	AlienArmy* GetAA();
+
 	void AddToKilled(Unit* Unit);
 	void PrintKilledList();
 
 	bool isEmpty_HL();
-	bool addHU(int jt, double H, int P, int AttC, EarthArmy*& earmy);
+	bool addHU(int jt, double H, int P, int AttC);
 	bool removeHU(HealUnit*& hu);
     void ReAddHealUnit(HealUnit* hu);
 	void printHL();
@@ -95,7 +105,7 @@ public:
 	void StartGame();
 	int GetTimeStep();
 
-	bool CheckGameEnded(EarthArmy* earmy, AlienArmy* aarmy);
+	bool CheckGameEnded();
 
-	void ProduceOutput(EarthArmy* earmy, AlienArmy* Aarmy);
+	void ProduceOutput();
 };

@@ -1,5 +1,14 @@
 #include "EarthArmy.h"
 
+EarthArmy::EarthArmy()
+{
+   EarthCount = 0;
+   EGcount = 0;
+   ETcount = 0;
+   EScount = 0;
+   EarthID = 0;
+}
+
 int EarthArmy::GetEarthCount()
 {
 	return (EScount + ETcount + EGcount);

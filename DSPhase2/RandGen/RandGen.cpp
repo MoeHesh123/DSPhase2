@@ -1,9 +1,8 @@
 #include "RandGen.h"
 
-void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA,int tj)
+void RandGen::Generate(Game* game)
 {
 	game->in;
-	game->Readinput();
 	int A = 1 + rand() % 100;
 	if (A <= game->in.Prob)
 	{
@@ -15,19 +14,19 @@ void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA,int tj)
 			int C = game->in.minCapacityEarth + (rand() % (game->in.maxCapacityEarth - game->in.minCapacityEarth));
 			if (B <= (game->in.ES))
 			{
-				EA->addES(tj, H, P, C);
+				game->GetEA()->addES(game->GetTimeStep(), H, P, C);
 			}
 			else if (B <= (game->in.ES + game->in.ET))
 			{
-				EA->addET(tj, H, P, C);
+				game->GetEA()->addET(game->GetTimeStep(), H, P, C);
 			}
 			else if (B <= (game->in.ES + game->in.ET + game->in.EG))
 			{
-				EA->addEG(tj, H, P, C);
+				game->GetEA()->addEG(game->GetTimeStep(), H, P, C);
 			}
 			else
 			{
-				game->addHU(tj, H, P, C,EA);
+				game->addHU(game->GetTimeStep(), H, P, C);
 			}
 		}
 		for (int i = 0; i < game->in.numOfUnits; i++)
@@ -38,15 +37,15 @@ void RandGen::Generate(Game* game, EarthArmy* EA, AlienArmy* ALA,int tj)
 			int C = game->in.minCapacityAlien + (rand() % (game->in.maxCapacityAlien - game->in.minCapacityAlien));
 			if (Z <= game->in.AS)
 			{
-				ALA->addAS(tj, H, P, C);
+				game->GetAA()->addAS(game->GetTimeStep(), H, P, C);
 			}
 			else if (Z <= game->in.AS + game->in.AM)
 			{
-				ALA->addAM(tj, H, P, C);
+				game->GetAA()->addAM(game->GetTimeStep(), H, P, C);
 			}
 			else
 			{
-				ALA->addAD(tj, H, P, C);
+				game->GetAA()->addAD(game->GetTimeStep(), H, P, C);
 			}
 		}
 	}

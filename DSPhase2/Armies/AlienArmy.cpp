@@ -1,5 +1,15 @@
 #include "AlienArmy.h"
 
+AlienArmy::AlienArmy()
+{
+	AlienID = 2000;
+	AScount = 0;
+	ADcount = 0;
+	AMcount = 0;
+	alternating = 0;
+	AlienCount = 0;
+}
+
 int AlienArmy::GetAlienCount()
 {
 	return (AScount + ADcount + AMcount);

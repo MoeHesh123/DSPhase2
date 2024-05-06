@@ -27,7 +27,7 @@ void Game::Readinput()
 	}
 }
 
-void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
+void Game::ProduceOutput()
 {
 	cout << "Please Enter The Output File Name: ";
 	string file;
@@ -91,9 +91,9 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "ET"
 	<< setw(6) << left << "EG" << endl;
 	OutputFile 
-	<< setw(6) << left << earmy->getEScount()
-	<< setw(6) << left << earmy->getETcount()
-	<< setw(6) << left << earmy->getEGcount();
+	<< setw(6) << left << EA->getEScount()
+	<< setw(6) << left << EA->getETcount()
+	<< setw(6) << left << EA->getEGcount();
 	//OutputFile
 	//<< setw(6) << left << ESKilledcount
 	//<< setw(6) << left << ETKilledcount
@@ -104,22 +104,22 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "ET"
 	<< setw(6) << left << "EG" << endl;
 
-	if ((earmy->getEScount() + ESKilledcount + ESUMLcount) == 0) OutputFile << setw(6) << left << "0";
-	else OutputFile << setw(6) << left << round((ESKilledcount / (earmy->getEScount() + ESKilledcount + ESUMLcount)) * 100);
+	if ((EA->getEScount() + ESKilledcount + ESUMLcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((ESKilledcount / (EA->getEScount() + ESKilledcount + ESUMLcount)) * 100);
 
-	if ((earmy->getETcount() + ETKilledcount + ETUMLcount) == 0) OutputFile << setw(6) << left << "0";
-	else OutputFile << setw(6) << left << round((ETKilledcount / (earmy->getETcount() + ETKilledcount + ETUMLcount)) * 100);
+	if ((EA->getETcount() + ETKilledcount + ETUMLcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((ETKilledcount / (EA->getETcount() + ETKilledcount + ETUMLcount)) * 100);
 
-	if ((earmy->getEGcount() + EGKilledcount) == 0) OutputFile << setw(6) << left << "0";
-	else OutputFile << setw(6) << left << round((EGKilledcount / (earmy->getEGcount() + EGKilledcount)) * 100);
+	if ((EA->getEGcount() + EGKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((EGKilledcount / (EA->getEGcount() + EGKilledcount)) * 100);
 
 	OutputFile << endl << endl << "Percentage Of Earth Units Healed Relative To Their Total: ";
-	if ((earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) == 0) OutputFile << "0";
-	else OutputFile << round(HealedCount / (earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) * 100);
+	if ((EA->getEScount() + EA->getETcount() + EA->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) == 0) OutputFile << "0";
+	else OutputFile << round(HealedCount / (EA->getEScount() + EA->getETcount() + EA->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) * 100);
 
 	OutputFile << endl << endl << "Percentage Of Total Destructed Earth units Relative To Total Earth Units: ";
-	if((earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) == 0) OutputFile <<"0";
-	else OutputFile << round(EarthKilled / (earmy->getEScount() + earmy->getETcount() + earmy->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) * 100);
+	if((EA->getEScount() + EA->getETcount() + EA->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) == 0) OutputFile <<"0";
+	else OutputFile << round(EarthKilled / (EA->getEScount() + EA->getETcount() + EA->getEGcount() + EarthKilled + ESUMLcount + ETUMLcount) * 100);
 
 	OutputFile << endl << endl << "Average of Df,Dd & Db for Earth Units:" <<endl
 	<< setw(6) << left << "DfAVG"
@@ -155,9 +155,9 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "AM"
 	<< setw(6) << left << "AD" << endl;
 	OutputFile
-	<< setw(6) << left << aarmy->getAScount()
-	<< setw(6) << left << aarmy->getAMcount()
-	<< setw(6) << left << aarmy->getADcount();
+	<< setw(6) << left << AA->getAScount()
+	<< setw(6) << left << AA->getAMcount()
+	<< setw(6) << left << AA->getADcount();
 	//OutputFile
 	//<< setw(6) << left << ASKilledcount
 	//<< setw(6) << left << AMKilledcount
@@ -168,18 +168,18 @@ void Game::ProduceOutput(EarthArmy* earmy, AlienArmy* aarmy)
 	<< setw(6) << left << "AM"
 	<< setw(6) << left << "AD" << endl;
 
-	if ((aarmy->getAScount() + ASKilledcount) == 0) OutputFile << setw(6) << left << "0";
-	else OutputFile << setw(6) << left << round((ASKilledcount / (aarmy->getAScount() + ASKilledcount)) * 100);
+	if ((AA->getAScount() + ASKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((ASKilledcount / (AA->getAScount() + ASKilledcount)) * 100);
 
-	if ((aarmy->getAMcount() + AMKilledcount) == 0) OutputFile << setw(6) << left << "0";
-	else OutputFile << setw(6) << left << round((AMKilledcount / (aarmy->getAMcount() + AMKilledcount)) * 100);
+	if ((AA->getAMcount() + AMKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((AMKilledcount / (AA->getAMcount() + AMKilledcount)) * 100);
 
-	if ((aarmy->getADcount() + ADKilledcount) == 0) OutputFile << setw(6) << left << "0";
-	else OutputFile << setw(6) << left << round((ADKilledcount / (aarmy->getADcount() + ADKilledcount)) * 100);
+	if ((AA->getADcount() + ADKilledcount) == 0) OutputFile << setw(6) << left << "0";
+	else OutputFile << setw(6) << left << round((ADKilledcount / (AA->getADcount() + ADKilledcount)) * 100);
 
 	OutputFile << endl << endl << "Percentage Of Total Destructed Alien units Relative To Total Alien Units: ";
-	if (((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) == 0) OutputFile << "0";
-    else OutputFile << round((ASKilledcount + AMKilledcount + ADKilledcount) / ((aarmy->getAScount() + ASKilledcount) + (aarmy->getAMcount() + AMKilledcount) + (aarmy->getADcount() + ADKilledcount)) * 100);
+	if (((AA->getAScount() + ASKilledcount) + (AA->getAMcount() + AMKilledcount) + (AA->getADcount() + ADKilledcount)) == 0) OutputFile << "0";
+    else OutputFile << round((ASKilledcount + AMKilledcount + ADKilledcount) / ((AA->getAScount() + ASKilledcount) + (AA->getAMcount() + AMKilledcount) + (AA->getADcount() + ADKilledcount)) * 100);
 
 	OutputFile << endl << endl << "Average of Df,Dd & Db for Alien Units: " << endl
 	<< setw(6) << left << "DfAVG"
@@ -478,11 +478,11 @@ bool Game::isEmpty_HL()
 }
 
 
-bool Game::addHU(int jt, double h, int p, int AttC, EarthArmy*& earmy)
+bool Game::addHU(int jt, double h, int p, int AttC)
 {
-	if (earmy->getEarthID() < 999)
+	if (EA->getEarthID() < 999)
 	{
-		HealUnit* hu = new HealUnit(earmy->IncrementEarthID(), jt, h, p, AttC);
+		HealUnit* hu = new HealUnit(EA->IncrementEarthID(), jt, h, p, AttC);
 		HL.push(hu);
 		HUcount++;
 		return true;
@@ -537,6 +537,16 @@ bool Game::PeekHU(HealUnit*& HU)
 	if (isEmpty_HL()) return false;
 	HL.peek(HU);
 	return true;
+}
+
+EarthArmy* Game::GetEA()
+{
+	return EA;
+}
+
+AlienArmy* Game::GetAA()
+{
+	return AA;
 }
 
 void Game::AddToKilled(Unit* unit)
@@ -628,9 +638,6 @@ void Game::StartGame()
 	}
     cin.ignore();
 
-	RandGen generator;
-	EarthArmy earthArmy;
-	AlienArmy alienArmy;
 
 	Readinput();
 	srand((unsigned)time(0));
@@ -639,73 +646,73 @@ void Game::StartGame()
 	{
 		if (x == 1) cout << endl << "Current TimeStep " << TimeStep << endl;
 
-		generator.Generate(this, &earthArmy, &alienArmy, TimeStep);
+		randgen->Generate(this);
 
 		EarthSoldier* ES;
-		if (!(earthArmy.isEmpty_ES()))
+		if (!(EA->isEmpty_ES()))
 		{
-			earthArmy.peekES(ES);
-			if (ES) ES->Attack(this, &earthArmy, &alienArmy);
+			EA->peekES(ES);
+			if (ES) ES->Attack(this, EA, AA);
 		}
 
-	    //EarthTank* ET;
-		//if (!(earthArmy.isEmpty_ET()))
-		//{
-		//	earthArmy.peekET(ET);
-		//	if (ET) ET->Attack(this, &earthArmy, &alienArmy);
-		//}
+	    EarthTank* ET; 
+		if (!(EA->isEmpty_ET())) 
+		{
+			EA->peekET(ET); 
+			if (ET) ET->Attack(this, EA,AA); 
+		}
 
 		EarthGunnery* EG;
 		int p = 0;
-		if (!earthArmy.isEmpty_EG())
+		if (!(EA->isEmpty_EG()))
 		{
-			earthArmy.peekEG(EG, p);
-			if (EG) EG->Attack(this, &earthArmy, &alienArmy);
+			EA->peekEG(EG, p);
+			if (EG) EG->Attack(this,EA, AA);
 		}
 
 		AlienSoldier* AS;
-		if (!(alienArmy.isEmpty_AS()))
+		if (!(AA->isEmpty_AS()))
 		{
-			alienArmy.peekAS(AS);
-			if (AS) AS->Attack(this, &earthArmy, &alienArmy);
+			AA->peekAS(AS);
+			if (AS) AS->Attack(this, EA, AA);
 		}
 
 		AlienDrone* AD;
-		if (!alienArmy.isEmpty_AD())
+		if (!(AA->isEmpty_AD()))
 		{
-			alienArmy.peekADfront(AD);
-			if (AD) AD->Attack(this, &earthArmy, &alienArmy);
+			AA->peekADfront(AD);
+			if (AD) AD->Attack(this,EA,AA);
 		}
 
 		AlienMonster* AM;
-		if (!alienArmy.isEmpty_AM())
+		if (!(AA->isEmpty_AM()))
 		{
-			alienArmy.peekAM(AM);
-			if (AM) AM->Attack(this, &earthArmy, &alienArmy);
+			AA->peekAM(AM);
+			if (AM) AM->Attack(this,EA,AA);
 		}
 
 		HealUnit* HU;
 		if (!isEmpty_HL())
 		{
 			PeekHU(HU);
-			if (HU)	HU->Attack(this, &earthArmy, &alienArmy);
+			if (HU)	HU->Attack(this,EA,AA);
 		}
 
 		if (x == 1)
 		{
 			cout << "==============  Earth Army Alive Units ================" << endl;
-			earthArmy.printES();
-			earthArmy.printET();
-			earthArmy.printEG();
+			EA->printES();
+			EA->printET();
+			EA->printEG();
 			printHL();
 
 			cout << endl << "============= Unit Maintenance List ===================" << endl;
 			printUML();
 
 			cout << endl << "==============  Alien Army Alive Units ================" << endl;
-			alienArmy.printAS();
-			alienArmy.printAD();
-			alienArmy.printAM();
+			AA->printAS();
+			AA->printAD();
+			AA->printAM();
 
 			cout << endl << "============== Units Fighting At Current Step =========" << endl;
 			printAttacking();
@@ -718,7 +725,7 @@ void Game::StartGame()
 		}
 		if (TimeStep >= 40)
 		{
-			if (CheckGameEnded(&earthArmy, &alienArmy))
+			if (CheckGameEnded())
 			{
 				if (x == 1) cout << "Game Ended !" << endl;
 				break;
@@ -728,27 +735,27 @@ void Game::StartGame()
 	}
 	if (x == 2)
 	{
-		ProduceOutput(&earthArmy, &alienArmy);
+		ProduceOutput();
 		cout << "Silent Mode" << endl;
 		cout << "Simulation Starts..." << endl;
 		cout << "Simulation ends, Output file is created" << endl;
 	}
-	else ProduceOutput(&earthArmy, &alienArmy);
+	else ProduceOutput();
 }
 
-bool Game::CheckGameEnded(EarthArmy* earmy, AlienArmy* aarmy)
+bool Game::CheckGameEnded()
 {
-	if (aarmy->GetAlienCount() != 0 && earmy->GetEarthCount() != 0)
+	if (AA->GetAlienCount() != 0 && EA->GetEarthCount() != 0)
 	{
 		EndGameCondition = Neutral;
 		return false;
 	}
-	else if (earmy->GetEarthCount() == 0)
+	else if (EA->GetEarthCount() == 0)
 	{
 		EndGameCondition = Lose;
 		return true;
 	}
-    else if (aarmy->GetAlienCount() == 0)
+    else if (AA->GetAlienCount() == 0)
 	{
 		EndGameCondition = Win;
 		return true;
