@@ -3,6 +3,8 @@
 #include <iomanip>
 #include"../Armies/AlienArmy.h"
 #include"../Armies/EarthArmy.h"
+#include "../Armies/AllyArmy.h"
+#include "../Unit/HealUnit.h"
 
 class RandGen;
 
@@ -26,9 +28,8 @@ class Game
 
 	EarthArmy* EA= new EarthArmy();
 	AlienArmy* AA= new AlienArmy();
+	AllyArmy* Allies = new AllyArmy();
 	RandGen* randgen;
-
-
 
 	int TimeStep;
 
@@ -38,6 +39,7 @@ class Game
 	LinkedQueue <Unit*> ASAttack;
 	LinkedQueue <Unit*> AMAttack;
 	LinkedQueue <Unit*> ADAttack;
+	LinkedQueue <Unit*> SUAttack;
 	LinkedQueue <Unit*> KL;
 	LinkedQueue <Unit*> TL;
 
@@ -72,6 +74,7 @@ public:
 
 	EarthArmy* GetEA();
 	AlienArmy* GetAA();
+	AllyArmy* GetAllies();
 
 	void AddToKilled(Unit* Unit);
 	void PrintKilledList();
@@ -100,6 +103,7 @@ public:
 	bool addASAttack(Unit* unit);
 	bool addAMAttack(Unit* unit);
 	bool addADAttack(Unit* unit);
+	bool addSUAttack(Unit* unit);
 	void printAttacking();
 
 	void StartGame();

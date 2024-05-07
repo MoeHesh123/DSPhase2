@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Armies\AllyArmy.cpp" />
     <ClCompile Include="Armies\AlienArmy.cpp" />
     <ClCompile Include="Armies\EarthArmy.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="RandGen\RandGen.cpp" />
+    <ClCompile Include="Unit\SaverUnit.cpp" />
     <ClCompile Include="Unit\HealUnit.cpp" />
     <ClCompile Include="Unit\AlienMonster.cpp" />
     <ClCompile Include="Unit\AlienDrone.cpp" />
@@ -38,10 +40,12 @@
     <ClInclude Include="ADT\PriNode.h" />
     <ClInclude Include="ADT\QueueADT.h" />
     <ClInclude Include="ADT\StackADT.h" />
+    <ClInclude Include="Armies\AllyArmy.h" />
     <ClInclude Include="Armies\AlienArmy.h" />
     <ClInclude Include="Armies\EarthArmy.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="RandGen\RandGen.h" />
+    <ClInclude Include="Unit\SaverUnit.h" />
     <ClInclude Include="Unit\HealUnit.h" />
     <ClInclude Include="Unit\AlienMonster.h" />
     <ClInclude Include="Unit\AlienDrone.h" />

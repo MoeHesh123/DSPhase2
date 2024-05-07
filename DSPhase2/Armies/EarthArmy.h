@@ -2,7 +2,6 @@
 #include"../Unit/EarthGunnery.h"
 #include"../Unit/EarthSoldier.h"
 #include"../Unit/EarthTank.h"
-#include"../Unit/HealUnit.h"
 
 class EarthArmy
 {

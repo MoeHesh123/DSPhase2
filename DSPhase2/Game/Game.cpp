@@ -358,6 +358,16 @@ bool Game::addADAttack(Unit* unit)
 	return false;
 }
 
+bool Game::addSUAttack(Unit* unit)
+{
+	if (unit)
+	{
+		SUAttack.enqueue(unit);
+		return true;
+	}
+	return false;
+}
+
 void Game::printAttacking()
 {
 	Unit* unit = nullptr;
@@ -477,6 +487,25 @@ void Game::printAttacking()
 		cout << "]" << endl;
 		while (ADAttack.dequeue(unit));
 	}
+	if (SUAttack.isEmpty() || SUAttack.getCount() == 1)
+	{
+		cout << "No Saver Units Attacking" << endl;
+		SUAttack.dequeue(unit);
+	}
+	else
+	{
+		SUAttack.dequeue(unit);
+		Node<Unit*>* Traversal = SUAttack.getfrontPtr();
+		cout << "SU " << unit->GetId() << " Shoots [";
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()->GetId() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem()->GetId();
+		cout << "]" << endl;
+		while (SUAttack.dequeue(unit));
+	}
 }
 
 void Game::IncrementHealedCount()
@@ -560,6 +589,11 @@ EarthArmy* Game::GetEA()
 AlienArmy* Game::GetAA()
 {
 	return AA;
+}
+
+AllyArmy* Game::GetAllies()
+{
+	return Allies;
 }
 
 void Game::AddToKilled(Unit* unit)
@@ -709,6 +743,13 @@ void Game::StartGame()
 		{
 			PeekHU(HU);
 			if (HU)	HU->Attack(this);
+		}
+
+		SaverUnit* SU;
+		if (!(Allies->isEmpty_SU()))
+		{
+			Allies->peekSU(SU);
+			if (SU)	SU->Attack(this);
 		}
 
 		if (x == 1)
