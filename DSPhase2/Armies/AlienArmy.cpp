@@ -269,3 +269,27 @@ void AlienArmy::ReAddAlienUnit(Unit* unit)
 
 	}
 }
+
+void AlienArmy::AlienArmyAttack(Game* game)
+{
+	AlienSoldier* AS;
+	if (!(isEmpty_AS()))
+	{
+		peekAS(AS);
+		if (AS) AS->Attack(game);
+	}
+
+	AlienDrone* AD;
+	if (!(isEmpty_AD()))
+	{
+		peekADfront(AD);
+		if (AD) AD->Attack(game);
+	}
+
+	AlienMonster* AM;
+	if (!(isEmpty_AM()))
+	{
+		peekAM(AM);
+		if (AM) AM->Attack(game);
+	}
+}

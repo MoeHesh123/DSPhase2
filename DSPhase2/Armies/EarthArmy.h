@@ -53,5 +53,6 @@ public:
 	int IncrementEarthID();
 
 	void ReAddEarthUnit(Unit* Unit);
+	void EarthArmyAttack(Game* game);
 
 };

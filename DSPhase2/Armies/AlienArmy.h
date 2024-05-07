@@ -55,4 +55,5 @@ public:
 	bool peekAM(AlienMonster*& am);
 
 	void ReAddAlienUnit(Unit* Unit);
+	void AlienArmyAttack(Game * game);
 };

@@ -36,10 +36,12 @@ void AlienMonster::Attack(Game* game)
             if (!game->GetEA()->isEmpty_ES())
             {
                 game->GetEA()->peekES(ES);
+
                 if (ES)
                 {
-                    game->addAMAttack(ES); 
+                    game->addAMAttack(ES);
                 }
+
                 game->GetEA()->removeES(ES);
                 oghealthES = ES->GetHealth();
                 ES->SetHealth(ES->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ES->GetHealth()));
@@ -61,16 +63,45 @@ void AlienMonster::Attack(Game* game)
                     tempES.enqueue(ES);
                 }
             }
+            else
+            {
+                if (!(game->GetEA()->isEmpty_ET()))
+                {
+                    game->GetEA()->peekET(ET);
+                    if (ET)
+                    {
+                        game->addAMAttack(ET);
+                    }
+                    game->GetEA()->removeET(ET);
+                    ET->SetHealth(AM->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ET->GetHealth()));
+                    if (ET->GetTa() == 0)
+                    {
+                        ET->SetTa(game->GetTimeStep());
+                    }
+                    if (ET->GetHealth() <= 0)
+                    {
+                        game->AddToKilled(ET);
+                        ET->SetTd(game->GetTimeStep());
+                    }
+                    else
+                    {
+                        tempET.enqueue(ET);
+                    }
+                }
+            }
+
         }
         for (int i = 0; i < attackCet; i++)
         {
             if (!game->GetEA()->isEmpty_ET())
             {
                 game->GetEA()->peekET(ET);
-                if (ET) 
+
+                if (ET)
                 {
-                    game->addAMAttack(ET); 
+                    game->addAMAttack(ET);
                 }
+
                 game->GetEA()->removeET(ET);
                 oghealthET = ET->GetHealth();
                 ET->SetHealth(ET->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ET->GetHealth()));
@@ -92,12 +123,43 @@ void AlienMonster::Attack(Game* game)
                     tempET.enqueue(ET);
                 }
             }
+            else
+            {
+                if (!(game->GetEA()->isEmpty_ES()))
+                {
+                    game->GetEA()->peekES(ES);
+                    if (ES)
+                    {
+                        game->addAMAttack(ES);
+                    }
+                    game->GetEA()->removeES(ES);
+                    ES->SetHealth(ES->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ES->GetHealth()));
+                    if (ES->GetTa() == 0)
+                    {
+                        ES->SetTa(game->GetTimeStep());
+                    }
+                    if (ES->GetHealth() <= 0)
+                    {
+                        game->AddToKilled(ES);
+                        ES->SetTd(game->GetTimeStep());
+                    }
+                    else
+                    {
+                        tempES.enqueue(ES);
+
+                    }
+                }
+            }
+
         }
     }
+
+
     while (tempES.dequeue(ES))
     {
         game->GetEA()->ReAddEarthUnit(ES);
     }
+
     while (tempET.dequeue(ET))
     {
         game->GetEA()->ReAddEarthUnit(ET);
