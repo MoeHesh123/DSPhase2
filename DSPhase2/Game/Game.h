@@ -21,6 +21,8 @@ struct input
 	int numOfUnits, ES, ET, EG, HU, AS, AM, AD, Prob;
 	int maxPowerEarth, minPowerEarth, maxHealthEarth, minHealthEarth, maxCapacityEarth, minCapacityEarth;
 	int maxPowerAlien, minPowerAlien, maxHealthAlien, minHealthAlien, maxCapacityAlien, minCapacityAlien;
+	int maxPowerAlly, minPowerAlly, maxHealthAlly, minHealthAlly, maxCapacityAlly, minCapacityAlly;
+	int InfectionProb, InfectionThreshold;
 };
 
 class Game
@@ -63,7 +65,9 @@ class Game
 	float ADKilledcount = 0;
 	float HUKilledcount = 0;
 
-	EndGameConditions EndGameCondition ;
+	EndGameConditions EndGameCondition;
+
+	float PercentageOfInfected;
 
 public:
 
@@ -108,6 +112,9 @@ public:
 
 	void StartGame();
 	int GetTimeStep();
+
+	void SetPercentageOfInfected(float Percent);
+	float GetPercentageOfInfected();
 
 	bool CheckGameEnded();
 

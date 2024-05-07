@@ -98,3 +98,23 @@ void Unit::SetJTUML(int jtuml)
 {
 	JTUML = jtuml;
 }
+
+bool Unit::GetInfectedCheck()
+{
+	return InfectedCheck;
+}
+
+void Unit::SetInfectedCheck(bool Infected)
+{
+	InfectedCheck = Infected;
+}
+
+bool Unit::GetImmunity()
+{
+	return Immunity;
+}
+
+void Unit::SetImmunity(bool immunity)
+{
+	Immunity = immunity;
+}

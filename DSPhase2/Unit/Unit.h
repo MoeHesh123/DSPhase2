@@ -31,6 +31,8 @@ protected:
 	double UAP = 0.0;
 
 	int JTUML = 0;
+	bool InfectedCheck = false;
+	bool Immunity = false;
 
 public:
 
@@ -56,6 +58,12 @@ public:
 
 	int GetJTUML();
 	void SetJTUML(int jtuml);
+
+	bool GetInfectedCheck();
+	void SetInfectedCheck(bool Infected);
+
+	bool GetImmunity();
+	void SetImmunity(bool immunity);
 
 	virtual string GetType() = 0;
 	virtual void Attack(Game* game) = 0;

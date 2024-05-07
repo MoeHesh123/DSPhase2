@@ -28,7 +28,7 @@ void SaverUnit::Attack(Game* game)
             game->GetAA()->peekAS(AS);
             if (AS)
             {
-                game->addESAttack(AS);
+                game->addSUAttack(AS);
             }
             game->GetAA()->removeAS(AS);
             AS->SetHealth(AS->GetHealth() - ((SU->GetPower() * (SU->GetHealth()) / 100) / sqrt(AS->GetHealth())));

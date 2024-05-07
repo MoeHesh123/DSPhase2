@@ -23,6 +23,8 @@ void Game::Readinput()
 		myfile >> in.Prob;
 		myfile >> in.minPowerEarth >> in.maxPowerEarth >> in.minHealthEarth >> in.maxHealthEarth >> in.minCapacityEarth >> in.maxCapacityEarth;
 		myfile >> in.minPowerAlien >> in.maxPowerAlien >> in.minHealthAlien >> in.maxHealthAlien >> in.minCapacityAlien >> in.maxCapacityAlien;
+		myfile >> in.minPowerAlly >> in.maxPowerAlly >> in.minHealthAlly >> in.maxHealthAlly >> in.minCapacityAlly >> in.maxCapacityAlly;
+		myfile >> in.InfectionProb >> in.InfectionThreshold;
 		myfile.close();
 	}
 }
@@ -693,6 +695,7 @@ void Game::StartGame()
 	{
 		if (x == 1) cout << endl << "Current TimeStep " << TimeStep << endl;
 
+		SetPercentageOfInfected(60.0);
 		randgen->Generate(this);
 
 		EA->EarthArmyAttack(this);
@@ -712,6 +715,12 @@ void Game::StartGame()
 			if (SU)	SU->Attack(this);
 		}
 
+		if (PercentageOfInfected == 0)
+		{
+			SaverUnit* SU;
+			while (Allies->removeSU(SU));
+		}
+
 		if (x == 1)
 		{
 			cout << "==============  Earth Army Alive Units ================" << endl;
@@ -722,6 +731,9 @@ void Game::StartGame()
 
 			cout << endl << "============= Unit Maintenance List ===================" << endl;
 			printUML();
+
+			cout << endl << "============= Saver Unit List ===================" << endl;
+			Allies->printSU();
 
 			cout << endl << "==============  Alien Army Alive Units ================" << endl;
 			AA->printAS();
@@ -755,6 +767,16 @@ void Game::StartGame()
 		cout << "Simulation ends, Output file is created" << endl;
 	}
 	else ProduceOutput();
+}
+
+void Game::SetPercentageOfInfected(float Percent)
+{
+	PercentageOfInfected = Percent;
+}
+
+float Game::GetPercentageOfInfected()
+{
+	return PercentageOfInfected;
 }
 
 bool Game::CheckGameEnded()

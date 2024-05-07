@@ -48,5 +48,16 @@ void RandGen::Generate(Game* game)
 				game->GetAA()->addAD(game->GetTimeStep(), H, P, C);
 			}
 		}
+		if (game->GetPercentageOfInfected() >= game->in.InfectionThreshold)
+		{
+			for (int i = 0; i < game->in.numOfUnits; i++)
+			{
+				if (game->GetPercentageOfInfected() == 0) break;
+				int H = game->in.minHealthAlly + (rand() % (game->in.maxHealthAlly - game->in.minHealthAlly));
+				int P = game->in.minPowerAlly + (rand() % (game->in.maxPowerAlly - game->in.minPowerAlly));
+				int C = game->in.minCapacityAlly + (rand() % (game->in.maxCapacityAlly - game->in.minCapacityAlly));
+				game->GetAllies()->addSU(game->GetTimeStep(), H, P, C);
+			}
+		}
 	}
 }
