@@ -21,7 +21,7 @@ void AlienSoldier::Attack(Game* game)
     {
         game->addASAttack(ASp); 
     }
-    for (int i = 0; i < attackCapacity; i++)
+    for (int i = 0; i < ASp->GetAttackCapacity(); i++)
     {
         if (!game->GetEA()->isEmpty_ES())
         {
