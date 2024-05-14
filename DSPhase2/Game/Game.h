@@ -69,6 +69,8 @@ class Game
 	float ADKilledcount = 0;
 	float HUKilledcount = 0;
 
+	bool generating = 0;
+
 	EndGameConditions EndGameCondition;
 
 	float PercentageOfInfected;
@@ -126,6 +128,8 @@ public:
 	void RemoveInfectedES(EarthSoldier*& esptr);
 
 	bool CheckGameEnded();
+	bool GetGenerating();
+	void SetGenerating(bool x);
 
 	void ProduceOutput();
 };

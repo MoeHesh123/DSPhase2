@@ -728,7 +728,6 @@ void Game::StartGame()
 	{
 		if (x == 1) cout << endl << "Current TimeStep " << TimeStep << endl;
 
-		if (EA->getEScount() != 0) SetPercentageOfInfected(InfectedCount / EA->getEScount());
 		randgen->Generate(this);
 
 		EA->EarthArmyAttack(this);
@@ -753,6 +752,9 @@ void Game::StartGame()
 			SaverUnit* SU;
 			while (Allies->removeSU(SU));
 		}
+
+		if (EA->getEScount() != 0) SetPercentageOfInfected((InfectedCount / EA->getEScount()) * 100);
+		cout << endl << "Percentage Of Infected Earth Soliders: " << GetPercentageOfInfected() << endl << endl;
 
 		if (x == 1)
 		{
@@ -857,4 +859,14 @@ void Game::RemoveInfectedES(EarthSoldier*& esptr)
 		ESInfect.dequeue(esptr);
 		InfectedCount--;
 	}
+}
+
+bool Game::GetGenerating()
+{
+	return generating;
+}
+
+void Game::SetGenerating(bool x)
+{
+	generating = x;
 }
