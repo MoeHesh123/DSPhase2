@@ -280,7 +280,9 @@ void Game::printUML()
 		while (Traversal1->getNext())
 		{
 			int Priority = Traversal1->getPri();
-			cout << Traversal1->getItem(Priority)->GetId() << ", ";
+			cout << Traversal1->getItem(Priority)->GetId();
+			if (Traversal1->getItem(Priority)->GetInfectedCheck()) cout << "<X>";
+		    cout << ", ";
 			Traversal1 = Traversal1->getNext();
 		}
 		int Priority = Traversal1->getPri();
@@ -365,6 +367,16 @@ bool Game::addSUAttack(Unit* unit)
 	if (unit)
 	{
 		SUAttack.enqueue(unit);
+		return true;
+	}
+	return false;
+}
+
+bool Game::addInfectedAttack(Unit* unit)
+{
+	if (unit)
+	{
+		InfectedAttack.enqueue(unit);
 		return true;
 	}
 	return false;
@@ -507,6 +519,25 @@ void Game::printAttacking()
 		cout << Traversal->getItem()->GetId();
 		cout << "]" << endl;
 		while (SUAttack.dequeue(unit));
+	}
+	if (InfectedAttack.isEmpty() || InfectedAttack.getCount() == 1)
+	{
+		cout << "No Infected Earth Soldiers Attacking" << endl;
+		InfectedAttack.dequeue(unit);
+	}
+	else
+	{
+		InfectedAttack.dequeue(unit);
+		Node<Unit*>* Traversal = InfectedAttack.getfrontPtr();
+		cout << "ES " << unit->GetId() <<"<X>" << " Shoots [";
+		while (Traversal->getNext())
+		{
+			cout << Traversal->getItem()->GetId() << ", ";
+			Traversal = Traversal->getNext();
+		}
+		cout << Traversal->getItem()->GetId();
+		cout << "]" << endl;
+		while (InfectedAttack.dequeue(unit));
 	}
 }
 
@@ -658,7 +689,9 @@ void Game::PrintKilledList()
 	Node<Unit*>* Traversal = KL.getfrontPtr();
 	while (Traversal->getNext())
 	{
-		cout << Traversal->getItem()->GetId() << ", ";
+		cout << Traversal->getItem()->GetId();
+		if (Traversal->getItem()->GetInfectedCheck()) cout << "<X>";
+		cout << ", ";
 		Traversal = Traversal->getNext();
 	}
 	cout << Traversal->getItem()->GetId();
@@ -695,7 +728,7 @@ void Game::StartGame()
 	{
 		if (x == 1) cout << endl << "Current TimeStep " << TimeStep << endl;
 
-		SetPercentageOfInfected(60.0);
+		if (EA->getEScount() != 0) SetPercentageOfInfected(InfectedCount / EA->getEScount());
 		randgen->Generate(this);
 
 		EA->EarthArmyAttack(this);
@@ -779,6 +812,11 @@ float Game::GetPercentageOfInfected()
 	return PercentageOfInfected;
 }
 
+void Game::IncrementInfectedCount()
+{
+	InfectedCount++;
+}
+
 bool Game::CheckGameEnded()
 {
 	if (TimeStep == 500)
@@ -800,5 +838,23 @@ bool Game::CheckGameEnded()
 	{
 		EndGameCondition = Neutral;
 		return false;
+	}
+}
+
+void Game::AddInfectedES(EarthSoldier* Unit)
+{
+	if (Unit)
+	{
+		ESInfect.enqueue(Unit);
+		InfectedCount++;
+	}
+}
+
+void Game::RemoveInfectedES(EarthSoldier*& esptr)
+{
+	if (InfectedCount != 0)
+	{
+		ESInfect.dequeue(esptr);
+		InfectedCount--;
 	}
 }

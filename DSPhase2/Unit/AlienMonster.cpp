@@ -43,6 +43,13 @@ void AlienMonster::Attack(Game* game)
                 game->GetEA()->removeES(ES);
                 oghealthES = ES->GetOgHealth();
                 ES->SetHealth(ES->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ES->GetHealth()));
+                int Infect = 0;
+                Infect = 1 + (rand() % 100);
+                if (Infect <= game->in.InfectionProb)
+                {
+                    ES->SetInfectedCheck(true);
+                    game->IncrementInfectedCount();
+                }
                 if (ES->GetTa() == 0)
                 {
                     ES->SetTa(game->GetTimeStep());
@@ -135,6 +142,13 @@ void AlienMonster::Attack(Game* game)
                     game->GetEA()->removeES(ES);
                     oghealthES = ES->GetOgHealth();
                     ES->SetHealth(ES->GetHealth() - (AM->GetPower() * ((AM->GetHealth()) / 100)) / sqrt(ES->GetHealth()));
+                    int Infect = 0;
+                    Infect = 1 + (rand() % 100);
+                    if (Infect <= game->in.InfectionProb)
+                    {
+                        ES->SetInfectedCheck(true);
+                        game->AddInfectedES(ES);
+                    }
                     if (ES->GetTa() == 0)
                     {
                         ES->SetTa(game->GetTimeStep());

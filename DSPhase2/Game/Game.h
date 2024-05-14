@@ -42,6 +42,7 @@ class Game
 	LinkedQueue <Unit*> AMAttack;
 	LinkedQueue <Unit*> ADAttack;
 	LinkedQueue <Unit*> SUAttack;
+	LinkedQueue <Unit*> InfectedAttack;
 	LinkedQueue <Unit*> KL;
 	LinkedQueue <Unit*> TL;
 
@@ -53,6 +54,9 @@ class Game
 
 	LinkedQueue <EarthTank*> ETUML;
 	int ETUMLcount = 0;
+
+	LinkedQueue <EarthSoldier*> ESInfect;
+	int InfectedCount = 0;
 
 	int HealedCount = 0;
 
@@ -80,7 +84,7 @@ public:
 	AlienArmy* GetAA();
 	AllyArmy* GetAllies();
 
-	void AddToKilled(Unit* Unit);
+    void AddToKilled(Unit* Unit);
 	void PrintKilledList();
 
 	bool isEmpty_HL();
@@ -108,13 +112,18 @@ public:
 	bool addAMAttack(Unit* unit);
 	bool addADAttack(Unit* unit);
 	bool addSUAttack(Unit* unit);
+	bool addInfectedAttack(Unit* unit);
 	void printAttacking();
 
 	void StartGame();
 	int GetTimeStep();
 
+	void IncrementInfectedCount();
 	void SetPercentageOfInfected(float Percent);
 	float GetPercentageOfInfected();
+
+	void AddInfectedES(EarthSoldier* Unit);
+	void RemoveInfectedES(EarthSoldier*& esptr);
 
 	bool CheckGameEnded();
 

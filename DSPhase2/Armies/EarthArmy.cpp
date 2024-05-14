@@ -55,7 +55,9 @@ void EarthArmy::printES()
 	Node<EarthSoldier*>* Traversal = ES.getfrontPtr();
 	while (Traversal->getNext())
 	{
-		cout << Traversal->getItem()->GetId() << ", ";
+		cout << Traversal->getItem()->GetId();
+		if (Traversal->getItem()->GetInfectedCheck()) cout << "<X>";
+		cout<< ", ";
 		Traversal = Traversal->getNext();
 	}
 	cout << Traversal->getItem()->GetId();
