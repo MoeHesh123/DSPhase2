@@ -37,12 +37,11 @@ void HealUnit::Attack(Game* game)
 					}
 					else
 					{
-						double OGH = ES->GetHealth();
-						double HealthImprovement = (((HU->GetPower() * HU->GetHealth()) / 100) / sqrt(ES->GetHealth()));
+						double HealthImprovement = (((HU->GetPower() * HU->GetHealth()) / 100) / sqrt(ES->GetOgHealth()));
 						ES->SetHealth(ES->GetHealth() + HealthImprovement);
 						if (ES->GetHealth() > 100) ES->SetHealth(100.0);
 						game->IncrementHealedCount();
-						if (ES->GetHealth() >= 0.2 * OGH) game->GetEA()->ReAddEarthUnit(ES);
+						if (ES->GetHealth() >= 0.2 * ES->GetOgHealth()) game->GetEA()->ReAddEarthUnit(ES);
 						else TempES.enqueue(ES);
 					}
 				}
@@ -61,12 +60,11 @@ void HealUnit::Attack(Game* game)
 					}
 					else
 					{
-						double OGH = ET->GetHealth();
-						double HealthImprovement = (((power * health) / 100) / sqrt(ET->GetHealth()));
+						double HealthImprovement = (((power * health) / 100) / sqrt(ET->GetOgHealth()));
 						ET->SetHealth(ET->GetHealth() + HealthImprovement);
 						if (ET->GetHealth() > 100) ET->SetHealth(100.0);
 						game->IncrementHealedCount();
-						if (ET->GetHealth() >= 0.2 * OGH) game->GetEA()->ReAddEarthUnit(ET);
+						if (ET->GetHealth() >= 0.2 * ET->GetOgHealth()) game->GetEA()->ReAddEarthUnit(ET);
 						else TempET.enqueue(ET);
 					}
 				}

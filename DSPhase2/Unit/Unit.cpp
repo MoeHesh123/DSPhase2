@@ -64,6 +64,11 @@ double Unit::GetUAP()
 	return UAP;
 }
 
+double Unit::GetOgHealth()
+{
+	return OriginalHealth;
+}
+
 void Unit::SetJT(int Timestep)
 {
 	jointime = Timestep;
@@ -87,6 +92,11 @@ void Unit::SetUAP(double damage)
 void Unit::SetHealth(double H)
 {
 	health = H;
+}
+
+void Unit::SetOgHealth(double H)
+{
+	OriginalHealth = H;
 }
 
 int Unit::GetJTUML()

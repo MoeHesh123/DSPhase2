@@ -22,6 +22,7 @@ bool AllyArmy::addSU(int jt, double h, int p, int AttC)
 	if (AllyID < 3999)
 	{
 		SaverUnit* su = new SaverUnit(++AllyID, jt, h, p, AttC);
+		su->SetOgHealth(h);
 		SU.enqueue(su);
 		SUcount++;
 		return true;

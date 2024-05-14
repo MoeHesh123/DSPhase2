@@ -781,20 +781,24 @@ float Game::GetPercentageOfInfected()
 
 bool Game::CheckGameEnded()
 {
-	if (AA->GetAlienCount() != 0 && EA->GetEarthCount() != 0)
+	if (TimeStep == 500)
 	{
-		EndGameCondition = Neutral;
-		return false;
+		EndGameCondition = Draw;
+		return true;
 	}
 	else if (EA->GetEarthCount() == 0)
 	{
 		EndGameCondition = Lose;
 		return true;
 	}
-    else if (AA->GetAlienCount() == 0)
+	else if (AA->GetAlienCount() == 0)
 	{
 		EndGameCondition = Win;
 		return true;
 	}
-	//Draw Condition
+	else if (AA->GetAlienCount() != 0 && EA->GetEarthCount() != 0)
+	{
+		EndGameCondition = Neutral;
+		return false;
+	}
 }

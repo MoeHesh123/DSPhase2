@@ -25,6 +25,7 @@ bool EarthArmy::addES(int jt, double h, int p, int AttC)
 	if (EarthID < 999)
 	{
 		EarthSoldier* es = new EarthSoldier(++EarthID, jt, h, p, AttC);
+		es->SetOgHealth(h);
 		ES.enqueue(es);
 		EScount++;
 		return true;
@@ -89,6 +90,7 @@ bool EarthArmy::addET(int jt, double h, int p, int AttC)
 	if (EarthID < 999)
 	{
 		EarthTank* et = new EarthTank(++EarthID, jt, h, p, AttC);
+		et->SetOgHealth(h);
 		ET.push(et);
 		ETcount++;
 		return true;
@@ -160,6 +162,7 @@ bool EarthArmy::addEG(int jt, double h, int p, int AttC)
 	if (EarthID < 999)
 	{
 		EarthGunnery* eg = new EarthGunnery(++EarthID, jt, h, p, AttC);
+		eg->SetOgHealth(h);
 		int Priority = h + p;
 		EG.enqueue(eg, Priority);
 		EGcount++;

@@ -26,6 +26,7 @@ bool AlienArmy::addAS(int jt, double h, int p, int AttC)
 	if (AlienID < 2999)
 	{
 		AlienSoldier* as = new AlienSoldier(++AlienID, jt, h, p, AttC);
+		as->SetOgHealth(h);
 		AS.enqueue(as);
 		AScount++;
 		return true;
@@ -94,6 +95,7 @@ bool AlienArmy::addAD(int jt, double h, int p, int AttC)
 	if (AlienID < 2999)
 	{
 		AlienDrone* ad = new AlienDrone(++AlienID, jt, h, p, AttC);
+		ad->SetOgHealth(h);
 		AD.enqueue(ad);
 		ADcount++;
 		return true;
@@ -184,6 +186,7 @@ bool AlienArmy::addAM(int jt, double h, int p, int AttC)
 	if (AlienID < 2999)
 	{
 		AlienMonster* am = new AlienMonster(++AlienID, jt, h, p, AttC);
+		am->SetOgHealth(h);
 		AM.insert(am);
 		AMcount++;
 		return true;

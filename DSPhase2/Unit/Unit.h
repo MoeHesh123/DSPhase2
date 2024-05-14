@@ -31,6 +31,7 @@ protected:
 	double UAP = 0.0;
 
 	int JTUML = 0;
+	double OriginalHealth;
 	bool InfectedCheck = false;
 	bool Immunity = false;
 
@@ -49,12 +50,14 @@ public:
 	virtual int GetDd();
 	virtual int GetDb();
 	virtual double GetUAP();
+	virtual double GetOgHealth();
 
 	virtual void SetJT(int Timestep);
 	virtual void SetTa(int ta);
 	virtual void SetTd(int td);
 	virtual void SetUAP(double damage);
 	virtual void SetHealth(double H);
+	virtual void SetOgHealth(double H);
 
 	int GetJTUML();
 	void SetJTUML(int jtuml);
