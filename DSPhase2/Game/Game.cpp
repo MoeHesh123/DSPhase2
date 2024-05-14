@@ -754,7 +754,10 @@ void Game::StartGame()
 		}
 
 		if (EA->getEScount() != 0) SetPercentageOfInfected((InfectedCount / EA->getEScount()) * 100);
-		cout << endl << "Percentage Of Infected Earth Soliders: " << GetPercentageOfInfected() << endl << endl;
+		if (x == 1)
+		{
+			cout << endl << "Percentage Of Infected Earth Soliders: " << GetPercentageOfInfected() << endl << endl;
+		}
 
 		if (x == 1)
 		{
