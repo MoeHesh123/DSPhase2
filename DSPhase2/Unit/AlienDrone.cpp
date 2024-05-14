@@ -71,7 +71,7 @@ void AlienDrone::Attack(Game* game)
                     }
 
                     game->GetEA()->removeET(ET);
-                    oghealthB = ET->GetHealth();
+                    oghealthB = ET->GetOgHealth();
 
                     ET->SetHealth(ET->GetHealth() - (ADBack->GetPower() * ((ADBack->GetHealth()) / 100)) / sqrt(ET->GetHealth()));
 
@@ -107,7 +107,7 @@ void AlienDrone::Attack(Game* game)
                     game->addADAttack(ET);
                 } 
                 game->GetEA()->removeET(ET);
-                oghealthB = ET->GetHealth();
+                oghealthB = ET->GetOgHealth();
                 ET->SetHealth(ET->GetHealth() - (ADBack->GetPower() * ((ADBack->GetHealth()) / 100)) / sqrt(ET->GetHealth()));
                 if (ET->GetTa() == 0)
                 {
@@ -173,7 +173,7 @@ void AlienDrone::Attack(Game* game)
                     game->addADAttack(ET); 
                 }
                 game->GetEA()->removeET(ET);
-                double oghealth = ET->GetHealth();
+                double oghealth = ET->GetOgHealth();
                 ET->SetHealth(ET->GetHealth() - (ADFront->GetPower() * ((ADFront->GetHealth()) / 100)) / sqrt(ET->GetHealth())); 
                 if (ET->GetTa() == 0)
                 {
@@ -261,7 +261,7 @@ void AlienDrone::Attack(Game* game)
 
                     game->GetEA()->removeET(ET); 
 
-                    double oghealth = ET->GetHealth(); 
+                    double oghealth = ET->GetOgHealth(); 
                     ET->SetHealth(ET->GetHealth() - (ADFront->GetPower() * ((ADFront->GetHealth()) / 100)) / sqrt(ET->GetHealth())); 
 
                     if (ET->GetTa() == 0) 

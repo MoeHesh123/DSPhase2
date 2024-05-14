@@ -31,7 +31,7 @@ void AlienSoldier::Attack(Game* game)
                 game->addASAttack(ESp); 
             }
             game->GetEA()->removeES(ESp);
-            double oghealth = ESp->GetHealth();
+            double oghealth = ESp->GetOgHealth();
             ESp->SetHealth(ESp->GetHealth() - (ASp->GetPower() * ((ASp->GetHealth()) / 100)) / sqrt(ESp->GetHealth()));
             if (ESp->GetTa() == 0)
             {
